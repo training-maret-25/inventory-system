@@ -7,7 +7,7 @@
     },
     {
       "Id": 2,
-      "Username": "employee1",
+      "Username": "employee",
       "Password": "hashed_password",
       "Role": "Employee"
     }
