@@ -4,16 +4,15 @@ class Program
     {
         public int Id { get; set; }
         public string Username { get; set; }
-        public string Password { get; set; } // Password dalam format hash
-        public string Role { get; set; } // "Admin" atau "Employee"
+        public string Password { get; set; } 
+        public string Role { get; set; }
     }
 
     public class UserManager
     {
         private const string UserFile = "users.json";
-        private User _currentUser = null; // Menyimpan user yang sedang login
+        private User _currentUser = null;
 
-        // Membaca data user dari JSON
         private List<User> LoadUsers()
         {
             if (!File.Exists(UserFile)) return new List<User>();
