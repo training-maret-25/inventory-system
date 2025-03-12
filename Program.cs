@@ -7,24 +7,25 @@ class Program
         UserManager userManager = new UserManager();
 
         Console.Write("Masukkan username: ");
-        string username = Console.ReadLine();
+        string username = Console.ReadLine() ?? "";
 
         Console.Write("Masukkan password: ");
-        string password = Console.ReadLine();
+        string password = Console.ReadLine() ?? "";
 
-        
-        if (userManager.Login(username, password))
-        {
-            Console.WriteLine("Login sukses!");
 
-            Console.WriteLine("Tekan ENTER untuk logout....");
-            Console.ReadLine();
-            userManager.Logout();
-        }
-        else
+        bool isSuccess = userManager.Login(username, password);
+
+        if (!isSuccess)
         {
             Console.WriteLine("Login gagal.");
         }
+        else
+        {
+            Console.WriteLine("Login sukses.");
+        }
+
+        Console.WriteLine("Tekan tombol apapun untuk keluar...");
+        Console.ReadKey();
     }
 }
 
