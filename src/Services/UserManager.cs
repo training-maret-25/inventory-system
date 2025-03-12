@@ -7,15 +7,16 @@ public class User
 {
     public int Id { get; set; }
     public string? Username { get; set; }
-    public string? Password { get; set; } 
-    public string? Role { get; set; } 
+    public string? Password { get; set; }
+    public string? Role { get; set; }
 }
 
 public class UserManager
 {
-    private const string UserFile = @"C:\Users\ASUS\source\repos\inventory-system\data\users.json"; 
-    private List<User> users = new List<User>(); 
-    private User? _currentUser = null; 
+
+    private const string UserFile = @"C:\Users\ASUS\source\repos\inventory-system\data\users.json";
+    private List<User> users = new List<User>();
+    private User? _currentUser = null;
 
     private void LoadUsers()
     {
@@ -77,4 +78,36 @@ public class UserManager
             Console.WriteLine("Tidak ada user yang sedang login.");
         }
     }
+
+    public class UserAdd
+    {
+        private List<User> users = new List<User>();
+        private int nextId = 1;
+
+        public void AddEmployer(string username, string password)
+        {
+            foreach (var user in users)
+            {
+                if (user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("ussername udh ada.");
+                    return;
+                }
+            }
+
+            User newUser = new User
+            {
+                Id = nextId,
+                Username = username,
+                Password = password,
+                Role = "Employer"
+            };
+
+            users.Add(newUser);
+            nextId++;
+
+            Console.WriteLine($"sudah berhasil.");
+        }
+    }
+
 }

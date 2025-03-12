@@ -4,7 +4,7 @@ using System.Collections.Generic;
 class Program
 {
 
-    
+
 
     public class User
     {
@@ -14,40 +14,9 @@ class Program
         public string Role { get; set; }
     }
 
-    public class UserAdd
-    {
-        private List<User> users = new List<User>();
-        private int nextId = 1;
-
-        public void AddEmployer(string username, string password)
-        {
-            foreach (var user in users)
-            {
-                if (user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
-                {
-                    Console.WriteLine("ussername udh ada.");
-                    return;
-                }
-            }
-
-            User newUser = new User
-            {
-                Id = nextId,
-                Username = username,
-                Password = password,
-                Role = "Employer"
-            };
-
-            users.Add(newUser);
-            nextId++;
-
-            Console.WriteLine($"sudah berhasil.");
-        }
-    }
-
     static void Main(string[] args)
     {
-        UserAdd userAdd = new UserAdd();
+        UserManager.UserAdd userAdd = new UserManager.UserAdd();
 
         while (true)
         {
