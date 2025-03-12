@@ -1,5 +1,4 @@
 ﻿using System;
-<<<<<<< HEAD
 
 class Program
 {
@@ -28,7 +27,6 @@ class Program
         }
     }
 }
-=======
 using System.Collections.Generic;
 
 class Program
