@@ -1,0 +1,21 @@
+[
+    {
+      "Id": 1,
+      "Username": "admin",
+      "Password": "HsGchblfG7HQkk9AeFrY+VneADna6NZmlwOGS2n+RT4=",
+      "Role": "Admin"
+    },
+    {
+      "Id": 2,
+      "Username": "employee",
+      "Password": "hashed_password",
+      "Role": "Employee"
+    },
+    {
+    
+            "Id": 3,
+            "Username": "iqbal",
+            "Password": "iqbal",
+            "Role": "Admin"
+    }
+  ]
