@@ -1,10 +1,18 @@
 ﻿﻿using System;
+using System.Collections.Generic;
 
 class Program
 {
-    static void Main()
+
+
+
+    public class User
     {
-        UserManager userManager = new UserManager();
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Role { get; set; }
+    }
 
         Console.Write("Masukkan username: ");
         string username = Console.ReadLine() ?? "";

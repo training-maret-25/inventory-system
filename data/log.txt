@@ -1,0 +1,7 @@
+[2025-03-12 16:46:25] [INFO] User 'admin melakukan aksi 'Login ke sistem'
+[2025-03-12 16:46:25] [USER] User 'admin melakukan aksi 'Menambahkan user 'employee1''
+[2025-03-12 16:46:25] [INVENTORY] User 'employee1 melakukan aksi 'Menambahkan barang 'Laptop' dengan stok awal 10'
+[2025-03-12 16:46:25] [TRANSACTION] User 'employee1 melakukan aksi 'Barang keluar: 'Laptop' 3 unit'
+[2025-03-12 16:46:25] [RESTOCK] User 'system melakukan aksi 'Restock otomatis: 10 unit 'Laptop' ditambahkan'
+[2025-03-12 16:46:25] [ERROR] User 'admin melakukan aksi 'Gagal menghapus user 'employee2' karena tidak ditemukan'
+[2025-03-12 16:46:25] [INFO] User 'admin melakukan aksi 'Logout dari sistem'
