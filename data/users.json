@@ -1,21 +1,20 @@
 [
-    {
+  {
       "Id": 1,
       "Username": "admin",
-      "Password": "HsGchblfG7HQkk9AeFrY+VneADna6NZmlwOGS2n+RT4=",
+      "Password": "e99a18c428cb38d5f260853678922e03abd833d065beff442f62a180f2b82d9a",
       "Role": "Admin"
-    },
-    {
+  },
+  {
       "Id": 2,
       "Username": "employee",
-      "Password": "hashed_password",
+      "Password": "b2e98ad6f6eb8508dd6a14cfa704bad7f05f6fb1e28d23f205afedb0cc7bd8e4",
       "Role": "Employee"
-    },
-    {
-    
-            "Id": 3,
-            "Username": "iqbal",
-            "Password": "iqbal",
-            "Role": "Admin"
-    }
-  ]
+  },
+  {
+      "Id": 3,
+      "Username": "iqbal",
+      "Password": "4f7a6f47f8844a3e8d64b79cabe6dcf4e9db8b1d51c0d34e3f4e91c4e2e9a157",
+      "Role": "Admin"
+  }
+]

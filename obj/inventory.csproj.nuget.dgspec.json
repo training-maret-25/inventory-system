@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj": {}
   },
   "projects": {
@@ -15,11 +16,37 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\KONTOLODON\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "C:\\d\\@magang\\inventory-system\\inventory.csproj": {}
+  },
+  "projects": {
+    "C:\\d\\@magang\\inventory-system\\inventory.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\d\\@magang\\inventory-system\\inventory.csproj",
+        "projectName": "inventory",
+        "projectPath": "C:\\d\\@magang\\inventory-system\\inventory.csproj",
+        "packagesPath": "C:\\Users\\maufa\\.nuget\\packages\\",
+        "outputPath": "C:\\d\\@magang\\inventory-system\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\maufa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+<<<<<<< HEAD
+=======
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,16 +64,24 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
+<<<<<<< HEAD
         }
+=======
+        },
+        "SdkAnalysisLevel": "9.0.200"
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+<<<<<<< HEAD
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.0.3, )"
             },
+=======
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
@@ -68,7 +103,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
         }
       }
     }

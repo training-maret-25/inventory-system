@@ -1,76 +1,162 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using Newtonsoft.Json;
-using InventorySystem.Models;
 
-namespace InventorySystem.Services
+public class User
 {
-    public class UserManager
+    public int Id { get; set; }
+    public string Username { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty; // Harus SHA-256 hash
+    public string Role { get; set; } = string.Empty;
+}
+
+public class UserManager
+{
+    private const string UserFile = @"C:\\Users\\ASUS\\source\\repos\\inventory-system\\data\\users.json";
+    private List<User> users = new List<User>();
+    private User? _currentUser = null;
+
+    public UserManager()
     {
-        private readonly string filePath = "data/user.json";
-        private readonly List<User> users;
+        LoadUsers();
+    }
 
-        public UserManager()
+    private void LoadUsers()
+    {
+        if (File.Exists(UserFile))
         {
-            if (File.Exists(filePath))
-            {
-                string json = File.ReadAllText(filePath);
-                users = JsonConvert.DeserializeObject<List<User>>(json) ?? new List<User>();
-            }
-            else
-            {
-                users = new List<User>();
-            }
+            string json = File.ReadAllText(UserFile);
+            users = JsonConvert.DeserializeObject<List<User>>(json) ?? new List<User>();
+            CheckAndHashPasswords();  // Pastikan semua password sudah di-hash
         }
-
-        // Simpan data user
-        public void SaveUsers()
+        else
         {
-            string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-            File.WriteAllText(filePath, json);
-        }
-
-        public User? Authenticate(string username, string password) // Pastikan ini sesuai
-        {
-            User? user = users.Find(u => u.Username == username);
-            if (user != null && BCrypt.Net.BCrypt.Verify(password, user.Password))
-            {
-                return user;
-            }
-            return null;
-        }
-
-        // Edit data user
-        public bool EditUser(int adminId, int userId, string? newUsername, string? newPassword, string? newRole)
-        {
-            User? adminUser = users.Find(u => u.Id == adminId);
-            if (adminUser == null || adminUser.Role != "Admin")
-            {
-                Console.WriteLine("Izin ditolak! Hanya Admin yang bisa mengedit user.");
-                return false;
-            }
-
-            User? user = users.Find(u => u.Id == userId);
-            if (user == null)
-            {
-                Console.WriteLine($"User dengan ID {userId} tidak ditemukan.");
-                return false;
-            }
-
-            if (!string.IsNullOrEmpty(newUsername))
-            {
-                user.Username = newUsername;
-            }
-            if (!string.IsNullOrEmpty(newPassword))
-            {
-                user.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
-            }
-            if (!string.IsNullOrEmpty(newRole) && (newRole == "Admin" || newRole == "Employee"))
-            {
-                user.Role = newRole;
-            }
-
-            SaveUsers();
-            Console.WriteLine($"User dengan ID {userId} berhasil diperbarui!");
-            return true;
+            Console.WriteLine("⚠️ File users.json tidak ditemukan! Membuat daftar user kosong.");
+            users = new List<User>();
         }
     }
+
+    private void CheckAndHashPasswords()
+    {
+        bool updated = false;
+
+        foreach (var user in users)
+        {
+            if (!IsValidHash(user.Password))
+            {
+                Console.WriteLine($"🔹 Password untuk {user.Username} belum di-hash. Mengupdate...");
+                user.Password = HashPassword(user.Password);
+                updated = true;
+            }
+        }
+
+        if (updated)
+        {
+            File.WriteAllText(UserFile, JsonConvert.SerializeObject(users, Formatting.Indented));
+            Console.WriteLine("✅ Semua password telah di-hash dan JSON diperbarui!");
+        }
+    }
+
+    private static bool IsValidHash(string password)
+    {
+        return password.Length == 64 && IsHex(password);
+    }
+
+    private static bool IsHex(string input)
+    {
+        foreach (char c in input)
+        {
+            if (!Uri.IsHexDigit(c))
+                return false;
+        }
+        return true;
+    }
+
+    private string HashPassword(string password)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return BitConverter.ToString(bytes).Replace("-", "").ToLower(); // Pakai lowercase agar konsisten
+        }
+    }
+
+    public bool Login(string username, string password)
+    {
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+        {
+            Console.WriteLine("❌ Username dan password tidak boleh kosong!");
+            return false;
+        }
+
+        string hashedPassword = HashPassword(password);
+        var user = users.Find(u => u.Username == username);
+
+        if (user == null)
+        {
+            Console.WriteLine("❌ Username tidak ditemukan!");
+            return false;
+        }
+
+        Console.WriteLine($"(Debug) Hash dari input: {hashedPassword}");
+        Console.WriteLine($"(Debug) Hash dari database: {user.Password}");
+
+        if (!user.Password.Equals(hashedPassword, StringComparison.OrdinalIgnoreCase))
+        {
+            Console.WriteLine("❌ Password salah!");
+            return false;
+        }
+
+        _currentUser = user;
+        Console.WriteLine($"✅ Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
+        return true;
+    }
+
+    public void Logout()
+    {
+        if (_currentUser != null)
+        {
+            Console.WriteLine($"{_currentUser.Username} telah logout.");
+            _currentUser = null;
+        }
+        else
+        {
+            Console.WriteLine("⚠️ Tidak ada user yang sedang login.");
+        }
+    }
+
+    public class UserAdd
+    {
+        private List<User> users = new List<User>();
+        private int nextId = 1;
+
+        public void AddEmployer(string username, string password)
+        {
+            foreach (var user in users)
+            {
+                if (user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("ussername udh ada.");
+                    return;
+                }
+            }
+
+            User newUser = new User
+            {
+                Id = nextId,
+                Username = username,
+                Password = password,
+                Role = "Employer"
+            };
+
+            users.Add(newUser);
+            nextId++;
+
+            Console.WriteLine($"sudah berhasil.");
+        }
+    }
+
 }

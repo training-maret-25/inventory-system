@@ -1,11 +1,19 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "MF17HvJsMSY=",
   "success": true,
   "projectFilePath": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\KONTOLODON\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\KONTOLODON\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+=======
+  "dgSpecHash": "xVXpQAMAFaw=",
+  "success": true,
+  "projectFilePath": "C:\\d\\@magang\\inventory-system\\inventory.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\maufa\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
   ],
   "logs": []
 }

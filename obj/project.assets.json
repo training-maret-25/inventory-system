@@ -2,6 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0": {
+<<<<<<< HEAD
       "BCrypt.Net-Next/4.0.3": {
         "type": "package",
         "compile": {
@@ -15,6 +16,8 @@
           }
         }
       },
+=======
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -31,6 +34,7 @@
     }
   },
   "libraries": {
+<<<<<<< HEAD
     "BCrypt.Net-Next/4.0.3": {
       "sha512": "W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
       "type": "package",
@@ -62,6 +66,8 @@
         "readme.md"
       ]
     },
+=======
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -95,16 +101,25 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+<<<<<<< HEAD
       "BCrypt.Net-Next >= 4.0.3",
+=======
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
       "Newtonsoft.Json >= 13.0.3"
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\KONTOLODON\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\maufa\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj",
       "projectName": "inventory",
       "projectPath": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj",
@@ -113,11 +128,31 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\KONTOLODON\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\d\\@magang\\inventory-system\\inventory.csproj",
+      "projectName": "inventory",
+      "projectPath": "C:\\d\\@magang\\inventory-system\\inventory.csproj",
+      "packagesPath": "C:\\Users\\maufa\\.nuget\\packages\\",
+      "outputPath": "C:\\d\\@magang\\inventory-system\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\maufa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+<<<<<<< HEAD
+=======
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -135,16 +170,24 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
+<<<<<<< HEAD
       }
+=======
+      },
+      "SdkAnalysisLevel": "9.0.200"
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
     },
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+<<<<<<< HEAD
           "BCrypt.Net-Next": {
             "target": "Package",
             "version": "[4.0.3, )"
           },
+=======
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
@@ -166,7 +209,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
       }
     }
   }
