@@ -17,7 +17,7 @@ class Program
         {
             Console.WriteLine("Login sukses!");
 
-            Console.WriteLine("Tekan ENTER untuk logout...");
+            Console.WriteLine("Tekan ENTER untuk logout....");
             Console.ReadLine();
             userManager.Logout();
         }
