@@ -7,17 +7,16 @@ public class User
 {
     public int Id { get; set; }
     public string? Username { get; set; }
-    public string? Password { get; set; } // Password dalam bentuk teks biasa
-    public string? Role { get; set; } // "Admin" atau "Employee"
+    public string? Password { get; set; } 
+    public string? Role { get; set; } 
 }
 
 public class UserManager
 {
-    private const string UserFile = @"C:\Users\ASUS\source\repos\inventory-system\data\users.json"; // Path ke file user
-    private List<User> users = new List<User>(); // Menyimpan daftar user
-    private User? _currentUser = null; // Menyimpan user yang sedang login
+    private const string UserFile = @"C:\Users\ASUS\source\repos\inventory-system\data\users.json"; 
+    private List<User> users = new List<User>(); 
+    private User? _currentUser = null; 
 
-    // Membaca data user dari JSON
     private void LoadUsers()
     {
         try
@@ -40,7 +39,6 @@ public class UserManager
         }
     }
 
-    // Fungsi Login tanpa hashing
     public bool Login(string username, string password)
     {
         try
@@ -67,7 +65,6 @@ public class UserManager
         }
     }
 
-    // Fungsi Logout
     public void Logout()
     {
         if (_currentUser != null)

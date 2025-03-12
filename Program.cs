@@ -12,13 +12,12 @@ class Program
         Console.Write("Masukkan password: ");
         string password = Console.ReadLine();
 
-        // Login
+        
         if (userManager.Login(username, password))
         {
             Console.WriteLine("Login sukses!");
 
-            // Logout setelah beberapa detik
-            Console.WriteLine("Tekan ENTER untuk logout...");
+            Console.WriteLine("Tekan ENTER untuk logout....");
             Console.ReadLine();
             userManager.Logout();
         }
