@@ -24,4 +24,9 @@ class Program
     {
         string input = Console.ReadLine();
     }
+
+    static void AddUsers()
+    {
+        var a = 1;
+    }
 }
