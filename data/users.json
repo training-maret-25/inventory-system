@@ -2,7 +2,7 @@
     {
       "Id": 1,
       "Username": "admin",
-      "Password": "hashed_password",
+      "Password": "HsGchblfG7HQkk9AeFrY+VneADna6NZmlwOGS2n+RT4=",
       "Role": "Admin"
     },
     {
@@ -10,5 +10,12 @@
       "Username": "employee",
       "Password": "hashed_password",
       "Role": "Employee"
+    },
+    {
+    
+            "Id": 3,
+            "Username": "iqbal",
+            "Password": "iqbal",
+            "Role": "Admin"
     }
   ]
