@@ -1,7 +1,11 @@
 {
   "version": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "MF17HvJsMSY=",
+=======
+  "dgSpecHash": "wpP9akCA63I=",
+>>>>>>> 099e99704c2bc2ac1991881029fce353d202575f
   "success": true,
   "projectFilePath": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj",
   "expectedPackageFiles": [

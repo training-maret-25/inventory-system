@@ -50,8 +50,46 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
+<<<<<<< HEAD
           "net8.0": {
             "targetAlias": "net8.0",
+=======
+          "net9.0": {
+            "targetAlias": "net9.0",
+=======
+    "C:\\d\\@magang\\inventory-system\\inventory.csproj": {}
+  },
+  "projects": {
+    "C:\\d\\@magang\\inventory-system\\inventory.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\d\\@magang\\inventory-system\\inventory.csproj",
+        "projectName": "inventory",
+        "projectPath": "C:\\d\\@magang\\inventory-system\\inventory.csproj",
+        "packagesPath": "C:\\Users\\maufa\\.nuget\\packages\\",
+        "outputPath": "C:\\d\\@magang\\inventory-system\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\maufa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+>>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
+>>>>>>> 099e99704c2bc2ac1991881029fce353d202575f
             "projectReferences": {}
           }
         },
@@ -72,8 +110,14 @@
 >>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
       },
       "frameworks": {
+<<<<<<< HEAD
         "net8.0": {
           "targetAlias": "net8.0",
+=======
+<<<<<<< HEAD
+        "net9.0": {
+          "targetAlias": "net9.0",
+>>>>>>> 099e99704c2bc2ac1991881029fce353d202575f
           "dependencies": {
 <<<<<<< HEAD
             "BCrypt.Net-Next": {
@@ -81,6 +125,12 @@
               "version": "[4.0.3, )"
             },
 =======
+<<<<<<< HEAD
+=======
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+>>>>>>> 099e99704c2bc2ac1991881029fce353d202575f
 >>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
             "Newtonsoft.Json": {
               "target": "Package",
