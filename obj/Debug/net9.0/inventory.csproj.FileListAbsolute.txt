@@ -16,3 +16,4 @@ C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net9.0\refint\inventory.
 C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net9.0\inventory.pdb
 C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net9.0\inventory.genruntimeconfig.cache
 C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net9.0\ref\inventory.dll
+C:\conen\kuliah\magang\maret\inventory-system\bin\Debug\net9.0\BCrypt.Net-Next.dll

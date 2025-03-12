@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Newtonsoft.Json;
-using InventorySystem.Models; 
+using InventorySystem.Models;
 
 namespace InventorySystem.Services
 {
     public class UserManager
     {
-        private string filePath = "data/user.json";
-        private List<User> users;
+        private readonly string filePath = "data/user.json";
+        private readonly List<User> users;
 
         public UserManager()
         {
@@ -24,35 +21,56 @@ namespace InventorySystem.Services
             }
         }
 
+        // Simpan data user
         public void SaveUsers()
         {
             string json = JsonConvert.SerializeObject(users, Formatting.Indented);
             File.WriteAllText(filePath, json);
         }
 
-        public void EditUser(int id, string? newName, string? newRole)
+        public User? Authenticate(string username, string password) // Pastikan ini sesuai
         {
-            // Cari user berdasarkan ID
-            User? user = users.Find(u => u.Id == id);
+            User? user = users.Find(u => u.Username == username);
+            if (user != null && BCrypt.Net.BCrypt.Verify(password, user.Password))
+            {
+                return user;
+            }
+            return null;
+        }
 
+        // Edit data user
+        public bool EditUser(int adminId, int userId, string? newUsername, string? newPassword, string? newRole)
+        {
+            User? adminUser = users.Find(u => u.Id == adminId);
+            if (adminUser == null || adminUser.Role != "Admin")
+            {
+                Console.WriteLine("Izin ditolak! Hanya Admin yang bisa mengedit user.");
+                return false;
+            }
+
+            User? user = users.Find(u => u.Id == userId);
             if (user == null)
             {
-                Console.WriteLine("User tidak ditemukan!");
-                return;
+                Console.WriteLine($"User dengan ID {userId} tidak ditemukan.");
+                return false;
             }
 
-            // Update nama dan role jika tidak null atau kosong
-            if (!string.IsNullOrWhiteSpace(newName))
+            if (!string.IsNullOrEmpty(newUsername))
             {
-                user.Username = newName;
+                user.Username = newUsername;
             }
-            if (!string.IsNullOrWhiteSpace(newRole))
+            if (!string.IsNullOrEmpty(newPassword))
+            {
+                user.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            }
+            if (!string.IsNullOrEmpty(newRole) && (newRole == "Admin" || newRole == "Employee"))
             {
                 user.Role = newRole;
             }
 
             SaveUsers();
-            Console.WriteLine($"User dengan ID {id} berhasil diperbarui!");
+            Console.WriteLine($"User dengan ID {userId} berhasil diperbarui!");
+            return true;
         }
     }
 }
