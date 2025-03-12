@@ -1,9 +1,11 @@
 ﻿using System;
-<<<<<<< HEAD
 using System.Collections.Generic;
 
 class Program
 {
+
+    
+
     public class User
     {
         public int Id { get; set; }
@@ -57,34 +59,3 @@ class Program
         }
     }
 }
-=======
-
-class Program
-{
-    static void Main()
-    {
-        UserManager userManager = new UserManager();
-
-        Console.Write("Masukkan username: ");
-        string username = Console.ReadLine();
-
-        Console.Write("Masukkan password: ");
-        string password = Console.ReadLine();
-
-        
-        if (userManager.Login(username, password))
-        {
-            Console.WriteLine("Login sukses!");
-
-            Console.WriteLine("Tekan ENTER untuk logout....");
-            Console.ReadLine();
-            userManager.Logout();
-        }
-        else
-        {
-            Console.WriteLine("Login gagal.");
-        }
-    }
-}
-
->>>>>>> 350007a59da5d68b2291cb6080e8f2dc25a15f56
