@@ -1,5 +1,4 @@
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
 >>>>>>> 099e99704c2bc2ac1991881029fce353d202575f
 C:\d\@magang\inventory-system\bin\Debug\net8.0\inventory.exe
@@ -21,7 +20,6 @@ C:\d\@magang\inventory-system\bin\Debug\net8.0\inventory.pdb
 C:\d\@magang\inventory-system\obj\Debug\net8.0\inventory.genruntimeconfig.cache
 C:\d\@magang\inventory-system\obj\Debug\net8.0\ref\inventory.dll
 >>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
-=======
 C:\Users\a s u s\magang\ProjectAkhir\inventory-system\bin\Debug\net8.0\inventory.exe
 C:\Users\a s u s\magang\ProjectAkhir\inventory-system\bin\Debug\net8.0\inventory.deps.json
 C:\Users\a s u s\magang\ProjectAkhir\inventory-system\bin\Debug\net8.0\inventory.runtimeconfig.json
@@ -38,3 +36,22 @@ C:\Users\a s u s\magang\ProjectAkhir\inventory-system\obj\Debug\net8.0\inventory
 C:\Users\a s u s\magang\ProjectAkhir\inventory-system\obj\Debug\net8.0\inventory.genruntimeconfig.cache
 C:\Users\a s u s\magang\ProjectAkhir\inventory-system\obj\Debug\net8.0\ref\inventory.dll
 >>>>>>> main
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net8.0\inventory.exe
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net8.0\inventory.deps.json
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net8.0\inventory.runtimeconfig.json
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net8.0\inventory.dll
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net8.0\inventory.pdb
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\inventory.csproj.AssemblyReference.cache
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\inventory.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\inventory.AssemblyInfoInputs.cache
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\inventory.AssemblyInfo.cs
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\inventory.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\inventory.sourcelink.json
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\inventory.csproj.Up2Date
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\inventory.dll
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\refint\inventory.dll
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\inventory.pdb
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\inventory.genruntimeconfig.cache
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net8.0\ref\inventory.dll
