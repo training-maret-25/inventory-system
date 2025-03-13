@@ -20,7 +20,6 @@ namespace InventorySystem.Services
             Console.WriteLine($"Path users.json: {filePath}");
             LoadUsers();
         }
-
         private void LoadUsers()
         {
             if (File.Exists(filePath))
@@ -41,7 +40,6 @@ namespace InventorySystem.Services
             File.WriteAllText(filePath, jsonData);
         }
 
-        // Pastikan semua password sudah hash SHA-256
         private void CheckAndHashPasswords()
         {
             bool updated = false;
