@@ -1,0 +1,10 @@
+[
+  {
+    "id": 5,
+    "nama": "kopi",
+    "kategori": "3",
+    "stok": 2,
+    "batas_minimum": 5,
+    "jumlah_restok": 4
+  }
+]

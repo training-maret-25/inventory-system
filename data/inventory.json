@@ -1,0 +1,42 @@
+[
+  {
+    "Id": 0,
+    "Nama": null,
+    "Kategori": null,
+    "Stok": 0,
+    "BatasMinimum": 0,
+    "JumlahRestok": 0
+  },
+  {
+    "Id": 0,
+    "Nama": null,
+    "Kategori": null,
+    "Stok": 0,
+    "BatasMinimum": 0,
+    "JumlahRestok": 0
+  },
+  {
+    "Id": 0,
+    "Nama": null,
+    "Kategori": null,
+    "Stok": 0,
+    "BatasMinimum": 0,
+    "JumlahRestok": 0
+  },
+  {
+    "Id": 0,
+    "Nama": null,
+    "Kategori": null,
+    "Stok": 0,
+    "BatasMinimum": 0,
+    "JumlahRestok": 0
+  },
+  {
+    "Id": 2,
+    "Nama": "pulpen ajaib",
+    "Kategori": "ATK",
+    "Stok": 13,
+    "BatasMinimum": 30,
+    "JumlahRestok": 5
+  }
+]
