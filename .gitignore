@@ -11,3 +11,6 @@
 *.pdb
 *.cache
 *.log
+
+/bin
+/obj
