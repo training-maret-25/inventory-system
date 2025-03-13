@@ -1,15 +1,5 @@
 [
   {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a3e3245ea24522fa011b93e04547a4357b8b5f77
-    "Id": 2,
-    "Username": "employee1",
-    "Password": "hashed_password",
-    "Role": "Employee"
-<<<<<<< HEAD
-=======
     "Id": 1,
     "Username": "admin",
     "Password": "e99a18c428cb38d5f260853678922e03abd833d065beff442f62a180f2b82d9a",
@@ -32,8 +22,11 @@
     "Username": "opal",
     "Password": "23d47445adfb8991789b459b6ba1b974d727d310aa9d80b7c2875b9430c0ba25",
     "Role": "Employer"
->>>>>>> main
-=======
->>>>>>> a3e3245ea24522fa011b93e04547a4357b8b5f77
+  },
+  {
+    "Id": 6,
+    "Username": "adminbaru",
+    "Password": "5fcf82bc15aef42cd3ec93e6d4b51c04df110cf77ee715f62f3f172ff8ed9de9",
+    "Role": "admin"
   }
 ]
