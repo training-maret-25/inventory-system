@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 1,
+    "Username": "Iqbal",
+    "Password": "$2a$11$oF1T4kcDTQsoqRXiH/Fc7.t4w4y5tmXz8yOspz.AHdMtdChw3O.lG",
+    "Role": "Admin"
+  },
+  {
+    "Id": 2,
+    "Username": "Conen",
+    "Password": "$2a$11$/PHAcQJFPqdy75IkcdRg9ex6yjlCJJHcU0eGKpVurmxc3s8.00t/i",
+    "Role": "Employee"
+  }
+]
