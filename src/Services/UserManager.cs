@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a3e3245ea24522fa011b93e04547a4357b8b5f77
 using System.Linq;
 using System.Text.Json;
 using InventorySystem.Models;
@@ -70,6 +73,7 @@ namespace InventorySystem.Services
         }
     }
 }
+<<<<<<< HEAD
 =======
 using System.Security.Cryptography;
 using System.Text;
@@ -246,3 +250,5 @@ private void SaveUsers()
 
 
 >>>>>>> main
+=======
+>>>>>>> a3e3245ea24522fa011b93e04547a4357b8b5f77

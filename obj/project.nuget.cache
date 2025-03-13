@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "00uyId2GZeg=",
   "success": true,
   "projectFilePath": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\inventory.csproj",
@@ -7,5 +8,11 @@
     "C:\\Users\\a s u s\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\a s u s\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
+=======
+  "dgSpecHash": "Am+afvxHVs4=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system\\inventory.csproj",
+  "expectedPackageFiles": [],
+>>>>>>> a3e3245ea24522fa011b93e04547a4357b8b5f77
   "logs": []
 }

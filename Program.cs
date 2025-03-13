@@ -1,58 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
+using InventorySystem.Services;
 
-class Program
+namespace InventorySystem
 {
-    static void Main()
+    class Program
     {
-        UserManager userManager = new UserManager();
-
-        while (true)
+        static void Main()
         {
-            Console.Clear();
-            Console.WriteLine("=== Menu ===");
-            Console.WriteLine("1. Tambah User");
-            Console.WriteLine("2. Login");
-            Console.WriteLine("3. Keluar");
-            Console.Write("Pilih opsi (1-3): ");
-            string option = Console.ReadLine() ?? "";
+            UserManager userManager = new UserManager();
 
-            if (option == "1")
+            Console.WriteLine("=== Aplikasi Manajemen User ===\n");
+            userManager.DisplayUsers();
+
+            Console.Write("\nMasukkan ID User yang ingin dihapus: ");
+            string? inputId = Console.ReadLine();
+
+            if (int.TryParse(inputId, out int userId))
             {
-                userManager.UserAdd();
-            }
-            else if (option == "2")
-            {
-                Console.Write("Masukkan username: ");
-                string username = Console.ReadLine() ?? "";
+                Console.Write("Masukkan nama admin yang melakukan penghapusan: ");
+                string? adminName = Console.ReadLine();
 
-                Console.Write("Masukkan password: ");
-                string password = Console.ReadLine() ?? "";
-
-                bool isSuccess = userManager.Login(username, password);
-
-                if (!isSuccess)
+                if (!string.IsNullOrWhiteSpace(adminName))
                 {
-                    Console.WriteLine("Login gagal. Tekan tombol apapun untuk kembali ke menu...");
-                    Console.ReadKey();
+                    userManager.DeleteUserById(userId, adminName);
                 }
                 else
                 {
-                    Console.WriteLine("Login sukses. Tekan tombol apapun untuk keluar...");
-                    Console.ReadKey();
-                    break;
+                    Console.WriteLine("Nama admin tidak boleh kosong.");
                 }
-            }
-            else if (option == "3")
-            {
-                Console.WriteLine("Keluar dari program...");
-                break;
             }
             else
             {
-                Console.WriteLine("Pilihan tidak valid. Tekan tombol apapun untuk kembali...");
-                Console.ReadKey();
+                Console.WriteLine("ID tidak valid. Harus berupa angka.");
             }
+
+            Console.WriteLine("Daftar User setelah update:");
+            userManager.DisplayUsers();
         }
     }
 }

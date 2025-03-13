@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\inventory.csproj": {}
   },
   "projects": {
@@ -12,19 +13,41 @@
         "projectPath": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\inventory.csproj",
         "packagesPath": "C:\\Users\\a s u s\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\obj\\",
+=======
+    "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system\\inventory.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system\\inventory.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system\\inventory.csproj",
+        "projectName": "inventory",
+        "projectPath": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system\\inventory.csproj",
+        "packagesPath": "C:\\Users\\a s u s\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system\\obj\\",
+>>>>>>> a3e3245ea24522fa011b93e04547a4357b8b5f77
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\a s u s\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
+<<<<<<< HEAD
           "net9.0"
+=======
+          "net8.0"
+>>>>>>> a3e3245ea24522fa011b93e04547a4357b8b5f77
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
+<<<<<<< HEAD
           "net9.0": {
             "targetAlias": "net9.0",
+=======
+          "net8.0": {
+            "targetAlias": "net8.0",
+>>>>>>> a3e3245ea24522fa011b93e04547a4357b8b5f77
             "projectReferences": {}
           }
         },
@@ -41,6 +64,7 @@
         "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
+<<<<<<< HEAD
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
@@ -53,6 +77,10 @@
               "version": "[13.0.3, )"
             }
           },
+=======
+        "net8.0": {
+          "targetAlias": "net8.0",
+>>>>>>> a3e3245ea24522fa011b93e04547a4357b8b5f77
           "imports": [
             "net461",
             "net462",
