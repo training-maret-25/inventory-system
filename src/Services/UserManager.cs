@@ -34,7 +34,7 @@ public class UserManager
         }
         else
         {
-            Console.WriteLine("⚠️ File users.json tidak ditemukan! Membuat daftar user kosong.");
+            Console.WriteLine("File users.json tidak ditemukan! Membuat daftar user kosong.");
             users = new List<User>();
         }
     }
@@ -47,7 +47,7 @@ public class UserManager
         {
             if (!IsValidHash(user.Password))
             {
-                Console.WriteLine($"🔹 Password untuk {user.Username} belum di-hash. Mengupdate...");
+                Console.WriteLine($"Password untuk {user.Username} belum di-hash. Mengupdate...");
                 user.Password = HashPassword(user.Password);
                 updated = true;
             }
@@ -56,7 +56,7 @@ public class UserManager
         if (updated)
         {
             File.WriteAllText(UserFile, JsonConvert.SerializeObject(users, Formatting.Indented));
-            Console.WriteLine("✅ Semua password telah di-hash dan JSON diperbarui!");
+            Console.WriteLine("Semua password telah di-hash dan JSON diperbarui!");
         }
     }
 
@@ -88,7 +88,7 @@ public class UserManager
     {
         if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
         {
-            Console.WriteLine("❌ Username dan password tidak boleh kosong!");
+            Console.WriteLine("Username dan password tidak boleh kosong!");
             return false;
         }
 
@@ -97,7 +97,7 @@ public class UserManager
 
         if (user == null)
         {
-            Console.WriteLine("❌ Username tidak ditemukan!");
+            Console.WriteLine("Username tidak ditemukan!");
             return false;
         }
 
@@ -106,12 +106,12 @@ public class UserManager
 
         if (!user.Password.Equals(hashedPassword, StringComparison.OrdinalIgnoreCase))
         {
-            Console.WriteLine("❌ Password salah!");
+            Console.WriteLine("Password salah!");
             return false;
         }
 
         _currentUser = user;
-        Console.WriteLine($"✅ Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
+        Console.WriteLine($"Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
         return true;
     }
 
@@ -124,7 +124,7 @@ public class UserManager
         }
         else
         {
-            Console.WriteLine("⚠️ Tidak ada user yang sedang login.");
+            Console.WriteLine("Tidak ada user yang sedang login.");
         }
     }
 
