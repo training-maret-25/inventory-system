@@ -39,6 +39,8 @@ public class UserManager
         }
     }
 
+
+
     private void CheckAndHashPasswords()
     {
         bool updated = false;
