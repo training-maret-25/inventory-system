@@ -77,32 +77,32 @@ namespace InventorySystem.Services
         }
 
         // Login user
-              public bool Login(string username, string password, out string role)
-{
-    role = "";
+        public bool Login(string username, string password, out string role)
+        {
+            role = "";
 
-    var user = users.FirstOrDefault(u => u.Username == username);
-    if (user == null)
-    {
-        Console.WriteLine("❌ Username tidak ditemukan!");
-        return false;
-    }
+            var user = users.FirstOrDefault(u => u.Username == username);
+            if (user == null)
+            {
+                Console.WriteLine("❌ Username tidak ditemukan!");
+                return false;
+            }
 
-    string hashedInputPassword = HashPassword(password);
+            string hashedInputPassword = HashPassword(password);
 
-    if (!user.Password.Equals(hashedInputPassword, StringComparison.OrdinalIgnoreCase))
-    {
-        Console.WriteLine("❌ Password salah!");
-        return false;
-    }
+            if (!user.Password.Equals(hashedInputPassword, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("❌ Password salah!");
+                return false;
+            }
 
-    // Jika berhasil login, simpan user & role
-    _currentUser = user;
-    role = user.Role;
+            // Jika berhasil login, simpan user & role
+            _currentUser = user;
+            role = user.Role;
 
-    Console.WriteLine($"✅ Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
-    return true;
-}
+            Console.WriteLine($"✅ Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
+            return true;
+        }
 
         // Logout user
         public void Logout()

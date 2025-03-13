@@ -3,9 +3,10 @@ namespace InventorySystem.Models
     public class InventoryItem
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int Stock { get; set; }
-        public decimal Price { get; set; }
-        public int MinimumStock { get; set; }
+        public string Nama { get; set; }
+        public string Kategori { get; set; }
+        public int Stok { get; set; }
+        public int BatasMinimum { get; set; }
+        public int JumlahRestok { get; set; }
     }
 }

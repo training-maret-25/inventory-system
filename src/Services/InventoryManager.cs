@@ -11,12 +11,10 @@ namespace InventorySystem.Services
     {
         private readonly string filePath = Path.Combine(Directory.GetCurrentDirectory(), "data", "inventory.json");
         private List<InventoryItem> inventory = new();
-        private User? _currentUser;
 
-        public InventoryManager(User? currentUser)
+        public InventoryManager()
         {
             Console.WriteLine($"Path inventory.json: {filePath}");
-            _currentUser = currentUser;
             LoadInventory();
         }
 
@@ -26,10 +24,11 @@ namespace InventorySystem.Services
             {
                 string jsonData = File.ReadAllText(filePath);
                 inventory = JsonSerializer.Deserialize<List<InventoryItem>>(jsonData) ?? new List<InventoryItem>();
+                Console.WriteLine("✅ Inventory berhasil dimuat.");
             }
             else
             {
-                Console.WriteLine("⚠️ File inventory.json tidak ditemukan! Membuat daftar barang kosong.");
+                Console.WriteLine("⚠️ File inventory.json tidak ditemukan! Membuat daftar kosong.");
             }
         }
 
@@ -39,52 +38,44 @@ namespace InventorySystem.Services
             File.WriteAllText(filePath, jsonData);
         }
 
-        // Menampilkan semua barang
-        public void DisplayItems()
+        // ✅ Tambah Barang
+        public void AddItem()
         {
-            Console.WriteLine("\n=== Daftar Barang ===");
-            if (inventory.Count == 0)
+            Console.Write("Nama Barang: ");
+            string nama = Console.ReadLine() ?? "";
+
+            Console.Write("Kategori: ");
+            string kategori = Console.ReadLine() ?? "";
+
+            Console.Write("Stok Awal: ");
+            if (!int.TryParse(Console.ReadLine(), out int stok) || stok < 0)
             {
-                Console.WriteLine("Tidak ada barang dalam inventory.");
+                Console.WriteLine("❌ Stok harus berupa angka positif.");
                 return;
             }
 
-            foreach (var item in inventory)
+            Console.Write("Batas Minimum Stok: ");
+            if (!int.TryParse(Console.ReadLine(), out int batasMinimum) || batasMinimum < 0)
             {
-                Console.WriteLine($"ID: {item.Id}, Nama: {item.Name}, Stok: {item.Stock}, Harga: {item.Price}, Min Stok: {item.MinimumStock}");
+                Console.WriteLine("❌ Batas minimum harus berupa angka positif.");
+                return;
             }
-        }
 
-        // Menambahkan barang baru (hanya Employee)
-        public void AddItem()
-        {
-            if (!IsEmployee()) return;
-
-            Console.Write("Masukkan nama barang: ");
-            string name = Console.ReadLine() ?? "";
-
-            Console.Write("Masukkan jumlah stok: ");
-            if (!int.TryParse(Console.ReadLine(), out int stock)) stock = 0;
-
-            Console.Write("Masukkan harga barang: ");
-            if (!decimal.TryParse(Console.ReadLine(), out decimal price)) price = 0;
-
-            Console.Write("Masukkan stok minimum: ");
-            if (!int.TryParse(Console.ReadLine(), out int minStock)) minStock = 0;
-
-            if (string.IsNullOrWhiteSpace(name) || stock < 0 || price < 0 || minStock < 0)
+            Console.Write("Jumlah Restok: ");
+            if (!int.TryParse(Console.ReadLine(), out int jumlahRestok) || jumlahRestok < 0)
             {
-                Console.WriteLine("❌ Data tidak valid! Pastikan semua field terisi dan bernilai positif.");
+                Console.WriteLine("❌ Jumlah restok harus berupa angka positif.");
                 return;
             }
 
             var newItem = new InventoryItem
             {
                 Id = inventory.Count > 0 ? inventory.Max(i => i.Id) + 1 : 1,
-                Name = name,
-                Stock = stock,
-                Price = price,
-                MinimumStock = minStock
+                Nama = nama,
+                Kategori = kategori,
+                Stok = stok,
+                BatasMinimum = batasMinimum,
+                JumlahRestok = jumlahRestok
             };
 
             inventory.Add(newItem);
@@ -92,106 +83,83 @@ namespace InventorySystem.Services
             Console.WriteLine("✅ Barang berhasil ditambahkan!");
         }
 
-        // Mengedit barang (hanya Employee)
-        public void EditItem()
+        // ✅ Edit Barang
+        public void EditItem(int id)
         {
-            if (!IsEmployee()) return;
-
-            Console.Write("Masukkan ID barang yang ingin diedit: ");
-            if (!int.TryParse(Console.ReadLine(), out int id))
-            {
-                Console.WriteLine("❌ ID tidak valid!");
-                return;
-            }
-
             var item = inventory.FirstOrDefault(i => i.Id == id);
             if (item == null)
             {
-                Console.WriteLine("❌ Barang tidak ditemukan!");
+                Console.WriteLine("❌ Barang tidak ditemukan.");
                 return;
             }
 
-            Console.Write($"Nama barang ({item.Name}): ");
-            string name = Console.ReadLine() ?? item.Name;
+            Console.Write($"Nama Baru ({item.Nama}): ");
+            string nama = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(nama)) item.Nama = nama;
 
-            Console.Write($"Jumlah stok ({item.Stock}): ");
-            string stockInput = Console.ReadLine()!;
-            int stock = string.IsNullOrWhiteSpace(stockInput) ? item.Stock : int.Parse(stockInput);
+            Console.Write($"Kategori Baru ({item.Kategori}): ");
+            string kategori = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(kategori)) item.Kategori = kategori;
 
-            Console.Write($"Harga ({item.Price}): ");
-            string priceInput = Console.ReadLine()!;
-            decimal price = string.IsNullOrWhiteSpace(priceInput) ? item.Price : decimal.Parse(priceInput);
+            Console.Write($"Stok Baru ({item.Stok}): ");
+            if (int.TryParse(Console.ReadLine(), out int stok)) item.Stok = stok;
 
-            Console.Write($"Stok minimum ({item.MinimumStock}): ");
-            string minStockInput = Console.ReadLine()!;
-            int minStock = string.IsNullOrWhiteSpace(minStockInput) ? item.MinimumStock : int.Parse(minStockInput);
+            Console.Write($"Batas Minimum Baru ({item.BatasMinimum}): ");
+            if (int.TryParse(Console.ReadLine(), out int batasMinimum)) item.BatasMinimum = batasMinimum;
 
-            item.Name = name;
-            item.Stock = stock;
-            item.Price = price;
-            item.MinimumStock = minStock;
+            Console.Write($"Jumlah Restok Baru ({item.JumlahRestok}): ");
+            if (int.TryParse(Console.ReadLine(), out int jumlahRestok)) item.JumlahRestok = jumlahRestok;
 
             SaveInventory();
             Console.WriteLine("✅ Barang berhasil diperbarui!");
         }
 
-        // Menghapus barang (hanya Employee)
-        public void DeleteItem()
+        // ✅ Hapus Barang
+        public void DeleteItem(int id)
         {
-            if (!IsEmployee()) return;
-
-            Console.Write("Masukkan ID barang yang ingin dihapus: ");
-            if (!int.TryParse(Console.ReadLine(), out int id))
-            {
-                Console.WriteLine("❌ ID tidak valid!");
-                return;
-            }
-
             var item = inventory.FirstOrDefault(i => i.Id == id);
             if (item == null)
             {
-                Console.WriteLine("❌ Barang tidak ditemukan!");
+                Console.WriteLine("❌ Barang tidak ditemukan.");
                 return;
             }
 
             inventory.Remove(item);
             SaveInventory();
-            Console.WriteLine($"✅ Barang '{item.Name}' berhasil dihapus.");
+            Console.WriteLine($"✅ Barang '{item.Nama}' berhasil dihapus.");
         }
 
-        // Pengecekan Role Employee
-        private bool IsEmployee()
+        // ✅ Lihat Daftar Barang
+        public void ListItems()
         {
-            if (_currentUser == null)
+            Console.WriteLine("\n=== Daftar Barang ===");
+            if (!inventory.Any())
             {
-                Console.WriteLine("❌ Anda belum login!");
-                return false;
-            }
-
-            if (!_currentUser.Role.Equals("Employee", StringComparison.OrdinalIgnoreCase))
-            {
-                Console.WriteLine("❌ Hanya Employee yang bisa mengelola barang!");
-                return false;
-            }
-
-            return true;
-        }
-
-        // Menampilkan barang yang stoknya di bawah minimum
-        public void DisplayLowStockItems()
-        {
-            Console.WriteLine("\n=== Barang dengan Stok di Bawah Minimum ===");
-            var lowStockItems = inventory.Where(i => i.Stock < i.MinimumStock).ToList();
-
-            if (lowStockItems.Count == 0)
-            {
-                Console.WriteLine("Semua stok barang mencukupi.");
+                Console.WriteLine("Tidak ada barang dalam inventory.");
                 return;
             }
 
-            foreach (var item in lowStockItems)
+            foreach (var item in inventory)
             {
-                Console.WriteLine($"ID: {item.Id}, Nama: {item.Name}, Stok: {item.Stock}, Min Stok: {item.MinimumStock}");
+                Console.WriteLine($"ID: {item.Id} | Nama: {item.Nama} | Kategori: {item.Kategori} | Stok: {item.Stok} | Minimum: {item.BatasMinimum} | Restok: {item.JumlahRestok}");
+            }
+        }
+
+        // 🔔 Cek dan tampilkan barang yang perlu restok
+        public void CheckRestockItems()
+        {
+            var needRestock = inventory.Where(i => i.Stok <= i.BatasMinimum).ToList();
+
+            if (!needRestock.Any())
+            {
+                Console.WriteLine("✅ Tidak ada barang yang perlu direstok.");
+                return;
+            }
+
+            Console.WriteLine("\n🚨 Barang yang perlu direstok:");
+            foreach (var item in needRestock)
+            {
+                Console.WriteLine($"ID: {item.Id} | Nama: {item.Nama} | Stok: {item.Stok} | Minimum: {item.BatasMinimum} | Jumlah Restok: {item.JumlahRestok}");
             }
         }
     }
