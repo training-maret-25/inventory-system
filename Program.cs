@@ -1,57 +1,77 @@
 ﻿using System;
-using System.Collections.Generic;
+using InventorySystem.Services;
 
-class Program
+namespace InventorySystem
 {
-    static void Main()
+    class Program
     {
-        UserManager userManager = new UserManager();
-
-        while (true)
+        static void Main()
         {
-            Console.Clear();
-            Console.WriteLine("=== Menu ===");
-            Console.WriteLine("1. Tambah User");
-            Console.WriteLine("2. Login");
-            Console.WriteLine("3. Keluar");
-            Console.Write("Pilih opsi (1-3): ");
-            string option = Console.ReadLine() ?? "";
+            UserManager userManager = new UserManager();
+            bool isRunning = true;
 
-            if (option == "1")
+            Console.WriteLine("=== Aplikasi Manajemen User ===\n");
+
+            while (isRunning)
             {
-                userManager.UserAdd();
-            }
-            else if (option == "2")
-            {
-                Console.Write("Masukkan username: ");
-                string username = Console.ReadLine() ?? "";
+                Console.WriteLine("\nMenu Utama:");
+                Console.WriteLine("1. Login");
+                Console.WriteLine("2. Tambah User");
+                Console.WriteLine("3. Tampilkan Daftar User");
+                Console.WriteLine("4. Hapus User (Admin Only)");
+                Console.WriteLine("5. Logout");
+                Console.WriteLine("6. Keluar Aplikasi");
 
-                Console.Write("Masukkan password: ");
-                string password = Console.ReadLine() ?? "";
+                Console.Write("\nPilih menu (1-6): ");
+                string? pilihan = Console.ReadLine();
 
-                bool isSuccess = userManager.Login(username, password);
-
-                if (!isSuccess)
+                switch (pilihan)
                 {
-                    Console.WriteLine("Login gagal. Tekan tombol apapun untuk kembali ke menu...");
-                    Console.ReadKey();
+                    case "1":
+                        Console.Write("Masukkan username: ");
+                        string username = Console.ReadLine() ?? "";
+
+                        Console.Write("Masukkan password: ");
+                        string password = Console.ReadLine() ?? "";
+
+                        userManager.Login(username, password);
+                        break;
+
+                    case "2":
+                        userManager.AddUser();
+                        break;
+
+                    case "3":
+                        userManager.DisplayUsers();
+                        break;
+
+                    case "4":
+                        Console.Write("Masukkan ID User yang ingin dihapus: ");
+                        string? inputId = Console.ReadLine();
+
+                        if (int.TryParse(inputId, out int userId))
+                        {
+                            userManager.DeleteUserById(userId);
+                        }
+                        else
+                        {
+                            Console.WriteLine("❌ ID tidak valid. Harus berupa angka.");
+                        }
+                        break;
+
+                    case "5":
+                        userManager.Logout();
+                        break;
+
+                    case "6":
+                        Console.WriteLine("👋 Keluar dari aplikasi. Sampai jumpa!");
+                        isRunning = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("❌ Pilihan tidak valid. Silakan pilih 1-6.");
+                        break;
                 }
-                else
-                {
-                    Console.WriteLine("Login sukses. Tekan tombol apapun untuk keluar...");
-                    Console.ReadKey();
-                    break;
-                }
-            }
-            else if (option == "3")
-            {
-                Console.WriteLine("Keluar dari program...");
-                break;
-            }
-            else
-            {
-                Console.WriteLine("Pilihan tidak valid. Tekan tombol apapun untuk kembali...");
-                Console.ReadKey();
             }
         }
     }
