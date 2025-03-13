@@ -14,6 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a2e448c9086481482579e5c4fde6c2c60dc16f7")]
 =======
 <<<<<<< HEAD
@@ -26,6 +27,9 @@ using System.Reflection;
 >>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
 >>>>>>> 099e99704c2bc2ac1991881029fce353d202575f
 >>>>>>> 223275b34068dac2fed64ed882e7c65f32bf6c0c
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+efb803bda57c43d7e978cbcd5b702cecda9b6d95")]
+>>>>>>> dev_muchsin
 [assembly: System.Reflection.AssemblyProductAttribute("inventory")]
 [assembly: System.Reflection.AssemblyTitleAttribute("inventory")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
