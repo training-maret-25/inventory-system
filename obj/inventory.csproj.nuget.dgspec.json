@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\inventory.csproj": {}
+    "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj": {}
   },
   "projects": {
-    "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\inventory.csproj": {
+    "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\inventory.csproj",
+        "projectUniqueName": "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj",
         "projectName": "inventory",
-        "projectPath": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\inventory.csproj",
-        "packagesPath": "C:\\Users\\a s u s\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\obj\\",
+        "projectPath": "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj",
+        "packagesPath": "C:\\Users\\novan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\novan\\source\\repos\\inventory-system\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\a s u s\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\novan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"

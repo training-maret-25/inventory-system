@@ -14,6 +14,9 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a2e448c9086481482579e5c4fde6c2c60dc16f7")]
+=======
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+705a38c74af0bfab71c91f808bb794b79d59377a")]
 =======
 <<<<<<< HEAD
@@ -22,6 +25,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aea687d78165313b11ec9eb0dd757537ff8b5feb")]
 >>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a
 >>>>>>> 099e99704c2bc2ac1991881029fce353d202575f
+>>>>>>> 223275b34068dac2fed64ed882e7c65f32bf6c0c
 [assembly: System.Reflection.AssemblyProductAttribute("inventory")]
 [assembly: System.Reflection.AssemblyTitleAttribute("inventory")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
