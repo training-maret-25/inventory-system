@@ -1,0 +1,8 @@
+[
+  {
+    "Id": 2,
+    "Username": "employee1",
+    "Password": "hashed_password",
+    "Role": "Employee"
+  }
+]
