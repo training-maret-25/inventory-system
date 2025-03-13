@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Build results
 bin/
 obj/
@@ -28,5 +29,8 @@ Thumbs.db
 # Others
 *.log
 # Ignore build artifacts
+=======
+
+>>>>>>> 223275b34068dac2fed64ed882e7c65f32bf6c0c
 bin/
 obj/
