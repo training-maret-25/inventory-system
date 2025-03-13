@@ -170,6 +170,63 @@ namespace InventorySystem.Services
             Console.WriteLine("✅ User berhasil ditambahkan!");
         }
 
+        // Edit user berdasarkan ID (Admin bisa edit semua user, user hanya bisa edit diri sendiri)
+        public bool EditUser(int editorId, int userId, string? newUsername, string? newPassword, string? newRole)
+        {
+            User? editor = users.Find(u => u.Id == editorId);
+            if (editor == null)
+            {
+                Console.WriteLine("User tidak ditemukan.");
+                return false;
+            }
+
+            User? user = users.Find(u => u.Id == userId);
+            if (user == null)
+            {
+                Console.WriteLine($"User dengan ID {userId} tidak ditemukan.");
+                return false;
+            }
+
+            // Admin bisa edit semua user, Employee hanya bisa edit dirinya sendiri
+            if (editor.Role != "Admin" && editor.Id != userId)
+            {
+                Console.WriteLine("Izin ditolak! Anda hanya bisa mengedit akun Anda sendiri.");
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(newUsername))
+            {
+                user.Username = newUsername;
+            }
+            if (!string.IsNullOrEmpty(newPassword))
+            {
+                user.Password = HashPassword(newPassword);
+            }
+            if (!string.IsNullOrEmpty(newRole) && (newRole == "Admin" || newRole == "Employee"))
+            {
+                // Role hanya bisa diubah oleh Admin
+                if (editor.Role == "Admin")
+                {
+                    user.Role = newRole;
+                }
+                else
+                {
+                    Console.WriteLine("Izin ditolak! Hanya Admin yang bisa mengubah role.");
+                    return false;
+                }
+            }
+
+            UpdateUsers();
+            Console.WriteLine($"User dengan ID {userId} berhasil diperbarui!");
+            return true;
+        }
+
+        private void UpdateUsers()
+        {
+            string json = JsonConvert.SerializeObject(users, Formatting.Indented);
+            File.WriteAllText(UserFile, json);
+        }
+
         // Menghapus user berdasarkan ID (hanya bisa dilakukan oleh Admin)
         public void DeleteUserById(int userId)
         {

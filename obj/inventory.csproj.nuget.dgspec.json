@@ -2,6 +2,23 @@
   "format": 1,
   "restore": {
     "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\inventory.csproj": {}
+<<<<<<< HEAD
+    "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj": {}
+  },
+  "projects": {
+    "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj",
+        "projectName": "inventory",
+        "projectPath": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj",
+        "packagesPath": "C:\\Users\\KONTOLODON\\.nuget\\packages\\",
+        "outputPath": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\KONTOLODON\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj": {}
   },
   "projects": {
     "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\inventory.csproj": {
@@ -15,16 +32,18 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\a s u s\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\novan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> main
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -37,12 +56,11 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "BCrypt.Net-Next": {
               "target": "Package",
@@ -69,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

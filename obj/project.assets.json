@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {
+    "net8.0": {
       "BCrypt.Net-Next/4.0.3": {
         "type": "package",
         "compile": {
@@ -94,18 +94,34 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net9.0": [
+    "net8.0": [
       "BCrypt.Net-Next >= 4.0.3",
       "Newtonsoft.Json >= 13.0.3"
     ]
   },
   "packageFolders": {
     "C:\\Users\\a s u s\\.nuget\\packages\\": {}
+<<<<<<< HEAD
+    "C:\\Users\\KONTOLODON\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\novan\\.nuget\\packages\\": {}
+>>>>>>> main
   },
   "project": {
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\inventory.csproj",
+<<<<<<< HEAD
+      "projectUniqueName": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj",
+      "projectName": "inventory",
+      "projectPath": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj",
+      "packagesPath": "C:\\Users\\KONTOLODON\\.nuget\\packages\\",
+      "outputPath": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\KONTOLODON\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj",
       "projectName": "inventory",
       "projectPath": "C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\inventory.csproj",
       "packagesPath": "C:\\Users\\a s u s\\.nuget\\packages\\",
@@ -113,16 +129,18 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\a s u s\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\novan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> main
       ],
       "originalTargetFrameworks": [
-        "net9.0"
+        "net8.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {}
         }
       },
@@ -135,12 +153,11 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.200"
+      }
     },
     "frameworks": {
-      "net9.0": {
-        "targetAlias": "net9.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "dependencies": {
           "BCrypt.Net-Next": {
             "target": "Package",
@@ -167,8 +184,20 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     }
+<<<<<<< HEAD
   }
+=======
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
+>>>>>>> main
 }
