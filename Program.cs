@@ -8,71 +8,100 @@ namespace InventorySystem
         static void Main()
         {
             UserManager userManager = new UserManager();
-            bool isRunning = true;
+            string role;
 
-            Console.WriteLine("=== Aplikasi Manajemen User ===\n");
+            Console.WriteLine("=== Sistem Manajemen User ===");
+            Console.Write("Masukkan username: ");
+            string username = Console.ReadLine() ?? "";
+            Console.Write("Masukkan password: ");
+            string password = Console.ReadLine() ?? "";
 
-            while (isRunning)
+            if (!userManager.Login(username, password, out role))
             {
-                Console.WriteLine("\nMenu Utama:");
-                Console.WriteLine("1. Login");
-                Console.WriteLine("2. Tambah User");
-                Console.WriteLine("3. Tampilkan Daftar User");
-                Console.WriteLine("4. Hapus User (Admin Only)");
+                Console.WriteLine("❌ Login gagal! Program berakhir.");
+                return;
+            }
+
+            bool running = true;
+            while (running)
+            {
+                Console.WriteLine("\n=== Menu ===");
+                Console.WriteLine("1. Lihat daftar user");
+                Console.WriteLine("2. Edit username/password");
+                if (role == "Admin")
+                {
+                    Console.WriteLine("3. Tambah user baru");
+                    Console.WriteLine("4. Hapus user");
+                }
                 Console.WriteLine("5. Logout");
-                Console.WriteLine("6. Keluar Aplikasi");
+                Console.Write("Pilih menu: ");
 
-                Console.Write("\nPilih menu (1-6): ");
-                string? pilihan = Console.ReadLine();
-
-                switch (pilihan)
+                string choice = Console.ReadLine() ?? "";
+                switch (choice)
                 {
                     case "1":
-                        Console.Write("Masukkan username: ");
-                        string username = Console.ReadLine() ?? "";
-
-                        Console.Write("Masukkan password: ");
-                        string password = Console.ReadLine() ?? "";
-
-                        userManager.Login(username, password);
-                        break;
-
-                    case "2":
-                        userManager.AddUser();
-                        break;
-
-                    case "3":
                         userManager.DisplayUsers();
                         break;
-
-                    case "4":
-                        Console.Write("Masukkan ID User yang ingin dihapus: ");
-                        string? inputId = Console.ReadLine();
-
-                        if (int.TryParse(inputId, out int userId))
-                        {
-                            userManager.DeleteUserById(userId);
-                        }
-                        else
-                        {
-                            Console.WriteLine("❌ ID tidak valid. Harus berupa angka.");
-                        }
+                    case "2":
+                        EditUser(userManager, username, role);
                         break;
-
+                    case "3":
+                        if (role == "Admin") userManager.AddUser();
+                        else Console.WriteLine("❌ Akses ditolak!");
+                        break;
+                    case "4":
+                        if (role == "Admin") DeleteUser(userManager);
+                        else Console.WriteLine("❌ Akses ditolak!");
+                        break;
                     case "5":
                         userManager.Logout();
+                        running = false;
                         break;
-
-                    case "6":
-                        Console.WriteLine("👋 Keluar dari aplikasi. Sampai jumpa!");
-                        isRunning = false;
-                        break;
-
                     default:
-                        Console.WriteLine("❌ Pilihan tidak valid. Silakan pilih 1-6.");
+                        Console.WriteLine("❌ Pilihan tidak valid!");
                         break;
                 }
             }
+        }
+
+        static void EditUser(UserManager userManager, string username, string role)
+        {
+            Console.Write("Masukkan ID user yang ingin diedit: ");
+            if (!int.TryParse(Console.ReadLine(), out int userId))
+            {
+                Console.WriteLine("❌ ID tidak valid!");
+                return;
+            }
+
+            Console.Write("Masukkan username baru (kosong jika tidak ingin mengubah): ");
+            string newUsername = Console.ReadLine() ?? "";
+
+            Console.Write("Masukkan password baru (kosong jika tidak ingin mengubah): ");
+            string newPassword = Console.ReadLine() ?? "";
+
+            string newRole = "";
+            if (role == "Admin")
+            {
+                Console.Write("Masukkan role baru (Admin/Employee) atau kosong jika tidak ingin mengubah: ");
+                newRole = Console.ReadLine() ?? "";
+            }
+
+            if (userManager.EditUser(userId, userId, newUsername, newPassword, newRole))
+                Console.WriteLine("✅ User berhasil diperbarui!");
+            else
+                Console.WriteLine("❌ Gagal memperbarui user!");
+        }
+
+        static void DeleteUser(UserManager userManager)
+        {
+            Console.Write("Masukkan ID user yang ingin dihapus: ");
+            if (!int.TryParse(Console.ReadLine(), out int userId))
+            {
+                Console.WriteLine("❌ ID tidak valid!");
+                return;
+            }
+
+            userManager.DeleteUserById(userId);
         }
     }
 }
