@@ -15,7 +15,7 @@ public class User
 
 public class UserManager
 {
-    private const string UserFile = @"C:\\d\\@magang\\inventory-system\\data\\users.json";
+    private const string UserFile = @"C:\\Users\\ASUS\\source\\repos\\inventory-system - Copy\\data\\users.json";
     private List<User> users = new List<User>();
     private User? _currentUser = null;
 

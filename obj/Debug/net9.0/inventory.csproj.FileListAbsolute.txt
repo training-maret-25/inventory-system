@@ -17,3 +17,22 @@ C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net9.0\inventory.pdb
 C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net9.0\inventory.genruntimeconfig.cache
 C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net9.0\ref\inventory.dll
 C:\conen\kuliah\magang\maret\inventory-system\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net9.0\inventory.exe
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net9.0\inventory.deps.json
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net9.0\inventory.runtimeconfig.json
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net9.0\inventory.dll
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net9.0\inventory.pdb
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\ASUS\source\repos\inventory-system - Copy\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\inventory.csproj.AssemblyReference.cache
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\inventory.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\inventory.AssemblyInfoInputs.cache
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\inventory.AssemblyInfo.cs
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\inventory.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\inventory.sourcelink.json
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\inventory.csproj.Up2Date
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\inventory.dll
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\refint\inventory.dll
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\inventory.pdb
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\inventory.genruntimeconfig.cache
+C:\Users\ASUS\source\repos\inventory-system - Copy\obj\Debug\net9.0\ref\inventory.dll
