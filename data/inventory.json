@@ -1,0 +1,31 @@
+[
+    {
+      "Id": 1,
+      "Name": "Kopi Arabika",
+      "Stock": 50,
+      "Price": 35000,
+      "MinimumStock": 10
+    },
+    {
+      "Id": 2,
+      "Name": "Gula Pasir",
+      "Stock": 20,
+      "Price": 12000,
+      "MinimumStock": 15
+    },
+    {
+      "Id": 3,
+      "Name": "Susu Kental Manis",
+      "Stock": 5,
+      "Price": 15000,
+      "MinimumStock": 10
+    },
+    {
+      "Id": 4,
+      "Name": "Coklat Bubuk",
+      "Stock": 12,
+      "Price": 18000,
+      "MinimumStock": 8
+    }
+  ]
+  
