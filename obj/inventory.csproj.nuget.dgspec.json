@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\KONTOLODON\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj",
+        "projectName": "inventory",
+        "projectPath": "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj",
+        "packagesPath": "C:\\Users\\novan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\novan\\source\\repos\\inventory-system\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\novan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> main
         ],
         "originalTargetFrameworks": [
           "net8.0"

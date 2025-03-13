@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "MF17HvJsMSY=",
   "success": true,
   "projectFilePath": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj",
@@ -8,4 +9,21 @@
     "C:\\Users\\KONTOLODON\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
+=======
+  "dgSpecHash": "pd87S+m469o=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\novan\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
+    "C:\\Users\\novan\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
+>>>>>>> main
 }

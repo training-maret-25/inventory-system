@@ -100,11 +100,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\KONTOLODON\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\novan\\.nuget\\packages\\": {}
+>>>>>>> main
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj",
       "projectName": "inventory",
       "projectPath": "C:\\conen\\kuliah\\magang\\maret\\inventory-system\\inventory.csproj",
@@ -113,6 +118,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\KONTOLODON\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj",
+      "projectName": "inventory",
+      "projectPath": "C:\\Users\\novan\\source\\repos\\inventory-system\\inventory.csproj",
+      "packagesPath": "C:\\Users\\novan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\novan\\source\\repos\\inventory-system\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\novan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> main
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -169,5 +184,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     }
+<<<<<<< HEAD
   }
+=======
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\a s u s\\magang\\ProjectAkhir\\inventory-system - Copy1\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
+>>>>>>> main
 }
