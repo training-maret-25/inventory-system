@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+# Build results
+bin/
+obj/
+
 # User-specific files
 *.user
 *.suo
@@ -7,10 +12,25 @@
 # Visual Studio Code
 .vscode/
 
+# Mac OS
+.DS_Store
+
+# Windows thumbnail cache
+Thumbs.db
+
+# Rider IDE
+.idea/
+
 # Dotnet artifacts
+*.dbmdl
 *.pdb
 *.cache
-*.log
 
-/bin
-/obj
+# Others
+*.log
+# Ignore build artifacts
+=======
+
+>>>>>>> 223275b34068dac2fed64ed882e7c65f32bf6c0c
+bin/
+obj/
