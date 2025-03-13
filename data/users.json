@@ -30,16 +30,9 @@
     "Role": "Employer"
   },
   {
-<<<<<<< HEAD
     "Id": 6,
-    "Username": "adminbaru",
-    "Password": "5fcf82bc15aef42cd3ec93e6d4b51c04df110cf77ee715f62f3f172ff8ed9de9",
-    "Role": "Admin"
-=======
-    "Id": 5,
     "Username": "dark",
     "Password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
     "Role": "Employer"
->>>>>>> main
   }
 ]
