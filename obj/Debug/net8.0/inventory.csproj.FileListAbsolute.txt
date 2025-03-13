@@ -23,18 +23,21 @@ C:\conen\kuliah\magang\maret\inventory-system\bin\Debug\net8.0\BCrypt.Net-Next.d
 >>>>>>> 099e99704c2bc2ac1991881029fce353d202575f
 =======
 C:\d\@magang\inventory-system\bin\Debug\net8.0\inventory.exe
-C:\d\@magang\inventory-system\bin\Debug\net8.0\inventory.deps.json
-C:\d\@magang\inventory-system\bin\Debug\net8.0\inventory.runtimeconfig.json
 C:\d\@magang\inventory-system\bin\Debug\net8.0\inventory.dll
-C:\d\@magang\inventory-system\bin\Debug\net8.0\inventory.pdb
+C:\d\@magang\inventory-system\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\d\@magang\inventory-system\obj\Debug\net8.0\inventory.csproj.AssemblyReference.cache
 C:\d\@magang\inventory-system\obj\Debug\net8.0\inventory.GeneratedMSBuildEditorConfig.editorconfig
 C:\d\@magang\inventory-system\obj\Debug\net8.0\inventory.AssemblyInfoInputs.cache
 C:\d\@magang\inventory-system\obj\Debug\net8.0\inventory.AssemblyInfo.cs
 C:\d\@magang\inventory-system\obj\Debug\net8.0\inventory.csproj.CoreCompileInputs.cache
 C:\d\@magang\inventory-system\obj\Debug\net8.0\inventory.sourcelink.json
+C:\d\@magang\inventory-system\obj\Debug\net8.0\inventory.csproj.Up2Date
 C:\d\@magang\inventory-system\obj\Debug\net8.0\inventory.dll
 C:\d\@magang\inventory-system\obj\Debug\net8.0\refint\inventory.dll
 C:\d\@magang\inventory-system\obj\Debug\net8.0\inventory.pdb
+C:\d\@magang\inventory-system\bin\Debug\net8.0\inventory.deps.json
+C:\d\@magang\inventory-system\bin\Debug\net8.0\inventory.runtimeconfig.json
+C:\d\@magang\inventory-system\bin\Debug\net8.0\inventory.pdb
 C:\d\@magang\inventory-system\obj\Debug\net8.0\inventory.genruntimeconfig.cache
 C:\d\@magang\inventory-system\obj\Debug\net8.0\ref\inventory.dll
 >>>>>>> 705a38c74af0bfab71c91f808bb794b79d59377a

@@ -3,35 +3,57 @@ using System.Collections.Generic;
 
 class Program
 {
-
-    public class User
+    static void Main()
     {
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Role { get; set; }
-    }
+        UserManager userManager = new UserManager();
 
-        Console.Write("Masukkan username: ");
-        string username = Console.ReadLine() ?? "";
-
-        Console.Write("Masukkan password: ");
-        string password = Console.ReadLine() ?? "";
-
-
-        bool isSuccess = userManager.Login(username, password);
-
-        if (!isSuccess)
+        while (true)
         {
-            Console.WriteLine("Login gagal.");
-        }
-        else
-        {
-            Console.WriteLine("Login sukses.");
-        }
+            Console.Clear();
+            Console.WriteLine("=== Menu ===");
+            Console.WriteLine("1. Tambah User");
+            Console.WriteLine("2. Login");
+            Console.WriteLine("3. Keluar");
+            Console.Write("Pilih opsi (1-3): ");
+            string option = Console.ReadLine() ?? "";
 
-        Console.WriteLine("Tekan tombol apapun untuk keluar...");
-        Console.ReadKey();
+            if (option == "1")
+            {
+                userManager.UserAdd();
+            }
+            else if (option == "2")
+            {
+                Console.Write("Masukkan username: ");
+                string username = Console.ReadLine() ?? "";
+
+                Console.Write("Masukkan password: ");
+                string password = Console.ReadLine() ?? "";
+
+                bool isSuccess = userManager.Login(username, password);
+
+                if (!isSuccess)
+                {
+                    Console.WriteLine("Login gagal. Tekan tombol apapun untuk kembali ke menu...");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("Login sukses. Tekan tombol apapun untuk keluar...");
+                    Console.ReadKey();
+                    break;
+                }
+            }
+            else if (option == "3")
+            {
+                Console.WriteLine("Keluar dari program...");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Pilihan tidak valid. Tekan tombol apapun untuk kembali...");
+                Console.ReadKey();
+            }
+        }
     }
 
     static void Main(string[] args)

@@ -15,7 +15,7 @@ public class User
 
 public class UserManager
 {
-    private const string UserFile = @"C:\\Users\\ASUS\\source\\repos\\inventory-system\\data\\users.json";
+    private const string UserFile = @"C:\\d\\@magang\\inventory-system\\data\\users.json";
     private List<User> users = new List<User>();
     private User? _currentUser = null;
 
@@ -128,36 +128,50 @@ public class UserManager
         }
     }
 
-    public class UserAdd
+    public void UserAdd()
+{
+    Console.Write("Masukkan username: ");
+    string username = Console.ReadLine() ?? "";
+
+    Console.Write("Masukkan password: ");
+    string password = Console.ReadLine() ?? "";
+
+    if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
     {
-        private List<User> users = new List<User>();
-        private int nextId = 1;
-
-        public void AddEmployer(string username, string password)
-        {
-            foreach (var user in users)
-            {
-                if (user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
-                {
-                    Console.WriteLine("ussername udh ada.");
-                    return;
-                }
-            }
-
-            User newUser = new User
-            {
-                Id = nextId,
-                Username = username,
-                Password = password,
-                Role = "Employer"
-            };
-
-            users.Add(newUser);
-            nextId++;
-
-            Console.WriteLine($"sudah berhasil.");
-        }
+        Console.WriteLine("❌ Username dan password tidak boleh kosong!");
+        return;
     }
 
+    // Cek apakah username sudah ada
+    if (users.Exists(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase)))
+    {
+        Console.WriteLine("❌ Username sudah ada!");
+        return;
+    }
+
+    // Buat pengguna baru
+    User newUser = new User
+    {
+        Id = users.Count > 0 ? users[^1].Id + 1 : 1, // Id otomatis (increment)
+        Username = username,
+        Password = HashPassword(password), // Hash password
+        Role = "Employer" // Atur role sebagai Employer
+    };
+
+    users.Add(newUser); // Tambahkan ke daftar pengguna
+    SaveUsers(); // Simpan ke file JSON
+
+    Console.WriteLine("✅ User berhasil ditambahkan!");
 }
+
+private void SaveUsers()
+{
+    string json = JsonConvert.SerializeObject(users, Formatting.Indented);
+    File.WriteAllText(UserFile, json);
+}
+
+
+    }
+
+
 
