@@ -77,34 +77,32 @@ namespace InventorySystem.Services
         }
 
         // Login user
-        public bool Login(string username, string password)
-        {
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            {
-                Console.WriteLine("❌ Username dan password tidak boleh kosong!");
-                return false;
-            }
+              public bool Login(string username, string password, out string role)
+{
+    role = "";
 
-            var user = users.FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+    var user = users.FirstOrDefault(u => u.Username == username);
+    if (user == null)
+    {
+        Console.WriteLine("❌ Username tidak ditemukan!");
+        return false;
+    }
 
-            if (user == null)
-            {
-                Console.WriteLine("❌ Username tidak ditemukan!");
-                return false;
-            }
+    string hashedInputPassword = HashPassword(password);
 
-            string hashedInputPassword = HashPassword(password);
+    if (!user.Password.Equals(hashedInputPassword, StringComparison.OrdinalIgnoreCase))
+    {
+        Console.WriteLine("❌ Password salah!");
+        return false;
+    }
 
-            if (!user.Password.Equals(hashedInputPassword, StringComparison.OrdinalIgnoreCase))
-            {
-                Console.WriteLine("❌ Password salah!");
-                return false;
-            }
+    // Jika berhasil login, simpan user & role
+    _currentUser = user;
+    role = user.Role;
 
-            _currentUser = user;
-            Console.WriteLine($"✅ Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
-            return true;
-        }
+    Console.WriteLine($"✅ Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
+    return true;
+}
 
         // Logout user
         public void Logout()
@@ -169,6 +167,64 @@ namespace InventorySystem.Services
             SaveUsers();
             Console.WriteLine("✅ User berhasil ditambahkan!");
         }
+
+        // Edit user berdasarkan ID (Admin bisa edit semua user, user hanya bisa edit diri sendiri)
+        public bool EditUser(int editorId, int userId, string? newUsername, string? newPassword, string? newRole)
+        {
+            User? editor = users.Find(u => u.Id == editorId);
+            if (editor == null)
+            {
+                Console.WriteLine("User tidak ditemukan.");
+                return false;
+            }
+
+            User? user = users.Find(u => u.Id == userId);
+            if (user == null)
+            {
+                Console.WriteLine($"User dengan ID {userId} tidak ditemukan.");
+                return false;
+            }
+
+            // Admin bisa edit semua user, Employee hanya bisa edit dirinya sendiri
+            if (editor.Role != "Admin" && editor.Id != userId)
+            {
+                Console.WriteLine("Izin ditolak! Anda hanya bisa mengedit akun Anda sendiri.");
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(newUsername))
+            {
+                user.Username = newUsername;
+            }
+            if (!string.IsNullOrEmpty(newPassword))
+            {
+                user.Password = HashPassword(newPassword);
+            }
+            if (!string.IsNullOrEmpty(newRole) && (newRole == "Admin" || newRole == "Employee"))
+            {
+                // Role hanya bisa diubah oleh Admin
+                if (editor.Role == "Admin")
+                {
+                    user.Role = newRole;
+                }
+                else
+                {
+                    Console.WriteLine("Izin ditolak! Hanya Admin yang bisa mengubah role.");
+                    return false;
+                }
+            }
+
+            UpdateUsers();
+            Console.WriteLine($"User dengan ID {userId} berhasil diperbarui!");
+            return true;
+        }
+
+        private void UpdateUsers()
+        {
+            string jsonData = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, jsonData);
+        }
+
 
         // Menghapus user berdasarkan ID (hanya bisa dilakukan oleh Admin)
         public void DeleteUserById(int userId)
