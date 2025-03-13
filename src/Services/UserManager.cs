@@ -15,7 +15,7 @@ public class User
 
 public class UserManager
 {
-    private const string UserFile = @"C:\\d\\@magang\\inventory-system\\data\\users.json";
+    private const string UserFile = "data/users.json"; // sesuaikan pathnya
     private List<User> users = new List<User>();
     private User? _currentUser = null;
 
@@ -129,49 +129,100 @@ public class UserManager
     }
 
     public void UserAdd()
-{
-    Console.Write("Masukkan username: ");
-    string username = Console.ReadLine() ?? "";
-
-    Console.Write("Masukkan password: ");
-    string password = Console.ReadLine() ?? "";
-
-    if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
     {
-        Console.WriteLine("❌ Username dan password tidak boleh kosong!");
-        return;
+        Console.Write("Masukkan username: ");
+        string username = Console.ReadLine() ?? "";
+
+        Console.Write("Masukkan password: ");
+        string password = Console.ReadLine() ?? "";
+
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+        {
+            Console.WriteLine("Username dan password tidak boleh kosong!");
+            return;
+        }
+
+        // Cek apakah username sudah ada
+        if (users.Exists(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase)))
+        {
+            Console.WriteLine("Username sudah ada!");
+            return;
+        }
+
+        // Buat pengguna baru
+        User newUser = new User
+        {
+            Id = users.Count > 0 ? users[^1].Id + 1 : 1, // Id otomatis (increment)
+            Username = username,
+            Password = HashPassword(password), // Hash password
+            Role = "Employer" // Atur role sebagai Employer
+        };
+
+        users.Add(newUser); // Tambahkan ke daftar pengguna
+        SaveUsers(); // Simpan ke file JSON
+
+        Console.WriteLine("User berhasil ditambahkan!");
     }
 
-    // Cek apakah username sudah ada
-    if (users.Exists(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase)))
+    private void SaveUsers()
     {
-        Console.WriteLine("❌ Username sudah ada!");
-        return;
+        string json = JsonConvert.SerializeObject(users, Formatting.Indented);
+        File.WriteAllText(UserFile, json);
     }
 
-    // Buat pengguna baru
-    User newUser = new User
+    public bool EditUser(int editorId, int userId, string? newUsername, string? newPassword, string? newRole)
     {
-        Id = users.Count > 0 ? users[^1].Id + 1 : 1, // Id otomatis (increment)
-        Username = username,
-        Password = HashPassword(password), // Hash password
-        Role = "Employer" // Atur role sebagai Employer
-    };
+        User? editor = users.Find(u => u.Id == editorId);
+        if (editor == null)
+        {
+            Console.WriteLine("User tidak ditemukan.");
+            return false;
+        }
 
-    users.Add(newUser); // Tambahkan ke daftar pengguna
-    SaveUsers(); // Simpan ke file JSON
+        User? user = users.Find(u => u.Id == userId);
+        if (user == null)
+        {
+            Console.WriteLine($"User dengan ID {userId} tidak ditemukan.");
+            return false;
+        }
 
-    Console.WriteLine("✅ User berhasil ditambahkan!");
+        // Admin bisa edit semua user, Employee hanya bisa edit dirinya sendiri
+        if (editor.Role != "Admin" && editor.Id != userId)
+        {
+            Console.WriteLine("Izin ditolak! Anda hanya bisa mengedit akun Anda sendiri.");
+            return false;
+        }
+
+        if (!string.IsNullOrEmpty(newUsername))
+        {
+            user.Username = newUsername;
+        }
+        if (!string.IsNullOrEmpty(newPassword))
+        {
+            user.Password = HashPassword(newPassword);
+        }
+        if (!string.IsNullOrEmpty(newRole) && (newRole == "Admin" || newRole == "Employee"))
+        {
+            // Role hanya bisa diubah oleh Admin
+            if (editor.Role == "Admin")
+            {
+                user.Role = newRole;
+            }
+            else
+            {
+                Console.WriteLine("Izin ditolak! Hanya Admin yang bisa mengubah role.");
+                return false;
+            }
+        }
+
+        UpdateUsers();
+        Console.WriteLine($"User dengan ID {userId} berhasil diperbarui!");
+        return true;
+    }
+
+    private void UpdateUsers()
+    {
+        string json = JsonConvert.SerializeObject(users, Formatting.Indented);
+        File.WriteAllText(UserFile, json);
+    }
 }
-
-private void SaveUsers()
-{
-    string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-    File.WriteAllText(UserFile, json);
-}
-
-
-    }
-
-
-
