@@ -3,3 +3,10 @@
 - Barang Keluar: 
 Total Perubahan Stok: 0
 
+=== LAPORAN HARIAN TANGGAL 2025-04-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+

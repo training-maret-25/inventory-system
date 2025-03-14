@@ -22,5 +22,29 @@
     "Stok": 11,
     "batas_minimum": 10,
     "jumlah_restok": 12
+  },
+  {
+    "Id": 2,
+    "nama": "tv ajaib",
+    "kategori": "elektronik",
+    "Stok": 20,
+    "batas_minimum": 30,
+    "jumlah_restok": 10
+  },
+  {
+    "Id": 3,
+    "nama": "mouse",
+    "kategori": "elektronik",
+    "Stok": 10,
+    "batas_minimum": 30,
+    "jumlah_restok": 5
+  },
+  {
+    "Id": 4,
+    "nama": "lampu",
+    "kategori": "elektronik",
+    "Stok": 30,
+    "batas_minimum": 50,
+    "jumlah_restok": 10
   }
 ]

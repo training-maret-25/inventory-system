@@ -33,7 +33,7 @@
     "Id": 7,
     "Username": "bejo",
     "Password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-    "Role": "Employer"
+    "Role": "admin"
   },
   {
     "Id": 8,
@@ -51,6 +51,12 @@
     "Id": 10,
     "Username": "vvv",
     "Password": "3daabcc85cfd07e409fd5bcd3f4431584b331712c133ceb6f9f1c8b11f6c653a",
+    "Role": "Employer"
+  },
+  {
+    "Id": 11,
+    "Username": "joko",
+    "Password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
     "Role": "Employer"
   }
 ]

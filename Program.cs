@@ -9,6 +9,7 @@ namespace InventorySystem
         {
             var userManager = new UserManager();
             var inventoryManager = new InventoryManager();
+            var reportManager = new ReportManager(); // Tambahkan ReportManager
 
             string role = ""; // Inisialisasi variabel role
             int userId = 0;   // Inisialisasi userId
@@ -46,6 +47,7 @@ namespace InventorySystem
                     Console.WriteLine("2. Tambah User");
                     Console.WriteLine("3. Edit User");
                     Console.WriteLine("4. Hapus User");
+                    Console.WriteLine("5. Laporan Rekapitulasi");
                 }
                 else if (role == "Employer")
                 {
@@ -54,9 +56,10 @@ namespace InventorySystem
                     Console.WriteLine("3. Edit Barang");
                     Console.WriteLine("4. Hapus Barang");
                     Console.WriteLine("5. Cek Barang Perlu Restok");
+                    Console.WriteLine("6. Laporan Rekapitulasi");
                 }
 
-                Console.WriteLine("6. Edit Akun Saya");
+                Console.WriteLine("9. Edit Akun Saya");
                 Console.WriteLine("0. Logout & Keluar");
                 Console.Write("\nPilih menu: ");
                 string pilihan = Console.ReadLine() ?? "";
@@ -125,10 +128,26 @@ namespace InventorySystem
                         }
                         break;
                     case "5":
-                        if (role == "Employer") inventoryManager.CheckRestockItems();
+                        if (role == "Employer")
+                        {
+                            inventoryManager.CheckRestockItems();
+                        }
+                        else if (role == "admin")
+                        {
+                            // Menu Laporan Rekapitulasi
+                            MenuLaporan(reportManager);
+                        }
                         else Console.WriteLine("Pilihan tidak valid.");
                         break;
                     case "6":
+                        if (role == "Employer")
+                        {
+                            // Menu Laporan Rekapitulasi
+                            MenuLaporan(reportManager);
+                        }
+                        else Console.WriteLine("Pilihan tidak valid.");
+                        break;
+                    case "9":
                         EditUser(userManager, userId); // Employee & Admin bisa edit akun sendiri
                         break;
                     case "0":
@@ -155,6 +174,37 @@ namespace InventorySystem
             string? newPassword = Console.ReadLine();
 
             userManager.EditUser(userId, userId, newUsername, newPassword, null);
+        }
+
+        // ✅ MENU LAPORAN
+        static void MenuLaporan(ReportManager reportManager)
+        {
+            Console.Clear();
+            Console.WriteLine("\n=== MENU LAPORAN REKAPITULASI ===");
+            Console.WriteLine("1. Laporan Harian");
+            Console.WriteLine("2. Laporan Bulanan");
+            Console.WriteLine("3. Laporan Per Barang");
+            Console.Write("Pilih jenis laporan: ");
+            string pilihanLaporan = Console.ReadLine() ?? "";
+
+            switch (pilihanLaporan)
+            {
+                case "1":
+                    Console.Write("Masukkan tanggal (yyyy-MM-dd): ");
+                    string tanggal = Console.ReadLine() ?? "";
+                    reportManager.GenerateDailyReport(tanggal);
+                    Console.WriteLine("Laporan harian berhasil dibuat di report.txt");
+                    break;
+                case "2":
+                    Console.Write("Masukkan bulan (yyyy-MM): ");
+                    string bulan = Console.ReadLine() ?? "";
+                    reportManager.GenerateMonthlyReport(bulan);
+                    Console.WriteLine("Laporan bulanan berhasil dibuat di report.txt");
+                    break;
+                default:
+                    Console.WriteLine("Pilihan tidak valid.");
+                    break;
+            }
         }
     }
 }

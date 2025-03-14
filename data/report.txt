@@ -16,3 +16,31 @@ Total Perubahan Stok: +60
 - Barang Masuk: 50 
 - Barang Keluar: -
 Total Perubahan Stok: +50
+=== LAPORAN HARIAN TANGGAL 2025-10-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=== LAPORAN BULANAN BULAN 2025-02 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=== LAPORAN HARIAN TANGGAL 2023-05-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=== LAPORAN HARIAN TANGGAL 2025-03-14 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
