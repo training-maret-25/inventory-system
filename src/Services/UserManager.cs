@@ -261,7 +261,7 @@ namespace InventorySystem.Services
         {
             if (_currentUser == null || !_currentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("❌ Hanya Admin yang bisa menghapus user!");
+                Console.WriteLine("Hanya Admin yang bisa menghapus user!");
                 Logger.LogError("SYSTEM", $"Percobaan penghapusan user ID {userId} oleh non-admin.");
 
                 return;
@@ -271,7 +271,7 @@ namespace InventorySystem.Services
 
             if (user == null)
             {
-                Console.WriteLine("❌ User tidak ditemukan!");
+                Console.WriteLine("User tidak ditemukan!");
                 Logger.LogError("SYSTEM", $"Percobaan penghapusan user ID {userId}, tetapi user tidak ditemukan.");
                 return;
             }
@@ -279,7 +279,7 @@ namespace InventorySystem.Services
             users.Remove(user);
             SaveUsers();
 
-            Console.WriteLine($"✅ User '{user.Username}' berhasil dihapus oleh Admin '{_currentUser.Username}'.");
+            Console.WriteLine($" User '{user.Username}' berhasil dihapus oleh Admin '{_currentUser.Username}'.");
             Logger.LogUserModification(_currentUser.Username, $"Menghapus user ID {userId} ({user.Username})");
         }
     }

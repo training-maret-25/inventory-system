@@ -18,6 +18,13 @@ namespace InventorySystem.Services
             LoadInventory();
         }
 
+                public string GetNamaBarangById(int id)
+        {
+            var barang = inventory.FirstOrDefault(b => b.Id == id);
+            return barang != null ? barang.Nama : "Tidak ditemukan";
+        }
+
+
         private void LoadInventory()
         {
             if (File.Exists(filePath))
@@ -32,10 +39,16 @@ namespace InventorySystem.Services
             }
         }
 
-        private void SaveInventory()
+       private void SaveInventory()
         {
-            string jsonData = JsonSerializer.Serialize(inventory, new JsonSerializerOptions { WriteIndented = true });
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string jsonData = JsonSerializer.Serialize(inventory, options);
             File.WriteAllText(filePath, jsonData);
+        }
+
+        public InventoryItem? GetItemById(int id)
+        {
+            return inventory.FirstOrDefault(i => i.Id == id);
         }
 
         // ✅ Tambah Barang

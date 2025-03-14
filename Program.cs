@@ -9,9 +9,10 @@ namespace InventorySystem
         {
             var userManager = new UserManager();
             var inventoryManager = new InventoryManager();
+            TransactionManager transactionManager = new TransactionManager(inventoryManager);
 
-            string role = ""; // Inisialisasi variabel role
-            int userId = 0;   // Inisialisasi userId
+            string role = ""; 
+            int userId = 0;   
             bool isLoggedIn = false; 
 
             Console.Clear();
@@ -54,16 +55,17 @@ namespace InventorySystem
                     Console.WriteLine("3. Edit Barang");
                     Console.WriteLine("4. Hapus Barang");
                     Console.WriteLine("5. Cek Barang Perlu Restok");
+                    Console.WriteLine("6. Simpan Laporan Transaksi ke JSON");
+                    Console.WriteLine("7. Simpan Laporan Transaksi ke TXT");
                 }
 
-                Console.WriteLine("6. Edit Akun Saya");
+                Console.WriteLine("8. Edit Akun Saya");
                 Console.WriteLine("0. Logout & Keluar");
                 Console.Write("\nPilih menu: ");
                 string pilihan = Console.ReadLine() ?? "";
 
                 switch (pilihan)
                 {
-                    // === ADMIN MENU ===
                     case "1":
                         if (role == "admin") userManager.DisplayUsers();
                         else inventoryManager.ListItems();
@@ -128,8 +130,14 @@ namespace InventorySystem
                         if (role == "Employer") inventoryManager.CheckRestockItems();
                         else Console.WriteLine("Pilihan tidak valid.");
                         break;
-                    case "6":
-                        EditUser(userManager, userId); // Employee & Admin bisa edit akun sendiri
+                    case "6": // ✅ Perbaiki switch-case untuk simpan laporan transaksi JSON
+                        transactionManager.SaveTransactionsToJson();
+                        break;
+                    case "7": // ✅ Perbaiki switch-case untuk simpan laporan transaksi TXT
+                        transactionManager.SaveTransactionsToText();
+                        break;
+                    case "8":
+                        EditUser(userManager, userId); 
                         break;
                     case "0":
                         userManager.Logout();

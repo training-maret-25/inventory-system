@@ -22,5 +22,13 @@
     "Stok": 11,
     "batas_minimum": 10,
     "jumlah_restok": 12
+  },
+  {
+    "Id": 2,
+    "nama": "wewe",
+    "kategori": "aewe",
+    "Stok": 21,
+    "batas_minimum": 21,
+    "jumlah_restok": 11
   }
 ]
