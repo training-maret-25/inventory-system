@@ -8,44 +8,19 @@
     "jumlah_restok": 12
   },
   {
-<<<<<<< HEAD
-    "Id": 2,
-    "nama": "tv ajaib",
-    "kategori": "elektronik",
-    "Stok": 20,
-    "batas_minimum": 30,
-    "jumlah_restok": 10
-  },
-  {
-    "Id": 3,
+    "Id": 4,
     "nama": "mouse",
     "kategori": "elektronik",
-    "Stok": 10,
-    "batas_minimum": 30,
-    "jumlah_restok": 5
-  },
-  {
-    "Id": 4,
-    "nama": "lampu",
-    "kategori": "elektronik",
-    "Stok": 30,
-    "batas_minimum": 50,
-    "jumlah_restok": 10
-=======
-    "Id": 0,
-    "Nama": null,
-    "Kategori": null,
-    "Stok": 0,
-    "BatasMinimum": 0,
-    "JumlahRestok": 0
+    "Stok": 12,
+    "batas_minimum": 20,
+    "jumlah_restok": 0
   },
   {
     "Id": 5,
-    "Nama": "Auf",
-    "Kategori": "Manusia",
-    "Stok": 20,
-    "BatasMinimum": 5,
-    "JumlahRestok": 10
->>>>>>> 303bebb9757e19753a5ddae0930922d1157b1283
+    "nama": "kipas",
+    "kategori": "elektronik",
+    "Stok": 30,
+    "batas_minimum": 50,
+    "jumlah_restok": 0
   }
 ]

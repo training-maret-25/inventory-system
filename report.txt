@@ -10,3 +10,6 @@ Total Barang Masuk : 0
 Total Barang Keluar: 0
 
 
+[2022-11-11] Laporan Harian:
+Total Perubahan Stok: +0
+

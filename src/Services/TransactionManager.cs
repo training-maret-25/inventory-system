@@ -7,15 +7,12 @@ namespace InventorySystem.Services
     {
         private readonly string transactionFile = "data/transaction.json";
         private readonly string reportFile = "data/report.txt";
-        private const string DateFormat = "yyyy-MM-dd HH:mm:ss";
 
         // Generate Laporan Harian
         public void GenerateDailyReport(DateTime date)
         {
             var transactions = LoadTransactions();
-            var dailyTransactions = transactions
-                .Where(t => DateTime.ParseExact(t.Tanggal, DateFormat, null).Date == date.Date)
-                .ToList();
+            var dailyTransactions = transactions.Where(t => t.Tanggal.Date == date.Date).ToList();
 
             if (!dailyTransactions.Any())
             {
@@ -29,6 +26,8 @@ namespace InventorySystem.Services
 
             foreach (var trans in dailyTransactions)
             {
+                if (string.IsNullOrWhiteSpace(trans.NamaBarang)) continue; // Skip jika nama kosong
+
                 string item = $"{trans.Jumlah} {trans.NamaBarang}";
                 if (trans.Jenis == "Barang Masuk")
                 {
@@ -48,7 +47,7 @@ namespace InventorySystem.Services
             reportContent += $"- Barang Keluar: {(barangKeluar.Count > 0 ? string.Join(", ", barangKeluar) : "-")}\n";
             reportContent += $"Total Perubahan Stok: {(totalPerubahan >= 0 ? "+" : "")}{totalPerubahan}\n";
 
-            // Simpan ke file report.txt
+            // Simpan ke file
             File.AppendAllText(reportFile, reportContent);
             Console.WriteLine("✅ Laporan harian berhasil dibuat.");
         }
@@ -57,10 +56,7 @@ namespace InventorySystem.Services
         public void GenerateMonthlyReport(int year, int month)
         {
             var transactions = LoadTransactions();
-            var monthlyTransactions = transactions
-                .Where(t => DateTime.ParseExact(t.Tanggal, DateFormat, null).Year == year &&
-                            DateTime.ParseExact(t.Tanggal, DateFormat, null).Month == month)
-                .ToList();
+            var monthlyTransactions = transactions.Where(t => t.Tanggal.Year == year && t.Tanggal.Month == month).ToList();
 
             if (!monthlyTransactions.Any())
             {
@@ -72,9 +68,13 @@ namespace InventorySystem.Services
 
             foreach (var trans in monthlyTransactions)
             {
+                if (string.IsNullOrWhiteSpace(trans.NamaBarang)) continue; // Skip jika nama kosong
+
+                // Tambahkan key baru jika belum ada
                 if (!summary.ContainsKey(trans.NamaBarang))
                     summary[trans.NamaBarang] = (0, 0);
 
+                // Update jumlah masuk/keluar
                 if (trans.Jenis == "Barang Masuk")
                     summary[trans.NamaBarang] = (summary[trans.NamaBarang].masuk + trans.Jumlah, summary[trans.NamaBarang].keluar);
                 else if (trans.Jenis == "Barang Keluar")
@@ -91,30 +91,22 @@ namespace InventorySystem.Services
             }
             reportContent += $"Total Perubahan Stok: {(totalPerubahan >= 0 ? "+" : "")}{totalPerubahan}\n";
 
-            // Simpan ke file report.txt
+            // Simpan ke file
             File.AppendAllText(reportFile, reportContent);
             Console.WriteLine("✅ Laporan bulanan berhasil dibuat.");
         }
 
-        // Load JSON Transactions
+        // Load data transaksi dari JSON
         private List<Transaction> LoadTransactions()
         {
             if (!File.Exists(transactionFile))
-            {
-                Console.WriteLine("⚠️ File transaction.json tidak ditemukan!");
                 return new List<Transaction>();
-            }
 
             string json = File.ReadAllText(transactionFile);
-            var result = JsonSerializer.Deserialize<List<Transaction>>(json, new JsonSerializerOptions
+            return JsonSerializer.Deserialize<List<Transaction>>(json, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
-            });
-
-            if (result == null || result.Count == 0)
-                Console.WriteLine("⚠️ File transaction.json kosong atau format salah!");
-
-            return result ?? new List<Transaction>();
+            }) ?? new List<Transaction>();
         }
     }
 }

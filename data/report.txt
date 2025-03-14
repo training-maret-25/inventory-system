@@ -44,3 +44,24 @@ Total Barang Masuk : 0
 Total Barang Keluar: 0
 
 
+=== LAPORAN HARIAN TANGGAL 2022-10-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=== LAPORAN HARIAN TANGGAL 2022-11-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=== LAPORAN BULANAN BULAN 2022-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
