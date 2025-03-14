@@ -1,72 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-<<<<<<< HEAD
-=======
 using System.Linq;
->>>>>>> f10d18421f88bffab88aae3845ac1b7a1d788add
 using System.Text.Json;
 using InventorySystem.Models;
 
 namespace InventorySystem.Services
 {
-<<<<<<< HEAD
-    public class TransactionManager
-    {
-        private readonly string jsonFilePath = Path.Combine("data", "transaksion.json");
-        private readonly string reportFilePath = Path.Combine("data", "report.txt");
-        private readonly InventoryManager inventoryManager;
-
-        public TransactionManager(InventoryManager inventoryManager)
-        {
-            this.inventoryManager = inventoryManager;
-        }
-
-
-        private List<Transaction> transactions = new();
-
-        public void RecordTransaction(int barangId, string namaBarang, int jumlah, string jenis)
-        {
-            var transaction = new Transaction
-            {
-                BarangId =  barangId,
-                NamaBarang = namaBarang,
-                Jumlah = jumlah,
-                Jenis = jenis,
-                Tanggal = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
-            };
-
-            transactions.Add(transaction);
-            SaveTransactionsToJson();
-            SaveTransactionsToText();
-        }
-
-        public void SaveTransactionsToJson()
-        {
-            string jsonData = JsonSerializer.Serialize(transactions, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(jsonFilePath, jsonData);
-            Console.WriteLine("✅ Transaksi disimpan ke transaksi.json");
-        }
-
-        public void SaveTransactionsToText()
-        {
-            List<string> reportLines = new()
-            {
-                "=== LAPORAN TRANSAKSI ===",
-                $"Tanggal: {DateTime.Now:yyyy-MM-dd HH:mm:ss}",
-                "---------------------------------"
-            };
-
-            foreach (var transaksi in transactions)
-            {
-                reportLines.Add($"ID: {transaksi.BarangId}, Nama: {transaksi.NamaBarang}, Jumlah: {transaksi.Jumlah}, Jenis: {transaksi.Jenis}, Tanggal: {transaksi.Tanggal}");
-            }
-
-            File.WriteAllLines(reportFilePath, reportLines);
-            Console.WriteLine("✅ Laporan transaksi disimpan ke report.txt");
-        }
-    }
-=======
     public class TransactionManager
     {
         private readonly string transactionFilePath = Path.Combine(Directory.GetCurrentDirectory(), "data", "transaction.json");
@@ -83,18 +23,18 @@ namespace InventorySystem.Services
 
             if (!File.Exists(path))
             {
-                Console.WriteLine("❌ File inventory.json tidak ditemukan!");
+                Console.WriteLine("File inventory.json tidak ditemukan!");
                 return;
             }
 
             try
             {
-                string jsonData = File.ReadAllText(path).Trim(); // Trim untuk hapus spasi/enter kosong
+                string jsonData = File.ReadAllText(path).Trim();
 
                 if (string.IsNullOrEmpty(jsonData))
                 {
                     Console.WriteLine("⚠ File kosong, menginisialisasi dengan array kosong.");
-                    jsonData = "[]"; // Biar tetap bisa dibaca tanpa error
+                    jsonData = "[]"; 
                 }
 
                 var data = JsonSerializer.Deserialize<List<InventoryItem>>(jsonData, new JsonSerializerOptions
@@ -108,11 +48,11 @@ namespace InventorySystem.Services
                     return;
                 }
 
-                Console.WriteLine("✅ Data inventory berhasil dimuat!");
+                Console.WriteLine("Data inventory berhasil dimuat!");
             }
             catch (JsonException ex)
             {
-                Console.WriteLine($"❌ Kesalahan saat membaca JSON: {ex.Message}");
+                Console.WriteLine($"Kesalahan saat membaca JSON: {ex.Message}");
             }
         }
 
@@ -146,11 +86,11 @@ namespace InventorySystem.Services
                 transactions.Add(transaksi);
                 SaveTransactions();
 
-                Console.WriteLine($"✅ Transaksi berhasil dicatat pada {transaksi.Tanggal}");
+                Console.WriteLine($"Transaksi berhasil dicatat pada {transaksi.Tanggal}");
             }
             else
             {
-                Console.WriteLine("❌ Format tanggal tidak valid!");
+                Console.WriteLine("Format tanggal tidak valid!");
             }
         }
 
@@ -178,7 +118,7 @@ namespace InventorySystem.Services
             Console.Write("Masukkan ID Barang: ");
             if (!int.TryParse(Console.ReadLine(), out int barangId))
             {
-                Console.WriteLine("❌ ID Barang tidak valid!");
+                Console.WriteLine("ID Barang tidak valid!");
                 return;
             }
 
@@ -188,14 +128,14 @@ namespace InventorySystem.Services
             Console.Write("Masukkan Jumlah: ");
             if (!int.TryParse(Console.ReadLine(), out int jumlah))
             {
-                Console.WriteLine("❌ Jumlah tidak valid!");
+                Console.WriteLine("Jumlah tidak valid!");
                 return;
             }
 
             Console.Write("Masukkan Stok Setelah Transaksi: ");
             if (!int.TryParse(Console.ReadLine(), out int stokSetelah))
             {
-                Console.WriteLine("❌ Stok tidak valid!");
+                Console.WriteLine("Stok tidak valid!");
                 return;
             }
 
@@ -227,7 +167,7 @@ namespace InventorySystem.Services
                     NamaBarang = g.Key.NamaBarang,
                     TotalTransaksi = g.Count(),
                     TotalBarang = g.Sum(t => t.Jumlah),
-                    StokAkhir = g.Last().StokSetelah // Ambil stok setelah transaksi terakhir
+                    StokAkhir = g.Last().StokSetelah 
                 });
 
             foreach (var item in report)
@@ -261,8 +201,7 @@ namespace InventorySystem.Services
                 }
             }
 
-            Console.WriteLine($"✅ Laporan berhasil diekspor ke {filePath}");
+            Console.WriteLine($"Laporan berhasil diekspor ke {filePath}");
         }
     }
->>>>>>> f10d18421f88bffab88aae3845ac1b7a1d788add
 }

@@ -12,8 +12,8 @@ namespace InventorySystem
             var inventoryManager = new InventoryManager();
             var transactionManager = new TransactionManager();
 
-            string role = ""; // Inisialisasi variabel role
-            int userId = 0;   // Inisialisasi userId
+            string role = "";
+            int userId = 0;   
             bool isLoggedIn = false;
 
             Console.Clear();
@@ -138,7 +138,7 @@ namespace InventorySystem
                             Console.WriteLine("Pilihan tidak valid.");
                         }
                         break;
-                    case "6": // Fungsi DecreaseItem
+                    case "6": 
                         if (role == "Employer")
                         {
                             Console.Write("Masukkan ID Barang yang stoknya akan dikurangi: ");
@@ -154,7 +154,6 @@ namespace InventorySystem
                         else Console.WriteLine("Pilihan tidak valid.");
                         break;
 
-                    //ini tambahan dari opal
                     case "7":
                         if (role == "Employer")
                         {
@@ -164,16 +163,16 @@ namespace InventorySystem
                                 var item = inventoryManager.GetItemById(restockItemId);
                                 if (item != null)
                                 {
-                                    inventoryManager.AutoRestock(item); // Panggil dengan parameter
+                                    inventoryManager.AutoRestock(item);
                                 }
                                 else
                                 {
-                                    Console.WriteLine("❌ Barang tidak ditemukan.");
+                                    Console.WriteLine("Barang tidak ditemukan.");
                                 }
                             }
                             else
                             {
-                                Console.WriteLine("❌ ID tidak valid.");
+                                Console.WriteLine("ID tidak valid.");
                             }
                         }
                         else

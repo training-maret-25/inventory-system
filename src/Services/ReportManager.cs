@@ -18,7 +18,7 @@ namespace InventorySystem.Services
         {
             public int Id { get; set; }
             public string NamaBarang { get; set; }
-            public string JenisTransaksi { get; set; } // "Masuk" atau "Keluar"
+            public string JenisTransaksi { get; set; }             
             public int Jumlah { get; set; }
             public DateTime Tanggal { get; set; }
             public string Employee { get; set; }
@@ -113,7 +113,6 @@ namespace InventorySystem.Services
             DateTime? targetDate = null;
             bool isMonthly = false;
 
-            // Cek apakah format tanggal atau bulan
             if (DateTime.TryParseExact(periode, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
             {
                 targetDate = parsedDate;
@@ -129,7 +128,6 @@ namespace InventorySystem.Services
                 return;
             }
 
-            // Filter transaksi sesuai nama barang dan periode
             var itemTransactions = transactions.Where(t =>
                 t.NamaBarang.Equals(namaBarang, StringComparison.OrdinalIgnoreCase) &&
                 (isMonthly

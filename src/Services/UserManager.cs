@@ -29,7 +29,7 @@ namespace InventorySystem.Services
             {
                 string jsonData = File.ReadAllText(filePath);
                 users = JsonSerializer.Deserialize<List<User>>(jsonData) ?? new List<User>();
-                CheckAndHashPasswords(); // Pastikan semua password sudah hash
+                CheckAndHashPasswords(); 
             }
             else
             {
@@ -100,10 +100,8 @@ namespace InventorySystem.Services
                 Logger.LogError( "Gagal Login: Password salah");
                 return false;
             }
-
-            // Jika berhasil login, simpan user & role
             _currentUser = user;
-            role = user.Role.Trim();  // Pastikan tidak ada spasi yang mengganggu
+            role = user.Role.Trim();  
             userId = user.Id;
 
             Console.WriteLine($"Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
@@ -181,7 +179,6 @@ namespace InventorySystem.Services
             Logger.LogInfo("ADMIN", $"Menambahkan user baru: {username}");
         }
 
-        // Edit user berdasarkan ID (Admin bisa edit semua user, user hanya bisa edit diri sendiri)
         public bool EditUser(int editorId, int userId, string? newUsername, string? newPassword, string? newRole)
         {
             User? editor = users.Find(u => u.Id == editorId);
@@ -200,7 +197,6 @@ namespace InventorySystem.Services
                 return false;
             }
 
-            // Admin bisa edit semua user, Employee hanya bisa edit dirinya sendiri
             if (editor.Role == "Admin" && editor.Id != userId)
             {
                 Console.WriteLine("Izin ditolak! Anda hanya bisa mengedit akun Anda sendiri.");
@@ -225,7 +221,6 @@ namespace InventorySystem.Services
             }
             if (!string.IsNullOrEmpty(newRole) && (newRole == "Admin" || newRole == "Employee"))
             {
-                // Role hanya bisa diubah oleh Admin
                 if (editor.Role == "Admin")
                 {
                     changes.Add($"Role dari '{user.Role}' ke '{newRole}'");
@@ -257,8 +252,6 @@ namespace InventorySystem.Services
             File.WriteAllText(filePath, jsonData);
         }
 
-
-        // Menghapus user berdasarkan ID (hanya bisa dilakukan oleh Admin)
         public void DeleteUserById(int userId)
         {
             if (_currentUser == null || !_currentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))

@@ -8,7 +8,6 @@ namespace logger
         private static readonly string LogFilePath = "data/log.txt";
         private static readonly string ErrorFilePath = "data/error_log.txt";
 
-        // function untuk menambahkan messege ke file log.txt
         private static void WriteToFile(string logEntry) {
             try {
                 string directory = Path.GetDirectoryName(LogFilePath);
@@ -51,13 +50,11 @@ namespace logger
             WriteToFile(logEntry);
         }
 
-        // fungsi untuk mencatat log
         public static void Log(string level, string username, string action) {
             string logEntry = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [{level}] User '{username} melakukan aksi '{action}'";
             WriteToFile(logEntry);
         }
 
-        // fuction untuk mencatat restock otomatis
         public static void LogRestock(string itemName) {
             string logEntry = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [INFO] '{itemName}' telah di restock otomatis";
             WriteToFile(logEntry);
