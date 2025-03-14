@@ -80,9 +80,10 @@ namespace InventorySystem.Services
         }
 
         // Login user
-        public bool Login(string username, string password, out string role)
+        public bool Login(string username, string password, out string role, out int userId)
         {
             role = "";
+            userId = -1;
 
             var user = users.FirstOrDefault(u => u.Username == username);
             if (user == null)
@@ -103,7 +104,8 @@ namespace InventorySystem.Services
 
             // Jika berhasil login, simpan user & role
             _currentUser = user;
-            role = user.Role;
+            role = user.Role.Trim();  // Pastikan tidak ada spasi yang mengganggu
+            userId = user.Id;
 
             Console.WriteLine($"✅ Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
             Logger.LogInfo(username, "login ke sistem");
@@ -165,7 +167,7 @@ namespace InventorySystem.Services
                 return;
             }
 
-            var newUser = new User
+            var newUser = new User 
             {
                 Id = users.Count > 0 ? users.Max(u => u.Id) + 1 : 1,
                 Username = username,

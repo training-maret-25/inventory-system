@@ -4,7 +4,7 @@
     "nama": "kopi",
     "kategori": "3",
     "stok": 2,
-    "batas_minimum": 5,
+    "batas_minimum": 10,
     "jumlah_restok": 4
   }
 ]

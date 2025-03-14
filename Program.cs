@@ -8,102 +8,154 @@ namespace InventorySystem
     {
         static void Main()
         {
-            UserManager userManager = new UserManager();
-            string role;
+            var userManager = new UserManager();
+            var inventoryManager = new InventoryManager();
 
-            Console.WriteLine("=== Sistem Manajemen User ===");
-            Console.Write("Masukkan username: ");
-            string username = Console.ReadLine() ?? "";
-            Console.Write("Masukkan password: ");
-            string password = Console.ReadLine() ?? "";
+            string role = ""; // Inisialisasi variabel role
+            int userId = 0;   // Inisialisasi userId
+            bool isLoggedIn = false; 
 
-            if (!userManager.Login(username, password, out role))
+            Console.Clear();
+            Console.WriteLine("=== SELAMAT DATANG DI SISTEM INVENTORY ===");
+
+            // LOGIN SYSTEM
+            while (!isLoggedIn)
             {
-                Console.WriteLine("❌ Login gagal! Program berakhir.");
-                return;
+                Console.Write("\nUsername: ");
+                string username = Console.ReadLine() ?? "";
+
+                Console.Write("Password: ");
+                string password = Console.ReadLine() ?? "";
+
+                isLoggedIn = userManager.Login(username, password, out role, out userId);
+
+                if (!isLoggedIn)
+                {
+                    Console.WriteLine("Login gagal. Coba lagi.");
+                }
             }
 
-            bool running = true;
-            while (running)
+            bool exit = false;
+            while (!exit)
             {
-                Console.WriteLine("\n=== Menu ===");
-                Console.WriteLine("1. Lihat daftar user");
-                Console.WriteLine("2. Edit username/password");
-                if (role == "Admin")
-                {
-                    Console.WriteLine("3. Tambah user baru");
-                    Console.WriteLine("4. Hapus user");
-                }
-                Console.WriteLine("5. Logout");
-                Console.Write("Pilih menu: ");
+                Console.Clear();
+                Console.WriteLine($"\n=== MENU ({role.ToUpper()}) ===");
 
-                string choice = Console.ReadLine() ?? "";
-                switch (choice)
+                if (role == "admin")
                 {
+                    Console.WriteLine("1. Lihat Daftar User");
+                    Console.WriteLine("2. Tambah User");
+                    Console.WriteLine("3. Edit User");
+                    Console.WriteLine("4. Hapus User");
+                }
+                else if (role == "Employer")
+                {
+                    Console.WriteLine("1. Lihat Daftar Barang");
+                    Console.WriteLine("2. Tambah Barang");
+                    Console.WriteLine("3. Edit Barang");
+                    Console.WriteLine("4. Hapus Barang");
+                    Console.WriteLine("5. Cek Barang Perlu Restok");
+                }
+
+                Console.WriteLine("6. Edit Akun Saya");
+                Console.WriteLine("0. Logout & Keluar");
+                Console.Write("\nPilih menu: ");
+                string pilihan = Console.ReadLine() ?? "";
+
+                switch (pilihan)
+                {
+                    // === ADMIN MENU ===
                     case "1":
-                        userManager.DisplayUsers();
+                        if (role == "admin") userManager.DisplayUsers();
+                        else inventoryManager.ListItems();
                         break;
                     case "2":
-                        EditUser(userManager, username, role);
+                        if (role == "admin") userManager.AddUser();
+                        else inventoryManager.AddItem();
                         break;
                     case "3":
-                        if (role == "Admin") userManager.AddUser();
-                        else Console.WriteLine("❌ Akses ditolak!");
+                        if (role == "admin")
+                        {
+                            Console.Write("Masukkan ID User yang ingin di-edit: ");
+                            if (int.TryParse(Console.ReadLine(), out int editUserId))
+                            {
+                                EditUser(userManager, editUserId);
+                            }
+                            else
+                            {
+                                Console.WriteLine("ID tidak valid.");
+                            }
+                        }
+                        else
+                        {
+                            Console.Write("Masukkan ID Barang yang ingin di-edit: ");
+                            if (int.TryParse(Console.ReadLine(), out int editItemId))
+                            {
+                                inventoryManager.EditItem(editItemId);
+                            }
+                            else
+                            {
+                                Console.WriteLine("ID tidak valid.");
+                            }
+                        }
                         break;
                     case "4":
-                        if (role == "Admin") DeleteUser(userManager);
-                        else Console.WriteLine("❌ Akses ditolak!");
+                        if (role == "admin")
+                        {
+                            Console.Write("Masukkan ID User yang ingin dihapus: ");
+                            if (int.TryParse(Console.ReadLine(), out int deleteUserId))
+                            {
+                                userManager.DeleteUserById(deleteUserId);
+                            }
+                            else
+                            {
+                                Console.WriteLine("ID tidak valid.");
+                            }
+                        }
+                        else
+                        {
+                            Console.Write("Masukkan ID Barang yang ingin dihapus: ");
+                            if (int.TryParse(Console.ReadLine(), out int deleteItemId))
+                            {
+                                inventoryManager.DeleteItem(deleteItemId);
+                            }
+                            else
+                            {
+                                Console.WriteLine("ID tidak valid.");
+                            }
+                        }
                         break;
                     case "5":
+                        if (role == "Employer") inventoryManager.CheckRestockItems();
+                        else Console.WriteLine("Pilihan tidak valid.");
+                        break;
+                    case "6":
+                        EditUser(userManager, userId); // Employee & Admin bisa edit akun sendiri
+                        break;
+                    case "0":
                         userManager.Logout();
-                        running = false;
+                        exit = true;
                         break;
                     default:
-                        Console.WriteLine("❌ Pilihan tidak valid!");
+                        Console.WriteLine("Pilihan tidak valid.");
                         break;
                 }
+                Console.WriteLine("\nTekan ENTER untuk melanjutkan...");
+                Console.ReadLine();
             }
+
+            Console.WriteLine("Terima kasih telah menggunakan sistem ini.");
         }
 
-        static void EditUser(UserManager userManager, string username, string role)
+        static void EditUser(UserManager userManager, int userId)
         {
-            Console.Write("Masukkan ID user yang ingin diedit: ");
-            if (!int.TryParse(Console.ReadLine(), out int userId))
-            {
-                Console.WriteLine("❌ ID tidak valid!");
-                return;
-            }
+            Console.WriteLine("\n=== Edit Akun ===");
+            Console.Write("Masukkan username baru (kosongkan jika tidak ingin mengubah): ");
+            string? newUsername = Console.ReadLine();
+            Console.Write("Masukkan password baru (kosongkan jika tidak ingin mengubah): ");
+            string? newPassword = Console.ReadLine();
 
-            Console.Write("Masukkan username baru (kosong jika tidak ingin mengubah): ");
-            string newUsername = Console.ReadLine() ?? "";
-
-            Console.Write("Masukkan password baru (kosong jika tidak ingin mengubah): ");
-            string newPassword = Console.ReadLine() ?? "";
-
-            string newRole = "";
-            if (role == "Admin")
-            {
-                Console.Write("Masukkan role baru (Admin/Employee) atau kosong jika tidak ingin mengubah: ");
-                newRole = Console.ReadLine() ?? "";
-            }
-
-            if (userManager.EditUser(userId, userId, newUsername, newPassword, newRole))
-                Console.WriteLine("✅ User berhasil diperbarui!");
-                
-            else
-                Console.WriteLine("❌ Gagal memperbarui user!");
-        }
-
-        static void DeleteUser(UserManager userManager)
-        {
-            Console.Write("Masukkan ID user yang ingin dihapus: ");
-            if (!int.TryParse(Console.ReadLine(), out int userId))
-            {
-                Console.WriteLine("❌ ID tidak valid!");
-                return;
-            }
-
-            userManager.DeleteUserById(userId);
+            userManager.EditUser(userId, userId, newUsername, newPassword, null);
         }
     }
 }

@@ -46,8 +46,10 @@ namespace logger
             Log("INFO", username, action);
         }
 
-        public static void LogError(string username, string errorMessage) {
-            Log("ERROR", username, errorMessage);
+        public static void LogError(string errorMessage) {
+            string logEntry = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [ERROR] {errorMessage}";
+            Console.WriteLine(logEntry);
+            WriteToFile(logEntry);
         }
 
         // fungsi untuk mencatat log
