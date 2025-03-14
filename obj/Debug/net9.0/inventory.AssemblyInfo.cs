@@ -14,17 +14,17 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0eb78251e7535c2aeee18bed76444b307b36b40a")]
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+017211f276730aaef547b7403dfb073597d0ec93")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0978914a2c3ac948a45cc3a6378940823efe64e4")]
 =======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca7defa0f3070dd908eb1bf45827c1aea9c38d1e")]
->>>>>>> 099e99704c2bc2ac1991881029fce353d202575f
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c80e1e7981db89279d4c0eb8174a2be38b627d64")]
+>>>>>>> dev_aufal
 =======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ade8a03033510705ac8a02d9e968d409ca71a9a")]
->>>>>>> main
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e76ce095ab14f54de3c03988fa062ae00b4ca86")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b080c641185bb277a82ff253237a1b7314f8961b")]
+>>>>>>> fd4d89de13b0aa03766f9789d26db76146061dbe
 >>>>>>> main
 [assembly: System.Reflection.AssemblyProductAttribute("inventory")]
 [assembly: System.Reflection.AssemblyTitleAttribute("inventory")]

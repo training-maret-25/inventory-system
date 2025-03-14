@@ -5,3 +5,8 @@
 [2025-03-12 16:46:25] [RESTOCK] User 'system melakukan aksi 'Restock otomatis: 10 unit 'Laptop' ditambahkan'
 [2025-03-12 16:46:25] [ERROR] User 'admin melakukan aksi 'Gagal menghapus user 'employee2' karena tidak ditemukan'
 [2025-03-12 16:46:25] [INFO] User 'admin melakukan aksi 'Logout dari sistem'
+[2025-03-14 01:46:59] [INFO] User 'muksin melakukan aksi 'Login ke sistem'
+[2025-03-14 01:49:19] [USER] User 'Adminnya Boleh Diubah Ya Sama Employer melakukan aksi 'Mengedit user ID 6 (Username dari 'adminbaru' ke 'Adminnya Boleh Diubah Ya Sama Employer', Password diperbarui)'
+[2025-03-14 01:55:46] [INFO] User 'muksin melakukan aksi 'Logout dari sistem'
+[2025-03-14 01:56:26] [INFO] User 'muksin melakukan aksi 'Login ke sistem'
+[2025-03-14 01:57:52] [INFO] User 'muksin melakukan aksi 'Logout dari sistem'

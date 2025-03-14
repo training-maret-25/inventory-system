@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using InventorySystem.Models;
+using logger;
 
 namespace InventorySystem.Services
 {
@@ -32,6 +33,7 @@ namespace InventorySystem.Services
             else
             {
                 Console.WriteLine("⚠️ File users.json tidak ditemukan! Membuat daftar user kosong.");
+                Logger.LogError("SYSTEM", "file users.json tidak ditemukan. sistem memulai dengan daftar user kosong");
             }
         }
 
@@ -59,6 +61,7 @@ namespace InventorySystem.Services
             {
                 SaveUsers();
                 Console.WriteLine("✅ Semua password telah di-hash dan file diperbarui.");
+                Logger.LogUserModification("SYSTEM", "Hashing ulang password yang belum ter-hash");
             }
         }
 
@@ -77,19 +80,15 @@ namespace InventorySystem.Services
         }
 
         // Login user
-        public bool Login(string username, string password)
+        public bool Login(string username, string password, out string role)
         {
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            {
-                Console.WriteLine("❌ Username dan password tidak boleh kosong!");
-                return false;
-            }
+            role = "";
 
-            var user = users.FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
-
+            var user = users.FirstOrDefault(u => u.Username == username);
             if (user == null)
             {
                 Console.WriteLine("❌ Username tidak ditemukan!");
+                Logger.LogError(username, "Gagal Login: Username tidak ditemukan");
                 return false;
             }
 
@@ -98,11 +97,16 @@ namespace InventorySystem.Services
             if (!user.Password.Equals(hashedInputPassword, StringComparison.OrdinalIgnoreCase))
             {
                 Console.WriteLine("❌ Password salah!");
+                Logger.LogError(username, "Gagal Login: Password salah");
                 return false;
             }
 
+            // Jika berhasil login, simpan user & role
             _currentUser = user;
+            role = user.Role;
+
             Console.WriteLine($"✅ Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
+            Logger.LogLogin(username);
             return true;
         }
 
@@ -112,6 +116,7 @@ namespace InventorySystem.Services
             if (_currentUser != null)
             {
                 Console.WriteLine($"✅ {_currentUser.Username} telah logout.");
+                Logger.LogLogout(_currentUser.Username);
                 _currentUser = null;
             }
             else
@@ -148,12 +153,14 @@ namespace InventorySystem.Services
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 Console.WriteLine("❌ Username dan password tidak boleh kosong!");
+                Logger.LogError("SYSTEM", "Gagal memasukan user: username dan password kosong");
                 return;
             }
 
             if (users.Any(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase)))
             {
                 Console.WriteLine("❌ Username sudah ada!");
+                Logger.LogError("SYSTEM", $"Gagal memasukan user: Username '{username}' sudah ada");
                 return;
             }
 
@@ -168,6 +175,7 @@ namespace InventorySystem.Services
             users.Add(newUser);
             SaveUsers();
             Console.WriteLine("✅ User berhasil ditambahkan!");
+            Logger.LogUserModification("ADMIN", $"Menambahkan user baru: {username}");
         }
 
         // Edit user berdasarkan ID (Admin bisa edit semua user, user hanya bisa edit diri sendiri)
@@ -177,6 +185,7 @@ namespace InventorySystem.Services
             if (editor == null)
             {
                 Console.WriteLine("User tidak ditemukan.");
+                Logger.LogError(editor.Username, $"Gagal mengedit user: User ID{userId} tidak ditemukan");
                 return false;
             }
 
@@ -184,48 +193,66 @@ namespace InventorySystem.Services
             if (user == null)
             {
                 Console.WriteLine($"User dengan ID {userId} tidak ditemukan.");
+                Logger.LogError(editor.Username, $"Gagal mengedit user: User ID {userId} tidak ditemukan.");
                 return false;
             }
 
             // Admin bisa edit semua user, Employee hanya bisa edit dirinya sendiri
-            if (editor.Role != "Admin" && editor.Id != userId)
+            if (editor.Role == "Admin" && editor.Id != userId)
             {
                 Console.WriteLine("Izin ditolak! Anda hanya bisa mengedit akun Anda sendiri.");
+                Logger.LogError(editor.Username, "Gagal mengedit user: Izin ditolak.");
                 return false;
             }
 
+            bool updated = false;
+            List<string> changes = new List<string>();
+
             if (!string.IsNullOrEmpty(newUsername))
             {
+                changes.Add($"Username dari '{user.Username}' ke '{newUsername}'");
                 user.Username = newUsername;
+                updated = true;
             }
             if (!string.IsNullOrEmpty(newPassword))
             {
                 user.Password = HashPassword(newPassword);
+                changes.Add("Password diperbarui");
+                updated = true;
             }
             if (!string.IsNullOrEmpty(newRole) && (newRole == "Admin" || newRole == "Employee"))
             {
                 // Role hanya bisa diubah oleh Admin
                 if (editor.Role == "Admin")
                 {
+                    changes.Add($"Role dari '{user.Role}' ke '{newRole}'");
                     user.Role = newRole;
+                    updated = true;
                 }
                 else
                 {
                     Console.WriteLine("Izin ditolak! Hanya Admin yang bisa mengubah role.");
+                    Logger.LogError(editor.Username, "Gagal mengubah role user: Izin ditolak.");
                     return false;
                 }
             }
 
-            UpdateUsers();
-            Console.WriteLine($"User dengan ID {userId} berhasil diperbarui!");
-            return true;
+            if (updated) {
+                UpdateUsers();
+                Console.WriteLine($"User dengan ID {userId} berhasil diperbarui!");
+                string action = $"Mengedit user ID {userId} ({string.Join(", ", changes)})";
+                Logger.LogUserModification(editor.Username, action);
+                return true;
+            } 
+            return false;
         }
 
         private void UpdateUsers()
         {
-            string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-            File.WriteAllText(UserFile, json);
+            string jsonData = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, jsonData);
         }
+
 
         // Menghapus user berdasarkan ID (hanya bisa dilakukan oleh Admin)
         public void DeleteUserById(int userId)
@@ -233,6 +260,8 @@ namespace InventorySystem.Services
             if (_currentUser == null || !_currentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
             {
                 Console.WriteLine("❌ Hanya Admin yang bisa menghapus user!");
+                Logger.LogError("SYSTEM", $"Percobaan penghapusan user ID {userId} oleh non-admin.");
+
                 return;
             }
 
@@ -241,6 +270,7 @@ namespace InventorySystem.Services
             if (user == null)
             {
                 Console.WriteLine("❌ User tidak ditemukan!");
+                Logger.LogError("SYSTEM", $"Percobaan penghapusan user ID {userId}, tetapi user tidak ditemukan.");
                 return;
             }
 
@@ -248,6 +278,7 @@ namespace InventorySystem.Services
             SaveUsers();
 
             Console.WriteLine($"✅ User '{user.Username}' berhasil dihapus oleh Admin '{_currentUser.Username}'.");
+            Logger.LogUserModification(_currentUser.Username, $"Menghapus user ID {userId} ({user.Username})");
         }
     }
 }
