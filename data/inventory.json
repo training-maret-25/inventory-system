@@ -1,66 +1,26 @@
 [
   {
     "Id": 0,
-    "Nama": null,
-    "Kategori": null,
+    "nama": "Pulpen",
+    "kategori": "Alat Tulis",
     "Stok": 0,
-    "BatasMinimum": 0,
-    "JumlahRestok": 0
+    "batas_minimum": 11,
+    "jumlah_restok": 10
   },
   {
     "Id": 0,
-    "Nama": null,
-    "Kategori": null,
+    "nama": "Kertas A4",
+    "kategori": "Perlengkapan Kantor",
     "Stok": 0,
-    "BatasMinimum": 0,
-    "JumlahRestok": 0
+    "batas_minimum": 11,
+    "jumlah_restok": 20
   },
   {
-    "Id": 2,
-    "Nama": "pulpen ajaib",
-    "Kategori": "ATK",
-    "Stok": 13,
-    "BatasMinimum": 30,
-    "JumlahRestok": 5
-  },
-  {
-    "Id": 3,
-    "Nama": "Gula",
-    "Kategori": "sembako",
-    "Stok": 20,
-    "BatasMinimum": 50,
-    "JumlahRestok": 15
-  },
-  {
-    "Id": 4,
-    "Nama": "Paku",
-    "Kategori": "Bahan bangunan",
-    "Stok": 50,
-    "BatasMinimum": 100,
-    "JumlahRestok": 35
-  },
-  {
-    "Id": 5,
-    "Nama": "Tv",
-    "Kategori": "Elektronik",
-    "Stok": 30,
-    "BatasMinimum": 100,
-    "JumlahRestok": 20
-  },
-  {
-    "Id": 6,
-    "Nama": "wajan",
-    "Kategori": "alat masak",
-    "Stok": 20,
-    "BatasMinimum": 11,
-    "JumlahRestok": 22
-  },
-  {
-    "Id": 7,
-    "Nama": "Tv",
-    "Kategori": "elekronik",
-    "Stok": 20,
-    "BatasMinimum": 100,
-    "JumlahRestok": 12
+    "Id": 1,
+    "nama": "sepatu",
+    "kategori": "perlengkana",
+    "Stok": 11,
+    "batas_minimum": 10,
+    "jumlah_restok": 12
   }
 ]

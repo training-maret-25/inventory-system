@@ -123,13 +123,40 @@ namespace InventorySystem.Services
                 Console.WriteLine("Barang tidak ditemukan.");
                 return;
             }
+            if (item == null)
+            {
+                throw new ArgumentException("Jumlah yang dikurangi harus lebih dari 0.");
+            }
+
+            if (item == null)
+            {
+                throw new InvalidOperationException($"Stok tidak mencukupi. Stok tersedia: {item}");
+            }
+
+            if (item.Stok <= item.BatasMinimum)
+            {
+                AutoRestock(item);
+            }
 
             inventory.Remove(item);
             SaveInventory();
-            Console.WriteLine($"Barang '{item.Nama}' berhasil dihapus.");
+            Console.WriteLine($"✅ Barang '{item.Nama}' berhasil dihapus.");
+
+
+        }
+        private void AutoRestock(InventoryItem item)
+        {
+            if (item.Stok <= item.BatasMinimum)
+            {
+                item.Stok += item.JumlahRestok;
+                SaveInventory();
+
+                string logMessage = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [INFO] Restok otomatis: Barang '{item.Nama}' ditambah {item.JumlahRestok} unit (Stok sekarang: {item.Stok})";
+                Console.WriteLine(logMessage);
+                File.AppendAllText("log.txt", logMessage + Environment.NewLine);
+            }
         }
 
-        // Lihat Daftar Barang
         public void ListItems()
         {
             Console.WriteLine("\n=== Daftar Barang ===");
