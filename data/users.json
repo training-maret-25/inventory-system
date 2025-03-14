@@ -52,5 +52,11 @@
     "Username": "vvv",
     "Password": "3daabcc85cfd07e409fd5bcd3f4431584b331712c133ceb6f9f1c8b11f6c653a",
     "Role": "Employer"
+  },
+  {
+    "Id": 11,
+    "Username": "udin",
+    "Password": "23d47445adfb8991789b459b6ba1b974d727d310aa9d80b7c2875b9430c0ba25",
+    "Role": "Employer"
   }
 ]
