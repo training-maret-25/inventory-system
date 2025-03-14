@@ -166,7 +166,7 @@ namespace InventorySystem.Services
                 return;
             }
 
-            var newUser = new User 
+            var newUser = new User
             {
                 Id = users.Count > 0 ? users.Max(u => u.Id) + 1 : 1,
                 Username = username,
@@ -239,13 +239,14 @@ namespace InventorySystem.Services
                 }
             }
 
-            if (updated) {
+            if (updated)
+            {
                 UpdateUsers();
                 Console.WriteLine($"User dengan ID {userId} berhasil diperbarui!");
                 string action = $"Mengedit user ID {userId} ({string.Join(", ", changes)})";
                 Logger.LogUserModification(editor.Username, action);
                 return true;
-            } 
+            }
             return false;
         }
 
