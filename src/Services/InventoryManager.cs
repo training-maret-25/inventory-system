@@ -17,6 +17,10 @@ namespace InventorySystem.Services
             Console.WriteLine($"Path inventory.json: {filePath}");
             LoadInventory();
         }
+        public InventoryItem? GetItemById(int id)
+        {
+            return inventory.FirstOrDefault(i => i.Id == id);
+        }
 
         private void LoadInventory()
         {
@@ -109,6 +113,48 @@ namespace InventorySystem.Services
 
 
         #endregion
+        public void SelectItemForAutoRestock()
+        {
+            Console.WriteLine("\n=== PILIH BARANG UNTUK AUTO RESTOCK ===");
+
+            if (inventory.Count == 0)
+            {
+                Console.WriteLine("⚠️ Tidak ada barang dalam daftar.");
+                return;
+            }
+
+            // Tampilkan daftar barang
+            foreach (var inventoryItem in inventory) // Ubah nama variabel dari `item` ke `inventoryItem`
+            {
+                Console.WriteLine($"[{inventoryItem.Id}] {inventoryItem.Nama} (Kategori: {inventoryItem.Kategori}, Stok: {inventoryItem.Stok}, Batas Minimum: {inventoryItem.BatasMinimum}, Jumlah Restok: {inventoryItem.JumlahRestok})");
+            }
+
+            Console.Write("Masukkan ID barang yang ingin di-auto restock: ");
+            if (!int.TryParse(Console.ReadLine(), out int itemId))
+            {
+                Console.WriteLine("❌ ID tidak valid.");
+                return;
+            }
+
+            // Cari barang berdasarkan ID
+            var selectedItem = inventory.FirstOrDefault(i => i.Id == itemId); // Ubah nama variabel dari `item` ke `selectedItem`
+            if (selectedItem == null)
+            {
+                Console.WriteLine("❌ Barang tidak ditemukan.");
+                return;
+            }
+
+            // Cek apakah barang memenuhi syarat auto restock
+            if (selectedItem.Stok > selectedItem.BatasMinimum)
+            {
+                Console.WriteLine($"⚠️ Barang '{selectedItem.Nama}' tidak membutuhkan restok (Stok saat ini: {selectedItem.Stok}, Batas Minimum: {selectedItem.BatasMinimum}).");
+                return;
+            }
+
+            // Lakukan restok otomatis
+            AutoRestock(selectedItem);
+            Console.WriteLine($"✅ Barang '{selectedItem.Nama}' berhasil di-auto restock.");
+        }
 
         private int GetPositiveNumber(string prompt)
         {
@@ -167,6 +213,45 @@ namespace InventorySystem.Services
             Console.WriteLine($"✅ Barang dengan ID {id} berhasil dihapus!");
         }
 
+        //mengurangi barang 
+        public void DecreaseItem(int id)
+        {
+            var item = inventory.FirstOrDefault(i => i.Id == id);
+            if (item == null)
+            {
+                Console.WriteLine("❌ Barang tidak ditemukan.");
+                return;
+            }
+
+            Console.Write($"Jumlah yang akan dikurangi dari stok {item.Nama} (Stok saat ini: {item.Stok}): ");
+            if (!int.TryParse(Console.ReadLine(), out int jumlahPengurangan) || jumlahPengurangan <= 0)
+            {
+                Console.WriteLine("❌ Masukkan jumlah yang valid dan lebih besar dari nol.");
+                return;
+            }
+
+            if (item.Stok < jumlahPengurangan)
+            {
+                Console.WriteLine($"❌ Stok tidak mencukupi. Hanya tersedia {item.Stok} unit.");
+                return;
+            }
+
+            item.Stok -= jumlahPengurangan;
+            SaveInventory();
+
+            Console.WriteLine($"✅ Stok {item.Nama} berhasil dikurangi sebanyak {jumlahPengurangan}. Stok saat ini: {item.Stok}");
+
+            // Auto restock jika perlu
+            if (item.Stok <= item.BatasMinimum)
+            {
+                AutoRestock(item);
+            }
+        }
+
+
+
+
+        // ✅ Lihat Daftar Barang
         public void ListItems()
         {
             Console.WriteLine("\n=== DAFTAR BARANG ===");
@@ -198,17 +283,15 @@ namespace InventorySystem.Services
                 Console.WriteLine($"[{item.Id}] {item.Nama} (Kategori: {item.Kategori}, Stok: {item.Stok})");
             }
         }
-        private void AutoRestock(InventoryItem item)
+        public void AutoRestock(InventoryItem item)
         {
-            if (item.Stok <= item.BatasMinimum)
-            {
-                item.Stok += item.JumlahRestok;
-                SaveInventory();
+            item.Stok += item.JumlahRestok;
+            SaveInventory();
 
-                string logMessage = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [INFO] Restok otomatis: Barang '{item.Nama}' ditambah {item.JumlahRestok} unit (Stok sekarang: {item.Stok})";
-                Console.WriteLine(logMessage);
-                File.AppendAllText("log.txt", logMessage + Environment.NewLine);
-            }
+            string logMessage = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [INFO] Restok otomatis: Barang '{item.Nama}' ditambah {item.JumlahRestok} unit (Stok sekarang: {item.Stok})";
+            Console.WriteLine(logMessage);
+            File.AppendAllText("log.txt", logMessage + Environment.NewLine);
         }
     }
 }
+
