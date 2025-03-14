@@ -1,4 +1,4 @@
-using InventorySystem.Services;
+﻿using InventorySystem.Services;
 using System;
 using System.Collections.Generic;
 
@@ -9,6 +9,7 @@ class Program
     {
         var userManager = new UserManager();
         var inventoryManager = new InventoryManager();
+        var transactionManager = new TransactionManager();
 
         string role = "";
         bool isLoggedIn = false;
@@ -42,12 +43,8 @@ class Program
             Console.WriteLine("3. Edit Barang");
             Console.WriteLine("4. Hapus Barang");
             Console.WriteLine("5. Cek Barang Perlu Restok");
-
-            if (role == "Admin")
-            {
-                Console.WriteLine("6. Manajemen User");
-            }
-
+            Console.WriteLine("6. Manajemen User");
+            Console.WriteLine("7. Manajemen Transaksi");
             Console.WriteLine("0. Logout & Keluar");
 
             Console.Write("\nPilih menu: ");
@@ -72,7 +69,6 @@ class Program
                         Console.WriteLine("ID tidak valid.");
                     }
                     break;
-
                 case "4":
                     Console.Write("Masukkan ID Barang yang ingin dihapus: ");
                     if (int.TryParse(Console.ReadLine(), out int deleteId))
@@ -84,13 +80,15 @@ class Program
                         Console.WriteLine("ID tidak valid.");
                     }
                     break;
-
                 case "5":
                     inventoryManager.CheckRestockItems();
                     break;
                 case "6":
                     if (role == "Admin") UserManagementMenu(userManager);
                     else Console.WriteLine("❌ Anda tidak memiliki akses ke menu ini.");
+                    break;
+                case "7":
+                    TransactionManagementMenu(transactionManager);
                     break;
                 case "0":
                     userManager.Logout();
@@ -158,6 +156,45 @@ class Program
                     {
                         Console.WriteLine("ID tidak valid.");
                     }
+                    break;
+                case "0":
+                    back = true;
+                    break;
+                default:
+                    Console.WriteLine("Pilihan tidak valid.");
+                    break;
+            }
+        }
+    }
+
+    static void TransactionManagementMenu(TransactionManager transactionManager)
+    {
+        bool back = false;
+        while (!back)
+        {
+            Console.WriteLine("\n=== MENU MANAJEMEN TRANSAKSI ===");
+            Console.WriteLine("1. Tambah Transaksi");
+            Console.WriteLine("2. Lihat Riwayat Transaksi");
+            Console.WriteLine("3. Buat Laporan Rekapitulasi");
+            Console.WriteLine("4. Ekspor Laporan ke File");
+            Console.WriteLine("0. Kembali");
+
+            Console.Write("\nPilih menu: ");
+            string pilihan = Console.ReadLine() ?? "";
+
+            switch (pilihan)
+            {
+                case "1":
+                    transactionManager.AddTransactions();
+                    break;
+                case "2":
+                    transactionManager.ViewTransactionHistory();
+                    break;
+                case "3":
+                    transactionManager.GenerateReport();
+                    break;
+                case "4":
+                    transactionManager.ExportReport();
                     break;
                 case "0":
                     back = true;

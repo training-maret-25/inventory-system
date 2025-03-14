@@ -1,0 +1,3 @@
+=== Laporan Rekapitulasi Transaksi ===
+Jenis: Masuk | Total Transaksi: 1 | Total Barang: 20
+Jenis: Keluar | Total Transaksi: 1 | Total Barang: 5
