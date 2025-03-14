@@ -7,6 +7,7 @@ namespace InventorySystem.Models
         public string Password { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
 
+
         // Constructor optional, bisa dipakai untuk inisialisasi langsung
         public User() { }
 

@@ -38,5 +38,13 @@
     "Stok": 13,
     "BatasMinimum": 30,
     "JumlahRestok": 5
+  },
+  {
+    "Id": 3,
+    "Nama": "Gula",
+    "Kategori": "sembako",
+    "Stok": 20,
+    "BatasMinimum": 50,
+    "JumlahRestok": 15
   }
 ]
