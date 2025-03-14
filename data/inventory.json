@@ -1,21 +1,5 @@
 [
   {
-    "Id": 0,
-    "nama": "Pulpen",
-    "kategori": "Alat Tulis",
-    "Stok": 0,
-    "batas_minimum": 11,
-    "jumlah_restok": 10
-  },
-  {
-    "Id": 0,
-    "nama": "Kertas A4",
-    "kategori": "Perlengkapan Kantor",
-    "Stok": 0,
-    "batas_minimum": 11,
-    "jumlah_restok": 20
-  },
-  {
     "Id": 1,
     "nama": "sepatu",
     "kategori": "perlengkana",
@@ -24,6 +8,7 @@
     "jumlah_restok": 12
   },
   {
+<<<<<<< HEAD
     "Id": 2,
     "nama": "tv ajaib",
     "kategori": "elektronik",
@@ -46,5 +31,21 @@
     "Stok": 30,
     "batas_minimum": 50,
     "jumlah_restok": 10
+=======
+    "Id": 0,
+    "Nama": null,
+    "Kategori": null,
+    "Stok": 0,
+    "BatasMinimum": 0,
+    "JumlahRestok": 0
+  },
+  {
+    "Id": 5,
+    "Nama": "Auf",
+    "Kategori": "Manusia",
+    "Stok": 20,
+    "BatasMinimum": 5,
+    "JumlahRestok": 10
+>>>>>>> 303bebb9757e19753a5ddae0930922d1157b1283
   }
 ]

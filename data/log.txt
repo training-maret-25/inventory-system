@@ -24,6 +24,7 @@
 [2025-03-14 13:37:06] [INFO] User 'opal melakukan aksi 'Logout dari sistem'
 [2025-03-14 13:37:21] [INFO] User 'adminbaru melakukan aksi 'Login ke sistem'
 [2025-03-14 13:37:29] [INFO] User 'adminbaru melakukan aksi 'Logout dari sistem'
+<<<<<<< HEAD
 [2025-03-14 14.03.51] [ERROR] User 'adminbaru melakukan aksi 'Gagal Login: Password salah'
 [2025-03-14 14.04.16] [ERROR] User 'adminbaru melakukan aksi 'Gagal Login: Password salah'
 [2025-03-14 14.06.28] [INFO] User 'bejo melakukan aksi 'Login ke sistem'
@@ -44,3 +45,17 @@
 [2025-03-14 14.19.38] [INFO] User 'bejo melakukan aksi 'Logout dari sistem'
 [2025-03-14 14.19.50] [INFO] User 'joko melakukan aksi 'Login ke sistem'
 [2025-03-14 14.26.49] [INFO] User 'joko melakukan aksi 'Logout dari sistem'
+=======
+[2025-03-14 01:46:59] [INFO] User 'muksin melakukan aksi 'Login ke sistem'
+[2025-03-14 01:49:19] [USER] User 'Adminnya Boleh Diubah Ya Sama Employer melakukan aksi 'Mengedit user ID 6 (Username dari 'adminbaru' ke 'Adminnya Boleh Diubah Ya Sama Employer', Password diperbarui)'
+[2025-03-14 01:55:46] [INFO] User 'muksin melakukan aksi 'Logout dari sistem'
+[2025-03-14 01:56:26] [INFO] User 'muksin melakukan aksi 'Login ke sistem'
+[2025-03-14 01:57:52] [INFO] User 'muksin melakukan aksi 'Logout dari sistem'
+[2025-03-14 13:04:42] [INFO] User 'bejo melakukan aksi 'Login ke sistem'
+[2025-03-14 13:10:29] [INFO] User 'bejo melakukan aksi 'Logout dari sistem'
+[2025-03-14 13:38:01] [INFO] User 'bejo melakukan aksi 'Login ke sistem'
+[2025-03-14 13:41:43] [INFO] User 'bejo melakukan aksi 'Login ke sistem'
+[2025-03-14 13:43:37] [INFO] User 'bejo melakukan aksi 'Logout dari sistem'
+[2025-03-14 13:44:08] [INFO] User 'bejo melakukan aksi 'Login ke sistem'
+[2025-03-14 13:45:29] [INFO] User 'bejo melakukan aksi 'Logout dari sistem'
+>>>>>>> 303bebb9757e19753a5ddae0930922d1157b1283
