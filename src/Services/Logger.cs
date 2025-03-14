@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace logger
 {
@@ -13,8 +14,23 @@ namespace logger
                     writer.WriteLine(logEntry);
                 }
             } catch (Exception ex) {
-                Console.WriteLine($"Error: gagal menulis log: {ex.Message}");
+                string errorLogPath = "data/error_log.txt";
+                try {
+                    using (StreamWriter writer = new StreamWriter(errorLogPath, true)) {
+                        writer.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [ERROR] Gagal menulis log utama: {ex.Message}");
+                    }
+                } catch {
+                    Console.WriteLine("Fatal: gagal menulis ke log file!");
+                }
             }
+        }
+
+        public static void LogCriticalError (string username, string errorMessage) {
+            Log("CRITICAL", username, errorMessage);
+        }
+
+        public static void LogException(string username, Exception ex) {
+            Log("EXCEPTION", username, $"Exception terjadi: {ex.Message}\nStackTrace: {ex.StackTrace}");
         }
 
         // fungsi untuk mencatat log

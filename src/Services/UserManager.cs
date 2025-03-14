@@ -112,7 +112,6 @@ namespace InventorySystem.Services
             return true;
         }
 
-
         // Logout user
         public void Logout()
         {
