@@ -7,10 +7,10 @@ namespace InventorySystem.Models
         public int Id { get; set; }
 
         [JsonPropertyName("nama")]
-        public required string Nama { get; set; }
+        public string? Nama { get; set; }
 
         [JsonPropertyName("kategori")]
-        public required string Kategori { get; set; }
+        public string? Kategori { get; set; }
 
         public int Stok { get; set; }
 
