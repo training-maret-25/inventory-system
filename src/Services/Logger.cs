@@ -1,6 +1,6 @@
 using System;
 
-namespace inventory_system.src
+namespace logger
 {
     public static class Logger
     {
