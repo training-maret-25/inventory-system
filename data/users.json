@@ -18,12 +18,6 @@
     "Role": "Employer"
   },
   {
-    "Id": 5,
-    "Username": "baru",
-    "Password": "dea86b57e83050649fe8858d7715dc26861e362fe1273074b5c32c7aec0e1723",
-    "Role": "Employer"
-  },
-  {
     "Id": 6,
     "Username": "adminbaru",
     "Password": "5fcf82bc15aef42cd3ec93e6d4b51c04df110cf77ee715f62f3f172ff8ed9de9",
@@ -33,6 +27,12 @@
     "Id": 7,
     "Username": "nopan",
     "Password": "23d47445adfb8991789b459b6ba1b974d727d310aa9d80b7c2875b9430c0ba25",
+    "Role": "Employer"
+  },
+  {
+    "Id": 8,
+    "Username": "vvv",
+    "Password": "3daabcc85cfd07e409fd5bcd3f4431584b331712c133ceb6f9f1c8b11f6c653a",
     "Role": "Employer"
   }
 ]
