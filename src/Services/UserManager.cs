@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using InventorySystem.Models;
 using logger;
+using InventorySystem.Services;
 
 namespace InventorySystem.Services
 {
@@ -32,7 +33,7 @@ namespace InventorySystem.Services
             }
             else
             {
-                Console.WriteLine("⚠️ File users.json tidak ditemukan! Membuat daftar user kosong.");
+                Console.WriteLine("File users.json tidak ditemukan! Membuat daftar user kosong.");
                 Logger.LogError("file users.json tidak ditemukan. sistem memulai dengan daftar user kosong");
             }
         }
@@ -42,8 +43,6 @@ namespace InventorySystem.Services
             string jsonData = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(filePath, jsonData);
         }
-
-        // Pastikan semua password sudah hash SHA-256
         private void CheckAndHashPasswords()
         {
             bool updated = false;
@@ -60,7 +59,7 @@ namespace InventorySystem.Services
             if (updated)
             {
                 SaveUsers();
-                Console.WriteLine("✅ Semua password telah di-hash dan file diperbarui.");
+                Console.WriteLine("Semua password telah di-hash dan file diperbarui.");
                 Logger.LogInfo("SYSTEM", "Hashing ulang password yang belum ter-hash");
             }
         }
@@ -88,7 +87,7 @@ namespace InventorySystem.Services
             var user = users.FirstOrDefault(u => u.Username == username);
             if (user == null)
             {
-                Console.WriteLine("❌ Username tidak ditemukan!");
+                Console.WriteLine("Username tidak ditemukan!");
                 Logger.LogError("Gagal Login: Username tidak ditemukan");
                 return false;
             }
@@ -97,7 +96,7 @@ namespace InventorySystem.Services
 
             if (!user.Password.Equals(hashedInputPassword, StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("❌ Password salah!");
+                Console.WriteLine("Password salah!");
                 Logger.LogError( "Gagal Login: Password salah");
                 return false;
             }
@@ -107,7 +106,7 @@ namespace InventorySystem.Services
             role = user.Role.Trim();  // Pastikan tidak ada spasi yang mengganggu
             userId = user.Id;
 
-            Console.WriteLine($"✅ Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
+            Console.WriteLine($"Login berhasil! Selamat datang, {user.Username} ({user.Role}).");
             Logger.LogInfo(username, "login ke sistem");
             return true;
         }
@@ -117,13 +116,13 @@ namespace InventorySystem.Services
         {
             if (_currentUser != null)
             {
-                Console.WriteLine($"✅ {_currentUser.Username} telah logout.");
+                Console.WriteLine($"{_currentUser.Username} telah logout.");
                 Logger.LogInfo(_currentUser.Username, "telah logout");
                 _currentUser = null;
             }
             else
             {
-                Console.WriteLine("⚠️ Tidak ada user yang login.");
+                Console.WriteLine("Tidak ada user yang login.");
             }
         }
 
@@ -140,8 +139,9 @@ namespace InventorySystem.Services
             foreach (var user in users)
             {
                 Console.WriteLine($"ID: {user.Id}, Username: {user.Username}, Role: {user.Role}");
-                Logger.LogInfo(user.Username, "menampilkan daftar nama user");
             }
+
+            Logger.LogInfo(_currentUser.Username, "menampilkan daftar nama user");
         }
 
         // Menambahkan user baru
@@ -155,14 +155,14 @@ namespace InventorySystem.Services
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                Console.WriteLine("❌ Username dan password tidak boleh kosong!");
+                Console.WriteLine("Username dan password tidak boleh kosong!");
                 Logger.LogError("Gagal memasukan user: username dan password kosong");
                 return;
             }
 
             if (users.Any(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase)))
             {
-                Console.WriteLine("❌ Username sudah ada!");
+                Console.WriteLine("Username sudah ada!");
                 Logger.LogError($"Gagal memasukan user: Username {username} sudah ada");
                 return;
             }
@@ -177,7 +177,7 @@ namespace InventorySystem.Services
 
             users.Add(newUser);
             SaveUsers();
-            Console.WriteLine("✅ User berhasil ditambahkan!");
+            Console.WriteLine("User berhasil ditambahkan!");
             Logger.LogInfo("ADMIN", $"Menambahkan user baru: {username}");
         }
 
@@ -262,7 +262,7 @@ namespace InventorySystem.Services
         {
             if (_currentUser == null || !_currentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("❌ Hanya Admin yang bisa menghapus user!");
+                Console.WriteLine("Hanya Admin yang bisa menghapus user!");
                 Logger.LogWarning(_currentUser.Username, $"Percobaan penghapusan user ID {userId} oleh non-admin.");
                 return;
             }
@@ -271,7 +271,7 @@ namespace InventorySystem.Services
 
             if (user == null)
             {
-                Console.WriteLine("❌ User tidak ditemukan!");
+                Console.WriteLine("User tidak ditemukan!");
                 Logger.LogWarning(_currentUser.Username, $"Percobaan penghapusan user ID {userId}, tetapi user tidak ditemukan.");
                 return;
             }
@@ -279,7 +279,7 @@ namespace InventorySystem.Services
             users.Remove(user);
             SaveUsers();
 
-            Console.WriteLine($"✅ User '{user.Username}' berhasil dihapus oleh Admin '{_currentUser.Username}'.");
+            Console.WriteLine($"User '{user.Username}' berhasil dihapus oleh Admin '{_currentUser.Username}'.");
             Logger.LogInfo(_currentUser.Username, $"Menghapus user ID {userId} ({user.Username})");
         }
     }

@@ -48,20 +48,19 @@ namespace logger
 
         public static void LogError(string errorMessage) {
             string logEntry = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [ERROR] {errorMessage}";
-            Console.WriteLine(logEntry);
             WriteToFile(logEntry);
         }
 
         // fungsi untuk mencatat log
         public static void Log(string level, string username, string action) {
             string logEntry = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [{level}] User '{username} melakukan aksi '{action}'";
-            Console.WriteLine(logEntry);
             WriteToFile(logEntry);
         }
 
         // fuction untuk mencatat restock otomatis
-        public static void LogRestock(string username, string itemName, int amount) {
-            Log("INFO", username, $"Restock otomatis: {amount} unit '{itemName}' ditambahkan");
+        public static void LogRestock(string itemName) {
+            string logEntry = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [INFO] '{itemName}' telah di restock otomatis";
+            WriteToFile(logEntry);
         }
     }
 }
