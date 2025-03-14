@@ -39,48 +39,69 @@ namespace InventorySystem.Services
         }
 
         // ✅ Tambah Barang
+        #region UpdateByID    
         public void AddItem()
         {
+            if (inventory == null)
+            {
+                inventory = new List<InventoryItem>();
+            }
+
             Console.Write("Nama Barang: ");
-            string nama = Console.ReadLine() ?? "";
-
-            Console.Write("Kategori: ");
-            string kategori = Console.ReadLine() ?? "";
-
-            Console.Write("Stok Awal: ");
-            if (!int.TryParse(Console.ReadLine(), out int stok) || stok < 0)
+            var nama = Console.ReadLine();
+            if (string.IsNullOrEmpty(nama))
             {
-                Console.WriteLine("❌ Stok harus berupa angka positif.");
+                Console.WriteLine("❌ Nama barang tidak boleh kosong.");
                 return;
             }
 
+            var itemExists = inventory.FirstOrDefault(i => i.Nama?.Equals(nama, StringComparison.OrdinalIgnoreCase) == true);
+            if (itemExists != null)
+            {
+                Console.WriteLine("❌ Barang dengan nama yang sama sudah ada.");
+                return;
+            }
+
+            Console.Write("Kategori Barang: ");
+            var kategori = Console.ReadLine();
+            Console.Write("Jumlah Stok: ");
+            if (!int.TryParse(Console.ReadLine(), out int stok))
+            {
+                Console.WriteLine("❌ Jumlah stok harus berupa angka.");
+                return;
+            }
             Console.Write("Batas Minimum Stok: ");
-            if (!int.TryParse(Console.ReadLine(), out int batasMinimum) || batasMinimum < 0)
+            if (!int.TryParse(Console.ReadLine(), out int batasMinimum))
             {
-                Console.WriteLine("❌ Batas minimum harus berupa angka positif.");
+                Console.WriteLine("❌ Batas minimum stok harus berupa angka.");
                 return;
             }
 
-            Console.Write("Jumlah Restok: ");
-            if (!int.TryParse(Console.ReadLine(), out int jumlahRestok) || jumlahRestok < 0)
+            inventory.Add(new InventoryItem
             {
-                Console.WriteLine("❌ Jumlah restok harus berupa angka positif.");
-                return;
-            }
-
-            var newItem = new InventoryItem
-            {
-                Id = inventory.Count > 0 ? inventory.Max(i => i.Id) + 1 : 1,
+                Id = inventory.Count + 1,
                 Nama = nama,
                 Kategori = kategori,
                 Stok = stok,
-                BatasMinimum = batasMinimum,
-                JumlahRestok = jumlahRestok
-            };
+                BatasMinimum = batasMinimum
+            });
 
-            inventory.Add(newItem);
             SaveInventory();
-            Console.WriteLine("✅ Barang berhasil ditambahkan!");
+            Console.WriteLine($"✅ Barang {nama} berhasil ditambahkan!");
+        }
+
+
+        #endregion
+
+        private int GetPositiveNumber(string prompt)
+        {
+            Console.Write(prompt);
+            if (!int.TryParse(Console.ReadLine(), out int result) || result < 0)
+            {
+                Console.WriteLine("❌ Masukkan angka positif.");
+                return -1;
+            }
+            return result;
         }
 
         // ✅ Edit Barang
@@ -111,7 +132,7 @@ namespace InventorySystem.Services
             if (int.TryParse(Console.ReadLine(), out int jumlahRestok)) item.JumlahRestok = jumlahRestok;
 
             SaveInventory();
-            Console.WriteLine("✅ Barang berhasil diperbarui!");
+            Console.WriteLine($"✅ Barang dengan ID {id} berhasil diperbarui!");
         }
 
         // ✅ Hapus Barang
@@ -123,26 +144,43 @@ namespace InventorySystem.Services
                 Console.WriteLine("❌ Barang tidak ditemukan.");
                 return;
             }
-            if (item == null)
-            {
-                throw new ArgumentException("Jumlah yang dikurangi harus lebih dari 0.");
-            }
-
-            if (item == null)
-            {
-                throw new InvalidOperationException($"Stok tidak mencukupi. Stok tersedia: {item}");
-            }
-
-            if (item.Stok <= item.BatasMinimum)
-            {
-                AutoRestock(item);
-            }
 
             inventory.Remove(item);
             SaveInventory();
-            Console.WriteLine($"✅ Barang '{item.Nama}' berhasil dihapus.");
+            Console.WriteLine($"✅ Barang dengan ID {id} berhasil dihapus!");
+        }
 
+        // ✅ Lihat Daftar Barang
+        public void ListItems()
+        {
+            Console.WriteLine("\n=== DAFTAR BARANG ===");
+            if (inventory.Count == 0)
+            {
+                Console.WriteLine("⚠️ Tidak ada barang dalam daftar.");
+                return;
+            }
 
+            foreach (var item in inventory)
+            {
+                Console.WriteLine($"[{item.Id}] {item.Nama} (Kategori: {item.Kategori}, Stok: {item.Stok})");
+            }
+        }
+
+        // ✅ Barang Perlu Restok
+        public void CheckRestockItems()
+        {
+            var restockItems = inventory.Where(i => i.Stok <= i.BatasMinimum).ToList();
+            if (!restockItems.Any())
+            {
+                Console.WriteLine("⚠️ Tidak ada barang yang perlu restok.");
+                return;
+            }
+
+            Console.WriteLine("\n=== BARANG YANG PERLU RESTOK ===");
+            foreach (var item in restockItems)
+            {
+                Console.WriteLine($"[{item.Id}] {item.Nama} (Kategori: {item.Kategori}, Stok: {item.Stok})");
+            }
         }
         private void AutoRestock(InventoryItem item)
         {
@@ -154,39 +192,6 @@ namespace InventorySystem.Services
                 string logMessage = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [INFO] Restok otomatis: Barang '{item.Nama}' ditambah {item.JumlahRestok} unit (Stok sekarang: {item.Stok})";
                 Console.WriteLine(logMessage);
                 File.AppendAllText("log.txt", logMessage + Environment.NewLine);
-            }
-        }
-
-        public void ListItems()
-        {
-            Console.WriteLine("\n=== Daftar Barang ===");
-            if (!inventory.Any())
-            {
-                Console.WriteLine("Tidak ada barang dalam inventory.");
-                return;
-            }
-
-            foreach (var item in inventory)
-            {
-                Console.WriteLine($"ID: {item.Id} | Nama: {item.Nama} | Kategori: {item.Kategori} | Stok: {item.Stok} | Minimum: {item.BatasMinimum} | Restok: {item.JumlahRestok}");
-            }
-        }
-
-        // 🔔 Cek dan tampilkan barang yang perlu restok
-        public void CheckRestockItems()
-        {
-            var needRestock = inventory.Where(i => i.Stok <= i.BatasMinimum).ToList();
-
-            if (!needRestock.Any())
-            {
-                Console.WriteLine("✅ Tidak ada barang yang perlu direstok.");
-                return;
-            }
-
-            Console.WriteLine("\n🚨 Barang yang perlu direstok:");
-            foreach (var item in needRestock)
-            {
-                Console.WriteLine($"ID: {item.Id} | Nama: {item.Nama} | Stok: {item.Stok} | Minimum: {item.BatasMinimum} | Jumlah Restok: {item.JumlahRestok}");
             }
         }
     }

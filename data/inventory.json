@@ -32,11 +32,11 @@
     "JumlahRestok": 0
   },
   {
-    "Id": 2,
-    "Nama": "pulpen ajaib",
-    "Kategori": "ATK",
-    "Stok": 13,
-    "BatasMinimum": 30,
-    "JumlahRestok": 5
+    "Id": 5,
+    "Nama": "Auf",
+    "Kategori": "Manusia",
+    "Stok": 20,
+    "BatasMinimum": 5,
+    "JumlahRestok": 10
   }
 ]
