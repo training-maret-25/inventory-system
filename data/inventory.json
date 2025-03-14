@@ -1,42 +1,26 @@
 [
   {
     "Id": 0,
-    "Nama": null,
-    "Kategori": null,
+    "nama": "Pulpen",
+    "kategori": "Alat Tulis",
     "Stok": 0,
-    "BatasMinimum": 0,
-    "JumlahRestok": 0
+    "batas_minimum": 11,
+    "jumlah_restok": 10
   },
   {
     "Id": 0,
-    "Nama": null,
-    "Kategori": null,
+    "nama": "Kertas A4",
+    "kategori": "Perlengkapan Kantor",
     "Stok": 0,
-    "BatasMinimum": 0,
-    "JumlahRestok": 0
+    "batas_minimum": 11,
+    "jumlah_restok": 20
   },
   {
-    "Id": 0,
-    "Nama": null,
-    "Kategori": null,
-    "Stok": 0,
-    "BatasMinimum": 0,
-    "JumlahRestok": 0
-  },
-  {
-    "Id": 0,
-    "Nama": null,
-    "Kategori": null,
-    "Stok": 0,
-    "BatasMinimum": 0,
-    "JumlahRestok": 0
-  },
-  {
-    "Id": 2,
-    "Nama": "pulpen ajaib",
-    "Kategori": "ATK",
-    "Stok": 13,
-    "BatasMinimum": 30,
-    "JumlahRestok": 5
+    "Id": 1,
+    "nama": "sepatu",
+    "kategori": "perlengkana",
+    "Stok": 11,
+    "batas_minimum": 10,
+    "jumlah_restok": 12
   }
 ]
