@@ -9,18 +9,26 @@
   },
   {
     "Id": 0,
-    "Nama": null,
-    "Kategori": null,
+    "nama": null,
+    "kategori": null,
     "Stok": 0,
-    "BatasMinimum": 0,
-    "JumlahRestok": 0
+    "batas_minimum": 10,
+    "jumlah_restok": 0
   },
   {
     "Id": 5,
-    "Nama": "Auf",
-    "Kategori": "Manusia",
+    "nama": null,
+    "kategori": null,
     "Stok": 20,
-    "BatasMinimum": 5,
-    "JumlahRestok": 10
+    "batas_minimum": 10,
+    "jumlah_restok": 0
+  },
+  {
+    "Id": 4,
+    "nama": "ex",
+    "kategori": "entitas",
+    "Stok": 120,
+    "batas_minimum": 10,
+    "jumlah_restok": 0
   }
 ]
