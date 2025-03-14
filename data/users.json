@@ -25,7 +25,7 @@
   },
   {
     "Id": 6,
-    "Username": "Adminnya Boleh Diubah Ya Sama Employer",
+    "Username": "adminbaru",
     "Password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
     "Role": "admin"
   },
@@ -33,7 +33,7 @@
     "Id": 7,
     "Username": "aaaa",
     "Password": "23d47445adfb8991789b459b6ba1b974d727d310aa9d80b7c2875b9430c0ba25",
-    "Role": "Employer"
+    "Role": "admin"
   },
   {
     "Id": 8,

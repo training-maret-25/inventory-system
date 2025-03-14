@@ -1,0 +1,15 @@
+[2004-11-22] Laporan Harian:
+- Barang Masuk: 
+- Barang Keluar: 
+Total Perubahan Stok: 0
+
+=== LAPORAN HARIAN TANGGAL 2025-04-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+[2022-11-11] Laporan Harian:
+Total Perubahan Stok: +0
+

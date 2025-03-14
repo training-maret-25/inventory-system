@@ -121,13 +121,13 @@ namespace InventorySystem.Services
             return result;
         }
 
-        // ✅ Edit Barang
+        // Edit Barang
         public void EditItem(int id)
         {
             var item = inventory.FirstOrDefault(i => i.Id == id);
             if (item == null)
             {
-                Console.WriteLine("❌ Barang tidak ditemukan.");
+                Console.WriteLine("Barang tidak ditemukan.");
                 return;
             }
 
@@ -152,13 +152,13 @@ namespace InventorySystem.Services
             Console.WriteLine($"✅ Barang dengan ID {id} berhasil diperbarui!");
         }
 
-        // ✅ Hapus Barang
+        // Hapus Barang
         public void DeleteItem(int id)
         {
             var item = inventory.FirstOrDefault(i => i.Id == id);
             if (item == null)
             {
-                Console.WriteLine("❌ Barang tidak ditemukan.");
+                Console.WriteLine("Barang tidak ditemukan.");
                 return;
             }
 
@@ -167,7 +167,6 @@ namespace InventorySystem.Services
             Console.WriteLine($"✅ Barang dengan ID {id} berhasil dihapus!");
         }
 
-        // ✅ Lihat Daftar Barang
         public void ListItems()
         {
             Console.WriteLine("\n=== DAFTAR BARANG ===");

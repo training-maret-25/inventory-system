@@ -1,0 +1,130 @@
+[33m555b439[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev_muchsin[m[33m, [m[1;31morigin/dev_muchsin[m[33m)[m feat: laporan transaksi
+[33md5b5889[m feat: laporan1
+[33m2a9b263[m feat: laporan
+[33m552d305[m feat : main inventory dan user management
+[33m1c19f25[m Menyelesaikan merge conflict pada branch dev_iqbal
+[33m7b371ef[m fix: memperbaiki edit main
+[33mf5941b0[m fix: memperbaiki main program dan user manager
+[33m6d89859[m feat: updatin program
+[33mc6d2d1e[m feat: log
+[33ma89a436[m Fix: Logging logout
+[33m545dd01[m merge dev_novan
+[33m3561fb8[m fix: logging history & error
+[33m2de0d51[m Menghapus obj dari tracking Git dan memperbarui .gitignore
+[33mdf5401c[m Feat: menambahkan fiutr
+[33m8d895eb[m Feat: menambahkan fiutr
+[33m0eb7825[m Feat: menambahkan fiutr
+[33mb59bae1[m Feat: menambahkan fiutr
+[33mfd4d89d[m Feat: Menambahkan fitur add stok
+[33m8dfca12[m Fix; Merging dev_aufal into main (Fixing InventoriManager and Program)
+[33m313014c[m Fix; Using File
+[33md9d6697[m Merge branch 'main' of https://github.com/training-maret-25/inventory-system
+[33m75df19b[m Fix: inventory
+[33mb080c64[m Feat: Menambahkan fitur add stok
+[33m0978914[m a
+[33mfd7d0cc[m update merge
+[33md1297f2[m Merge branch 'main' into dev_muchsin
+[33m465bd92[m Fix: stop tracking bin/ and obj/ folders
+[33m3941f82[m modified
+[33m9e429a4[m Fix: stop tracking bin/ and obj/ folders
+[33m34e80eb[m Mengabaikan folder obj dari Git
+[33m34a2853[m Menyimpan perubahan lokal sebelum pull
+[33m1b2803e[m Merge branch 'main' of https://github.com/training-maret-25/inventory-system
+[33mf2f193e[m Menyimpan perubahan lokal sebelum pull
+[33m02715cf[m merging file
+[33mc712bff[m sore2
+[33m0158c4c[m merging
+[33m250082c[m fix : main user
+[33m5874384[m sore1
+[33m70ae422[m Resolve merge conflicts
+[33mc80e1e7[m Integrasi perubahan dari main ke dev_aufal
+[33mab849ca[m Update .gitignore
+[33m1702e74[m Ignore debug build files
+[33m7876dbd[m fix : Ignore debug build files
+[33mc7d983c[m fix : perbaikan admin login
+[33m6f30acf[m package json
+[33m395c00d[m Feat: Add Function Edit
+[33m8678bba[m merge update2
+[33m4e76ce0[m update merge
+[33m4e372f5[m Feat: Add Function Edit
+[33m09e452b[m feat: fitur edit
+[33m336cdc7[m Feat: menambahkan fitur delete lagi
+[33mafe8fce[m Feat: Add Function Edit
+[33m4984bc4[m update
+[33ma70d0c6[m Feat: menambahkan fitur delete
+[33mf7e8c64[m update merge
+[33m63f6686[m Fix : memperbaiki login admin
+[33m26f0415[m update merge
+[33m3059716[m update merge
+[33md7525f8[m update merge
+[33mb182978[m update merge
+[33m067a17b[m Merge branch 'dev_muchsin' of https://github.com/training-maret-25/inventory-system into dev_muchsin
+[33m6f5a8c1[m merge => main
+[33m9bbf2c1[m obj-bin
+[33m72f850b[m pagi1
+[33m6ceda02[m muchsin baru
+[33m6f98af1[m muchsin
+[33mbc305d1[m Baru
+[33m333c471[m update lokal
+[33m5b24c92[m Add .gitignore to ignore bin and obj folders
+[33m473b616[m save
+[33mbb5cc7e[m[33m ([m[1;31morigin/dev_kusnan[m[33m)[m Simpan sebelum update
+[33m223275b[m[33m ([m[1;31morigin/dev_iqbal[m[33m)[m data baru
+[33ma826b14[m Simpan sebelum update
+[33m4f4b596[m 13-03
+[33m5ade8a0[m Simpan perubahan lokal sebelum pull
+[33m4d0b902[m[33m ([m[1;31morigin/dev_aufal[m[33m)[m updating user add
+[33m59633d0[m updating user add
+[33mbcbd11e[m opopop
+[33m099e997[m konen
+[33maf254e2[m koknnkn
+[33m481061e[m Punya Iqbal
+[33m705a38c[m Resolve merge conflicts
+[33m6571556[m Feat: Tambahan Punya Iqbal
+[33m4d35670[m Resolve merge conflict in .gitignore
+[33md8ab183[m Save local changes before pull
+[33m75488d2[m update hasing
+[33maea687d[m adding a function to the UserManager.cs file
+[33mb82d089[m inian
+[33md316ac9[m Resolve conflicts and merge main into dev_aufal
+[33me85d7de[m Save local changes before merging main into dev_aufal
+[33m427faec[m Resolve merge conflicts in Program.cs and related files
+[33m4d0c9f7[m Resolve merge conflict in Program.cs
+[33m6a2e448[m[33m ([m[1;31morigin/dev_novan[m[33m)[m add logger
+[33m31ea910[m update merge
+[33m82baf7c[m Merge branch 'main' of https://github.com/training-maret-25/inventory-system into dev_novan
+[33m017211f[m update merge
+[33m45dea77[m Merge branch 'main' of https://github.com/training-maret-25/inventory-system into dev_kusnan
+[33m29488ed[m Merge branch 'main' of https://github.com/training-maret-25/inventory-system into dev_aufal
+[33mca7defa[m Feat: Add HashConverter
+[33m5152338[m update merge
+[33m3f91255[m cdada
+[33m0f87642[m Ignore bin and obj directories
+[33m4dd84e9[m Ignore build and bin files
+[33m350007a[m Update .gitignore and Program.cs
+[33m9b92570[m Ignore build files
+[33mc41bbe4[m Merge branch 'main' of https://github.com/training-maret-25/inventory-system
+[33m0504b7d[m commit hanya src
+[33m2702fb5[m Menyelesaikan konflik dan menggabungkan perubahan dari dev_iqbal ke main
+[33m057f716[m commit hanya src
+[33m96d02d2[m baru
+[33mae8a58c[m ini
+[33m0032062[m Feat: Baru
+[33ma3e3245[m first
+[33m2e7cc23[m ini dia
+[33m1664463[m saya
+[33m3b57d6a[m login logout
+[33m5e593b4[m Ignore obj/ and bin/ directories
+[33m5ac8321[m Menyimpan perubahan sebelum rebase
+[33m9bf5aa7[m Menghapus file build dari tracking Git
+[33m7b7bf77[m login
+[33mf0bb72a[m Menyimpan perubahan sebelum switch branch
+[33m58f9cda[m login
+[33med36cde[m update users
+[33me4256c7[m json
+[33mc29b3d0[m cobain nih
+[33m736bdfe[m keempat nih
+[33mefb803b[m ketiga nih
+[33mb6943ec[m baru banget brok
+[33m54f59c3[m Feat: Add folder
+[33m142f1ab[m Init project

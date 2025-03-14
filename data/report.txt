@@ -3,6 +3,75 @@
 Tanggal: 2025-03-14 15:57:51
 ---------------------------------
 =======
+<<<<<<< HEAD
+[2022-11-11] Laporan Harian:
+- Barang Masuk: 
+- Barang Keluar: 
+Total Perubahan Stok: 0
+
+[2022-10] Laporan Bulanan:
+Total Perubahan Stok: 0
+
+
+[2025-03-12] Laporan Harian:
+- Barang Masuk: 50 , 30 
+- Barang Keluar: 20 
+Total Perubahan Stok: +60
+
+[2025-04-12] Laporan Harian:
+- Barang Masuk: 50 
+- Barang Keluar: -
+Total Perubahan Stok: +50
+=== LAPORAN HARIAN TANGGAL 2025-10-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=== LAPORAN BULANAN BULAN 2025-02 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=== LAPORAN HARIAN TANGGAL 2023-05-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=== LAPORAN HARIAN TANGGAL 2025-03-14 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=== LAPORAN HARIAN TANGGAL 2022-10-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=== LAPORAN HARIAN TANGGAL 2022-11-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=== LAPORAN BULANAN BULAN 2022-11 ===
+-----------------------------------------------------
+-----------------------------------------------------
+Total Barang Masuk : 0
+Total Barang Keluar: 0
+
+
+=======
 === Laporan Rekapitulasi Transaksi ===
 Jenis: Masuk | Barang: pulpen ajaib | Total Transaksi: 1 | Total Barang: 20 | Stok Akhir: 20
 >>>>>>> f10d18421f88bffab88aae3845ac1b7a1d788add

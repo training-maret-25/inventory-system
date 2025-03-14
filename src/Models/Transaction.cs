@@ -12,5 +12,5 @@ namespace InventorySystem.Models
         public int Jumlah { get; set; }
         public int StokSetelah { get; set; }
         public string Employee { get; set; } = "Unknown";  // Default value
-    }
+      }
 }
