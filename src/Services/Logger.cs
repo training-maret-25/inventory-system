@@ -6,17 +6,26 @@ namespace logger
     public static class Logger
     {
         private static readonly string LogFilePath = "data/log.txt";
+        private static readonly string ErrorFilePath = "data/error_log.txt";
 
         // function untuk menambahkan messege ke file log.txt
         private static void WriteToFile(string logEntry) {
             try {
+                string directory = Path.GetDirectoryName(LogFilePath);
+                if (!Directory.Exists(directory)) {
+                    Directory.CreateDirectory(directory);
+                }
+
                 using (StreamWriter writer = new StreamWriter(LogFilePath, true)) {
                     writer.WriteLine(logEntry);
                 }
             } catch (Exception ex) {
-                string errorLogPath = "data/error_log.txt";
                 try {
-                    using (StreamWriter writer = new StreamWriter(errorLogPath, true)) {
+                    string directory = Path.GetDirectoryName(ErrorFilePath);
+                    if (!Directory.Exists(directory)) {
+                        Directory.CreateDirectory(directory);
+                    }
+                    using (StreamWriter writer = new StreamWriter(ErrorFilePath, true)) {
                         writer.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [ERROR] Gagal menulis log utama: {ex.Message}");
                     }
                 } catch {
@@ -25,12 +34,20 @@ namespace logger
             }
         }
 
-        public static void LogCriticalError (string username, string errorMessage) {
-            Log("CRITICAL", username, errorMessage);
-        }
-
         public static void LogException(string username, Exception ex) {
             Log("EXCEPTION", username, $"Exception terjadi: {ex.Message}\nStackTrace: {ex.StackTrace}");
+        }
+
+        public static void LogWarning(string username, string WarningMessage) {
+            Log("WARNING", username, WarningMessage);
+        }
+
+        public static void LogInfo(string username, string action) {
+            Log("INFO", username, action);
+        }
+
+        public static void LogError(string username, string errorMessage) {
+            Log("ERROR", username, errorMessage);
         }
 
         // fungsi untuk mencatat log
@@ -40,38 +57,9 @@ namespace logger
             WriteToFile(logEntry);
         }
 
-        // function untuk mencatat error
-        public static void LogError(string username, string errorMessage) {
-            Log("ERROR", username, errorMessage);
-        }
-
-        // function untuk mencatat login/logout
-        public static void LogLogin( string username) {
-            Log("INFO", username, "Login ke sistem");
-        }
-
-        public static void LogLogout(string username) {
-            Log("INFO", username, "Logout dari sistem");
-        }
-
-        // function untuk mencatat perubahan user
-        public static void LogUserModification(string username, string action) {
-            Log("USER", username, action);
-        }
-
-        // Fuction untuk mencatat perubahan barang 
-        public static void LogInventoryChange (string username, string action) {
-            Log("INVENTORY", username, action);
-        }
-
-        // Function untuk mencatat transaksi barang
-        public static void LogTransaction(string username, string action) {
-            Log("TRANSACTION", username, action);
-        }
-
         // fuction untuk mencatat restock otomatis
         public static void LogRestock(string username, string itemName, int amount) {
-            Log("RESTOCK", username, $"Restock otomatis: {amount} unit '{itemName}' ditambahkan");
+            Log("INFO", username, $"Restock otomatis: {amount} unit '{itemName}' ditambahkan");
         }
     }
 }
