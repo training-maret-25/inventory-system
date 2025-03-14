@@ -1,0 +1,18 @@
+[2022-11-11] Laporan Harian:
+- Barang Masuk: 
+- Barang Keluar: 
+Total Perubahan Stok: 0
+
+[2022-10] Laporan Bulanan:
+Total Perubahan Stok: 0
+
+
+[2025-03-12] Laporan Harian:
+- Barang Masuk: 50 , 30 
+- Barang Keluar: 20 
+Total Perubahan Stok: +60
+
+[2025-04-12] Laporan Harian:
+- Barang Masuk: 50 
+- Barang Keluar: -
+Total Perubahan Stok: +50
