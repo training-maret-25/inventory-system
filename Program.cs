@@ -12,7 +12,7 @@ namespace InventorySystem
 
             string role = ""; // Inisialisasi variabel role
             int userId = 0;   // Inisialisasi userId
-            bool isLoggedIn = false; 
+            bool isLoggedIn = false;
 
             Console.Clear();
             Console.WriteLine("=== SELAMAT DATANG DI SISTEM INVENTORY ===");
@@ -54,9 +54,11 @@ namespace InventorySystem
                     Console.WriteLine("3. Edit Barang");
                     Console.WriteLine("4. Hapus Barang");
                     Console.WriteLine("5. Cek Barang Perlu Restok");
+                    Console.WriteLine("6. Kurangi Stok Barang");
+                    Console.WriteLine("7. auto menambahkan Stok Barang");
                 }
 
-                Console.WriteLine("6. Edit Akun Saya");
+                Console.WriteLine("8. Edit Akun Saya");
                 Console.WriteLine("0. Logout & Keluar");
                 Console.Write("\nPilih menu: ");
                 string pilihan = Console.ReadLine() ?? "";
@@ -128,9 +130,55 @@ namespace InventorySystem
                         if (role == "Employer") inventoryManager.CheckRestockItems();
                         else Console.WriteLine("Pilihan tidak valid.");
                         break;
-                    case "6":
-                        EditUser(userManager, userId); // Employee & Admin bisa edit akun sendiri
+                    case "6": // Fungsi DecreaseItem
+                        if (role == "Employer")
+                        {
+                            Console.Write("Masukkan ID Barang yang stoknya akan dikurangi: ");
+                            if (int.TryParse(Console.ReadLine(), out int decreaseItemId))
+                            {
+                                inventoryManager.DecreaseItem(decreaseItemId);
+                            }
+                            else
+                            {
+                                Console.WriteLine("ID tidak valid.");
+                            }
+                        }
+                        else Console.WriteLine("Pilihan tidak valid.");
                         break;
+
+                    //ini tambahan dari opal
+                    case "7":
+                        if (role == "Employer")
+                        {
+                            Console.Write("Masukkan ID Barang untuk di-auto-restock: ");
+                            if (int.TryParse(Console.ReadLine(), out int restockItemId))
+                            {
+                                var item = inventoryManager.GetItemById(restockItemId);
+                                if (item != null)
+                                {
+                                    inventoryManager.AutoRestock(item); // Panggil dengan parameter
+                                }
+                                else
+                                {
+                                    Console.WriteLine("❌ Barang tidak ditemukan.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("❌ ID tidak valid.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Pilihan tidak valid.");
+                        }
+                        break;
+
+
+                    case "8":
+                        EditUser(userManager, userId);
+                        break;
+
                     case "0":
                         userManager.Logout();
                         exit = true;

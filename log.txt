@@ -1,0 +1,5 @@
+[2025-03-14 15:50:17] [INFO] Restok otomatis: Barang '' ditambah 10 unit (Stok sekarang: 10)
+[2025-03-14 15:50:17] [INFO] Restok otomatis: Barang 'aufa' ditambah 10 unit (Stok sekarang: 15)
+[2025-03-14 15:51:09] [INFO] Restok otomatis: Barang '' ditambah 10 unit (Stok sekarang: 20)
+[2025-03-14 16:06:48] [INFO] Restok otomatis: Barang 'aufa' ditambah 10 unit (Stok sekarang: 30)
+[2025-03-14 16:07:20] [INFO] Restok otomatis: Barang 'aufa' ditambah 10 unit (Stok sekarang: 15)
