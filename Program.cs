@@ -10,10 +10,11 @@ namespace InventorySystem
         {
             var userManager = new UserManager();
             var inventoryManager = new InventoryManager();
+            var transactionManager = new TransactionManager();
 
             string role = ""; // Inisialisasi variabel role
             int userId = 0;   // Inisialisasi userId
-            bool isLoggedIn = false; 
+            bool isLoggedIn = false;
 
             Console.Clear();
             Console.WriteLine("=== SELAMAT DATANG DI SISTEM INVENTORY ===");
@@ -47,6 +48,7 @@ namespace InventorySystem
                     Console.WriteLine("2. Tambah User");
                     Console.WriteLine("3. Edit User");
                     Console.WriteLine("4. Hapus User");
+                    Console.WriteLine("5. Manajemen Transaksi");
                 }
                 else if (role == "Employer")
                 {
@@ -55,16 +57,17 @@ namespace InventorySystem
                     Console.WriteLine("3. Edit Barang");
                     Console.WriteLine("4. Hapus Barang");
                     Console.WriteLine("5. Cek Barang Perlu Restok");
+                    Console.WriteLine("6. Kurangi Stok Barang");
+                    Console.WriteLine("7. auto menambahkan Stok Barang");
                 }
 
-                Console.WriteLine("6. Edit Akun Saya");
+                Console.WriteLine("8. Edit Akun Saya");
                 Console.WriteLine("0. Logout & Keluar");
                 Console.Write("\nPilih menu: ");
                 string pilihan = Console.ReadLine() ?? "";
 
                 switch (pilihan)
                 {
-                    // === ADMIN MENU ===
                     case "1":
                         if (role == "admin") userManager.DisplayUsers();
                         else inventoryManager.ListItems();
@@ -126,12 +129,64 @@ namespace InventorySystem
                         }
                         break;
                     case "5":
-                        if (role == "Employer") inventoryManager.CheckRestockItems();
+                        if (role == "admin" || role == "Employer")
+                        {
+                            TransactionManagementMenu(transactionManager);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Pilihan tidak valid.");
+                        }
+                        break;
+                    case "6": // Fungsi DecreaseItem
+                        if (role == "Employer")
+                        {
+                            Console.Write("Masukkan ID Barang yang stoknya akan dikurangi: ");
+                            if (int.TryParse(Console.ReadLine(), out int decreaseItemId))
+                            {
+                                inventoryManager.DecreaseItem(decreaseItemId);
+                            }
+                            else
+                            {
+                                Console.WriteLine("ID tidak valid.");
+                            }
+                        }
                         else Console.WriteLine("Pilihan tidak valid.");
                         break;
-                    case "6":
-                        EditUser(userManager, userId); // Employee & Admin bisa edit akun sendiri
+
+                    //ini tambahan dari opal
+                    case "7":
+                        if (role == "Employer")
+                        {
+                            Console.Write("Masukkan ID Barang untuk di-auto-restock: ");
+                            if (int.TryParse(Console.ReadLine(), out int restockItemId))
+                            {
+                                var item = inventoryManager.GetItemById(restockItemId);
+                                if (item != null)
+                                {
+                                    inventoryManager.AutoRestock(item); // Panggil dengan parameter
+                                }
+                                else
+                                {
+                                    Console.WriteLine("❌ Barang tidak ditemukan.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("❌ ID tidak valid.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Pilihan tidak valid.");
+                        }
                         break;
+
+
+                    case "8":
+                        EditUser(userManager, userId);
+                        break;
+
                     case "0":
                         userManager.Logout();
                         exit = true;
@@ -156,6 +211,51 @@ namespace InventorySystem
             string? newPassword = Console.ReadLine();
 
             userManager.EditUser(userId, userId, newUsername, newPassword, null);
+        }
+
+        static void TransactionManagementMenu(TransactionManager transactionManager)
+        {
+            bool back = false;
+            while (!back)
+            {
+                Console.Clear();
+                Console.WriteLine("\n=== MENU MANAJEMEN TRANSAKSI ===");
+                Console.WriteLine("1. Tambah Transaksi");
+                Console.WriteLine("2. Lihat Riwayat Transaksi");
+                Console.WriteLine("3. Buat Laporan Rekapitulasi");
+                Console.WriteLine("4. Ekspor Laporan ke File");
+                Console.WriteLine("0. Kembali");
+
+                Console.Write("\nPilih menu: ");
+                string pilihan = Console.ReadLine() ?? "";
+
+                switch (pilihan)
+                {
+                    case "1":
+                        transactionManager.AddTransactions();
+                        break;
+                    case "2":
+                        transactionManager.ViewTransactionHistory();
+                        break;
+                    case "3":
+                        transactionManager.GenerateReport();
+                        break;
+                    case "4":
+                        transactionManager.ExportReport();
+                        break;
+                    case "0":
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("Pilihan tidak valid.");
+                        break;
+                }
+                if (!back)
+                {
+                    Console.WriteLine("\nTekan ENTER untuk kembali ke menu transaksi...");
+                    Console.ReadLine();
+                }
+            }
         }
     }
 }

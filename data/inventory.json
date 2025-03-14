@@ -22,5 +22,29 @@
     "Stok": 11,
     "batas_minimum": 10,
     "jumlah_restok": 12
+  },
+  {
+    "Id": 0,
+    "nama": null,
+    "kategori": null,
+    "Stok": 20,
+    "batas_minimum": 10,
+    "jumlah_restok": 0
+  },
+  {
+    "Id": 5,
+    "nama": null,
+    "kategori": null,
+    "Stok": 20,
+    "batas_minimum": 10,
+    "jumlah_restok": 0
+  },
+  {
+    "Id": 4,
+    "nama": "aufa",
+    "kategori": "inian",
+    "Stok": 15,
+    "batas_minimum": 10,
+    "jumlah_restok": 10
   }
 ]

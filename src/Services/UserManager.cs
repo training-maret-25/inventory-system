@@ -167,7 +167,7 @@ namespace InventorySystem.Services
                 return;
             }
 
-            var newUser = new User 
+            var newUser = new User
             {
                 Id = users.Count > 0 ? users.Max(u => u.Id) + 1 : 1,
                 Username = username,
@@ -240,13 +240,14 @@ namespace InventorySystem.Services
                 }
             }
 
-            if (updated) {
+            if (updated)
+            {
                 UpdateUsers();
                 Console.WriteLine($"User dengan ID {userId} berhasil diperbarui!");
                 string action = $"Mengedit user ID {userId} ({string.Join(", ", changes)})";
                 Logger.LogInfo(editor.Username, action);
                 return true;
-            } 
+            }
             return false;
         }
 
@@ -262,8 +263,9 @@ namespace InventorySystem.Services
         {
             if (_currentUser == null || !_currentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("Hanya Admin yang bisa menghapus user!");
-                Logger.LogWarning(_currentUser.Username, $"Percobaan penghapusan user ID {userId} oleh non-admin.");
+                Console.WriteLine("❌ Hanya Admin yang bisa menghapus user!");
+                Logger.LogError("SYSTEM", $"Percobaan penghapusan user ID {userId} oleh non-admin.");
+
                 return;
             }
 
@@ -279,8 +281,8 @@ namespace InventorySystem.Services
             users.Remove(user);
             SaveUsers();
 
-            Console.WriteLine($"User '{user.Username}' berhasil dihapus oleh Admin '{_currentUser.Username}'.");
-            Logger.LogInfo(_currentUser.Username, $"Menghapus user ID {userId} ({user.Username})");
+            Console.WriteLine($"✅ User '{user.Username}' berhasil dihapus oleh Admin '{_currentUser.Username}'.");
+            Logger.LogUserModification(_currentUser.Username, $"Menghapus user ID {userId} ({user.Username})");
         }
     }
 }

@@ -1,0 +1,12 @@
+[
+  {
+    "Id": 1,
+    "Tanggal": "2025-03-14T00:00:00",
+    "Jenis": "Masuk",
+    "BarangId": 1,
+    "NamaBarang": "pulpen ajaib",
+    "Jumlah": 20,
+    "StokSetelah": 20,
+    "Employee": "adminbaru"
+  }
+]
