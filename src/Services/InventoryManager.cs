@@ -18,17 +18,28 @@ namespace InventorySystem.Services
             LoadInventory();
         }
 
-        private void LoadInventory()
+        public void LoadInventory()
         {
-            if (File.Exists(filePath))
+            if (!File.Exists(filePath))
             {
-                string jsonData = File.ReadAllText(filePath);
-                inventory = JsonSerializer.Deserialize<List<InventoryItem>>(jsonData) ?? new List<InventoryItem>();
-                Console.WriteLine("✅ Inventory berhasil dimuat.");
+                Console.WriteLine("File inventory.json tidak ditemukan.");
+                return;
             }
-            else
+
+            try
             {
-                Console.WriteLine("⚠️ File inventory.json tidak ditemukan! Membuat daftar kosong.");
+                string json = File.ReadAllText(filePath);
+
+                // Deserialisasi dengan opsi agar case-insensitive
+                inventory = JsonSerializer.Deserialize<List<InventoryItem>>(json, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                }) ?? new List<InventoryItem>();
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine($"Gagal memuat inventory.json: {ex.Message}");
+                inventory = new List<InventoryItem>(); // Supaya program tetap berjalan meskipun JSON error
             }
         }
 

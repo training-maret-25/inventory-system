@@ -17,18 +17,43 @@ namespace InventorySystem.Services
       LoadTransactions();
     }
 
-    private void LoadTransactions()
+    public void LoadTransactions()
     {
-      if (File.Exists(transactionFilePath))
-      {
-        string jsonData = File.ReadAllText(transactionFilePath);
-        transactions = JsonSerializer.Deserialize<List<Transaction>>(jsonData) ?? new List<Transaction>();
-        Console.WriteLine("✅ Data transaksi berhasil dimuat.");
-      }
-      else
-      {
-        Console.WriteLine("⚠️ File transaction.json tidak ditemukan! Membuat daftar transaksi kosong.");
-      }
+        string path = @"C:\conen\kuliah\magang\maret\inventory-system\data\inventory.json";
+
+        if (!File.Exists(path))
+        {
+            Console.WriteLine("❌ File inventory.json tidak ditemukan!");
+            return;
+        }
+
+        try
+        {
+            string jsonData = File.ReadAllText(path).Trim(); // Trim untuk hapus spasi/enter kosong
+
+            if (string.IsNullOrEmpty(jsonData))
+            {
+                Console.WriteLine("⚠ File kosong, menginisialisasi dengan array kosong.");
+                jsonData = "[]"; // Biar tetap bisa dibaca tanpa error
+            }
+
+            var data = JsonSerializer.Deserialize<List<InventoryItem>>(jsonData, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            if (data == null || !data.Any())
+            {
+                Console.WriteLine("⚠ Data inventory kosong atau tidak valid!");
+                return;
+            }
+
+            Console.WriteLine("✅ Data inventory berhasil dimuat!");
+        }
+        catch (JsonException ex)
+        {
+            Console.WriteLine($"❌ Kesalahan saat membaca JSON: {ex.Message}");
+        }
     }
 
     private void SaveTransactions()

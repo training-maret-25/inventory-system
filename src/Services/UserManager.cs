@@ -166,7 +166,7 @@ namespace InventorySystem.Services
                 return;
             }
 
-            var newUser = new User 
+            var newUser = new User
             {
                 Id = users.Count > 0 ? users.Max(u => u.Id) + 1 : 1,
                 Username = username,
@@ -180,19 +180,17 @@ namespace InventorySystem.Services
             Logger.LogUserModification("ADMIN", $"Menambahkan user baru: {username}");
         }
 
-        // Mengedit user berdasarkan ID
+        // Edit user berdasarkan ID (Admin bisa edit semua user, user hanya bisa edit diri sendiri)
         public bool EditUser(int editorId, int userId, string? newUsername, string? newPassword, string? newRole)
         {
-            // Cari siapa yang melakukan edit (editor)
             User? editor = users.Find(u => u.Id == editorId);
             if (editor == null)
             {
                 Console.WriteLine("User tidak ditemukan.");
-                Logger.LogError("SYSTEM", $"Gagal mengedit user: User ID {editorId} tidak ditemukan.");
+                Logger.LogError(editor.Username, $"Gagal mengedit user: User ID{userId} tidak ditemukan");
                 return false;
             }
 
-            // Cari user yang akan diedit
             User? user = users.Find(u => u.Id == userId);
             if (user == null)
             {
@@ -201,35 +199,14 @@ namespace InventorySystem.Services
                 return false;
             }
 
-            // Cek role editor untuk menentukan izin edit
-            if (editor.Role == "Admin")
+            // Admin bisa edit semua user, Employee hanya bisa edit dirinya sendiri
+            if (editor.Role == "Admin" && editor.Id != userId)
             {
-                // Admin hanya bisa edit employee, tidak bisa edit admin lain
-                if (user.Role == "Admin")
-                {
-                    Console.WriteLine("Izin ditolak! Admin tidak bisa mengedit admin lain.");
-                    Logger.LogError(editor.Username, "Gagal mengedit user: Admin tidak bisa mengedit admin lain.");
-                    return false;
-                }
-            }
-            else if (editor.Role == "Employee")
-            {
-                // Employee hanya bisa edit dirinya sendiri
-                if (editor.Id != userId)
-                {
-                    Console.WriteLine("Izin ditolak! Employee hanya bisa mengedit akunnya sendiri.");
-                    Logger.LogError(editor.Username, "Gagal mengedit user: Employee mencoba mengedit user lain.");
-                    return false;
-                }
-            }
-            else
-            {
-                Console.WriteLine("Izin ditolak! Role tidak dikenali.");
-                Logger.LogError(editor.Username, "Gagal mengedit user: Role tidak valid.");
+                Console.WriteLine("Izin ditolak! Anda hanya bisa mengedit akun Anda sendiri.");
+                Logger.LogError(editor.Username, "Gagal mengedit user: Izin ditolak.");
                 return false;
             }
 
-            // Jika lolos izin, lanjut edit data user
             bool updated = false;
             List<string> changes = new List<string>();
 
@@ -262,20 +239,21 @@ namespace InventorySystem.Services
                 }
             }
 
-            // Simpan perubahan jika ada update
             if (updated)
             {
-                SaveUsers();
+                UpdateUsers();
                 Console.WriteLine($"User dengan ID {userId} berhasil diperbarui!");
                 string action = $"Mengedit user ID {userId} ({string.Join(", ", changes)})";
                 Logger.LogUserModification(editor.Username, action);
                 return true;
             }
-            else
-            {
-                Console.WriteLine("Tidak ada perubahan yang dilakukan.");
-                return false;
-            }
+            return false;
+        }
+
+        private void UpdateUsers()
+        {
+            string jsonData = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, jsonData);
         }
 
 

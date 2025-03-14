@@ -1,3 +1,2 @@
 === Laporan Rekapitulasi Transaksi ===
-Jenis: Masuk | Total Transaksi: 1 | Total Barang: 20
-Jenis: Keluar | Total Transaksi: 1 | Total Barang: 5
+Jenis: Masuk | Barang: pulpen ajaib | Total Transaksi: 1 | Total Barang: 20 | Stok Akhir: 20

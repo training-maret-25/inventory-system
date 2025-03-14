@@ -36,15 +36,6 @@ C:\Users\a s u s\magang\ProjectAkhir\inventory-system\obj\Debug\net8.0\inventory
 C:\Users\a s u s\magang\ProjectAkhir\inventory-system\obj\Debug\net8.0\inventory.genruntimeconfig.cache
 C:\Users\a s u s\magang\ProjectAkhir\inventory-system\obj\Debug\net8.0\ref\inventory.dll
 >>>>>>> main
-C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.csproj.AssemblyReference.cache
-C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.GeneratedMSBuildEditorConfig.editorconfig
-C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.AssemblyInfoInputs.cache
-C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.AssemblyInfo.cs
-C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.csproj.CoreCompileInputs.cache
-C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.sourcelink.json
-C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.dll
-C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\refint\inventory.dll
-C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.pdb
 C:\conen\kuliah\magang\maret\inventory-system\bin\Debug\net8.0\inventory.exe
 C:\conen\kuliah\magang\maret\inventory-system\bin\Debug\net8.0\inventory.deps.json
 C:\conen\kuliah\magang\maret\inventory-system\bin\Debug\net8.0\inventory.runtimeconfig.json
@@ -52,6 +43,15 @@ C:\conen\kuliah\magang\maret\inventory-system\bin\Debug\net8.0\inventory.dll
 C:\conen\kuliah\magang\maret\inventory-system\bin\Debug\net8.0\inventory.pdb
 C:\conen\kuliah\magang\maret\inventory-system\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\conen\kuliah\magang\maret\inventory-system\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.csproj.AssemblyReference.cache
+C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.GeneratedMSBuildEditorConfig.editorconfig
+C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.AssemblyInfoInputs.cache
+C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.AssemblyInfo.cs
+C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.csproj.CoreCompileInputs.cache
+C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.sourcelink.json
 C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.csproj.Up2Date
+C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.dll
+C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\refint\inventory.dll
+C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.pdb
 C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\inventory.genruntimeconfig.cache
 C:\conen\kuliah\magang\maret\inventory-system\obj\Debug\net8.0\ref\inventory.dll

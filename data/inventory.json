@@ -2,7 +2,7 @@
   {
     "Id": 1,
     "nama": "sepatu",
-    "kategori": "perlengkana",
+    "kategori": "perlengkapa",
     "Stok": 11,
     "batas_minimum": 10,
     "jumlah_restok": 12
