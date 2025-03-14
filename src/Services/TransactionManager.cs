@@ -1,112 +1,207 @@
-using InventorySystem.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text.Json;
+using InventorySystem.Models;
 
 namespace InventorySystem.Services
 {
     public class TransactionManager
     {
-        private readonly string transactionFile = "data/transaction.json";
-        private readonly string reportFile = "data/report.txt";
+        private readonly string transactionFilePath = Path.Combine(Directory.GetCurrentDirectory(), "data", "transaction.json");
+        private List<Transaction> transactions = new();
 
-        // Generate Laporan Harian
-        public void GenerateDailyReport(DateTime date)
+        public TransactionManager()
         {
-            var transactions = LoadTransactions();
-            var dailyTransactions = transactions.Where(t => t.Tanggal.Date == date.Date).ToList();
+            LoadTransactions();
+        }
 
-            if (!dailyTransactions.Any())
+        public void LoadTransactions()
+        {
+            string path = @"C:\conen\kuliah\magang\maret\inventory-system\data\inventory.json";
+
+            if (!File.Exists(path))
             {
-                Console.WriteLine("❌ Tidak ada transaksi pada tanggal tersebut.");
+                Console.WriteLine("❌ File inventory.json tidak ditemukan!");
                 return;
             }
 
-            var barangMasuk = new List<string>();
-            var barangKeluar = new List<string>();
-            int totalPerubahan = 0;
-
-            foreach (var trans in dailyTransactions)
+            try
             {
-                if (string.IsNullOrWhiteSpace(trans.NamaBarang)) continue; // Skip jika nama kosong
+                string jsonData = File.ReadAllText(path).Trim(); // Trim untuk hapus spasi/enter kosong
 
-                string item = $"{trans.Jumlah} {trans.NamaBarang}";
-                if (trans.Jenis == "Barang Masuk")
+                if (string.IsNullOrEmpty(jsonData))
                 {
-                    barangMasuk.Add(item);
-                    totalPerubahan += trans.Jumlah;
+                    Console.WriteLine("⚠ File kosong, menginisialisasi dengan array kosong.");
+                    jsonData = "[]"; // Biar tetap bisa dibaca tanpa error
                 }
-                else if (trans.Jenis == "Barang Keluar")
+
+                var data = JsonSerializer.Deserialize<List<InventoryItem>>(jsonData, new JsonSerializerOptions
                 {
-                    barangKeluar.Add(item);
-                    totalPerubahan -= trans.Jumlah;
+                    PropertyNameCaseInsensitive = true
+                });
+
+                if (data == null || !data.Any())
+                {
+                    Console.WriteLine("⚠ Data inventory kosong atau tidak valid!");
+                    return;
                 }
+
+                Console.WriteLine("✅ Data inventory berhasil dimuat!");
             }
-
-            // Format laporan
-            string reportContent = $"\n[{date:yyyy-MM-dd}] Laporan Harian:\n";
-            reportContent += $"- Barang Masuk: {(barangMasuk.Count > 0 ? string.Join(", ", barangMasuk) : "-")}\n";
-            reportContent += $"- Barang Keluar: {(barangKeluar.Count > 0 ? string.Join(", ", barangKeluar) : "-")}\n";
-            reportContent += $"Total Perubahan Stok: {(totalPerubahan >= 0 ? "+" : "")}{totalPerubahan}\n";
-
-            // Simpan ke file
-            File.AppendAllText(reportFile, reportContent);
-            Console.WriteLine("✅ Laporan harian berhasil dibuat.");
+            catch (JsonException ex)
+            {
+                Console.WriteLine($"❌ Kesalahan saat membaca JSON: {ex.Message}");
+            }
         }
 
-        // Generate Laporan Bulanan
-        public void GenerateMonthlyReport(int year, int month)
+        private void SaveTransactions()
         {
-            var transactions = LoadTransactions();
-            var monthlyTransactions = transactions.Where(t => t.Tanggal.Year == year && t.Tanggal.Month == month).ToList();
+            string jsonData = JsonSerializer.Serialize(transactions, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(transactionFilePath, jsonData);
+        }
 
-            if (!monthlyTransactions.Any())
+        public void RecordTransaction(string jenis, int barangId, string namaBarang, int jumlah, int stokSetelah, string employee)
+        {
+            Console.Write("Masukkan tanggal transaksi (yyyy-MM-dd): ");
+            string inputTanggal = Console.ReadLine() ?? "";
+
+            if (DateTime.TryParse(inputTanggal, out DateTime tanggal))
             {
-                Console.WriteLine("❌ Tidak ada transaksi pada bulan tersebut.");
+                int newId = transactions.Any() ? transactions.Max(t => t.Id) + 1 : 1; // Auto-increment ID
+
+                Transaction transaksi = new Transaction
+                {
+                    Id = newId,
+                    Tanggal = tanggal,
+                    Jenis = jenis,
+                    BarangId = barangId,
+                    NamaBarang = namaBarang,
+                    Jumlah = jumlah,
+                    StokSetelah = stokSetelah,
+                    Employee = employee
+                };
+
+                transactions.Add(transaksi);
+                SaveTransactions();
+
+                Console.WriteLine($"✅ Transaksi berhasil dicatat pada {transaksi.Tanggal}");
+            }
+            else
+            {
+                Console.WriteLine("❌ Format tanggal tidak valid!");
+            }
+        }
+
+        public void ListTransactions()
+        {
+            Console.WriteLine("\n=== Riwayat Transaksi ===");
+            if (!transactions.Any())
+            {
+                Console.WriteLine("Tidak ada transaksi yang tercatat.");
                 return;
             }
 
-            var summary = new Dictionary<string, (int masuk, int keluar)>();
-
-            foreach (var trans in monthlyTransactions)
+            foreach (var trans in transactions)
             {
-                if (string.IsNullOrWhiteSpace(trans.NamaBarang)) continue; // Skip jika nama kosong
-
-                // Tambahkan key baru jika belum ada
-                if (!summary.ContainsKey(trans.NamaBarang))
-                    summary[trans.NamaBarang] = (0, 0);
-
-                // Update jumlah masuk/keluar
-                if (trans.Jenis == "Barang Masuk")
-                    summary[trans.NamaBarang] = (summary[trans.NamaBarang].masuk + trans.Jumlah, summary[trans.NamaBarang].keluar);
-                else if (trans.Jenis == "Barang Keluar")
-                    summary[trans.NamaBarang] = (summary[trans.NamaBarang].masuk, summary[trans.NamaBarang].keluar + trans.Jumlah);
+                Console.WriteLine($"ID: {trans.Id} | Tanggal: {trans.Tanggal:yyyy-MM-dd} | Jenis: {trans.Jenis} | Barang: {trans.NamaBarang} | Jumlah: {trans.Jumlah} | Stok Setelah: {trans.StokSetelah} | Employee: {trans.Employee}");
             }
-
-            int totalPerubahan = summary.Sum(s => s.Value.masuk - s.Value.keluar);
-
-            // Format laporan
-            string reportContent = $"\n[{year}-{month:D2}] Laporan Bulanan:\n";
-            foreach (var item in summary)
-            {
-                reportContent += $"- {item.Key}: +{item.Value.masuk} masuk, -{item.Value.keluar} keluar\n";
-            }
-            reportContent += $"Total Perubahan Stok: {(totalPerubahan >= 0 ? "+" : "")}{totalPerubahan}\n";
-
-            // Simpan ke file
-            File.AppendAllText(reportFile, reportContent);
-            Console.WriteLine("✅ Laporan bulanan berhasil dibuat.");
         }
 
-        // Load data transaksi dari JSON
-        private List<Transaction> LoadTransactions()
+        public void AddTransactions()
         {
-            if (!File.Exists(transactionFile))
-                return new List<Transaction>();
+            Console.WriteLine("\n=== Tambah Transaksi ===");
+            Console.Write("Masukkan jenis transaksi (Masuk/Keluar): ");
+            string jenis = Console.ReadLine() ?? "";
 
-            string json = File.ReadAllText(transactionFile);
-            return JsonSerializer.Deserialize<List<Transaction>>(json, new JsonSerializerOptions
+            Console.Write("Masukkan ID Barang: ");
+            if (!int.TryParse(Console.ReadLine(), out int barangId))
             {
-                PropertyNameCaseInsensitive = true
-            }) ?? new List<Transaction>();
+                Console.WriteLine("❌ ID Barang tidak valid!");
+                return;
+            }
+
+            Console.Write("Masukkan Nama Barang: ");
+            string namaBarang = Console.ReadLine() ?? "";
+
+            Console.Write("Masukkan Jumlah: ");
+            if (!int.TryParse(Console.ReadLine(), out int jumlah))
+            {
+                Console.WriteLine("❌ Jumlah tidak valid!");
+                return;
+            }
+
+            Console.Write("Masukkan Stok Setelah Transaksi: ");
+            if (!int.TryParse(Console.ReadLine(), out int stokSetelah))
+            {
+                Console.WriteLine("❌ Stok tidak valid!");
+                return;
+            }
+
+            Console.Write("Masukkan Nama Pegawai: ");
+            string employee = Console.ReadLine() ?? "";
+
+            RecordTransaction(jenis, barangId, namaBarang, jumlah, stokSetelah, employee);
+        }
+
+        public void ViewTransactionHistory()
+        {
+            ListTransactions();
+        }
+
+        public void GenerateReport()
+        {
+            Console.WriteLine("\n=== Laporan Rekapitulasi Transaksi ===");
+            if (!transactions.Any())
+            {
+                Console.WriteLine("Tidak ada transaksi yang tercatat.");
+                return;
+            }
+
+            var report = transactions
+                .GroupBy(t => new { t.Jenis, t.NamaBarang })
+                .Select(g => new
+                {
+                    Jenis = g.Key.Jenis,
+                    NamaBarang = g.Key.NamaBarang,
+                    TotalTransaksi = g.Count(),
+                    TotalBarang = g.Sum(t => t.Jumlah),
+                    StokAkhir = g.Last().StokSetelah // Ambil stok setelah transaksi terakhir
+                });
+
+            foreach (var item in report)
+            {
+                Console.WriteLine($"Jenis: {item.Jenis} | Barang: {item.NamaBarang} | Total Transaksi: {item.TotalTransaksi} | Total Barang: {item.TotalBarang} | Stok Akhir: {item.StokAkhir}");
+            }
+        }
+
+        public void ExportReport()
+        {
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "data", "report.txt");
+
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                writer.WriteLine("=== Laporan Rekapitulasi Transaksi ===");
+
+                var report = transactions
+                    .GroupBy(t => new { t.Jenis, t.NamaBarang })
+                    .Select(g => new
+                    {
+                        Jenis = g.Key.Jenis,
+                        NamaBarang = g.Key.NamaBarang,
+                        TotalTransaksi = g.Count(),
+                        TotalBarang = g.Sum(t => t.Jumlah),
+                        StokAkhir = g.Last().StokSetelah
+                    });
+
+                foreach (var item in report)
+                {
+                    writer.WriteLine($"Jenis: {item.Jenis} | Barang: {item.NamaBarang} | Total Transaksi: {item.TotalTransaksi} | Total Barang: {item.TotalBarang} | Stok Akhir: {item.StokAkhir}");
+                }
+            }
+
+            Console.WriteLine($"✅ Laporan berhasil diekspor ke {filePath}");
         }
     }
 }

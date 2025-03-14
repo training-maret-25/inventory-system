@@ -1,33 +1,12 @@
 [
-    {
-      "id": 1,
-      "tanggal": "2025-04-12 10:30:00",
-      "jenis": "Barang Masuk",
-      "barang_id": 1,
-      "nama_barang": "Pulpen",
-      "jumlah": 50,
-      "stok_setelah": 70,
-      "employee": "Budi"
-    },
-    {
-      "id": 2,
-      "tanggal": "2025-03-12 14:00:00",
-      "jenis": "Barang Keluar",
-      "barang_id": 2,
-      "nama_barang": "Kertas A4",
-      "jumlah": 20,
-      "stok_setelah": 30,
-      "employee": "Siti"
-    },
-    {
-      "id": 3,
-      "tanggal": "2025-03-12 16:00:00",
-      "jenis": "Barang Masuk",
-      "barang_id": 3,
-      "nama_barang": "Pensil",
-      "jumlah": 30,
-      "stok_setelah": 50,
-      "employee": "SYSTEM"
-    }
-  ]
-  
+  {
+    "Id": 1,
+    "Tanggal": "2025-03-14T00:00:00",
+    "Jenis": "Masuk",
+    "BarangId": 1,
+    "NamaBarang": "pulpen ajaib",
+    "Jumlah": 20,
+    "StokSetelah": 20,
+    "Employee": "adminbaru"
+  }
+]

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2022-11-11] Laporan Harian:
 - Barang Masuk: 
 - Barang Keluar: 
@@ -65,3 +66,7 @@ Total Barang Masuk : 0
 Total Barang Keluar: 0
 
 
+=======
+=== Laporan Rekapitulasi Transaksi ===
+Jenis: Masuk | Barang: pulpen ajaib | Total Transaksi: 1 | Total Barang: 20 | Stok Akhir: 20
+>>>>>>> f10d18421f88bffab88aae3845ac1b7a1d788add

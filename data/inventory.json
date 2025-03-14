@@ -2,25 +2,33 @@
   {
     "Id": 1,
     "nama": "sepatu",
-    "kategori": "perlengkana",
+    "kategori": "perlengkapa",
     "Stok": 11,
     "batas_minimum": 10,
     "jumlah_restok": 12
   },
   {
-    "Id": 4,
-    "nama": "mouse",
-    "kategori": "elektronik",
-    "Stok": 12,
-    "batas_minimum": 20,
+    "Id": 0,
+    "nama": null,
+    "kategori": null,
+    "Stok": 0,
+    "batas_minimum": 10,
     "jumlah_restok": 0
   },
   {
     "Id": 5,
-    "nama": "kipas",
-    "kategori": "elektronik",
-    "Stok": 30,
-    "batas_minimum": 50,
+    "nama": null,
+    "kategori": null,
+    "Stok": 20,
+    "batas_minimum": 10,
+    "jumlah_restok": 0
+  },
+  {
+    "Id": 4,
+    "nama": "ex",
+    "kategori": "entitas",
+    "Stok": 120,
+    "batas_minimum": 10,
     "jumlah_restok": 0
   }
 ]
