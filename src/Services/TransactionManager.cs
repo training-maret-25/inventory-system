@@ -33,7 +33,7 @@ namespace InventorySystem.Services
 
                 if (string.IsNullOrEmpty(jsonData))
                 {
-                    Console.WriteLine("⚠ File kosong, menginisialisasi dengan array kosong.");
+                    Console.WriteLine("File kosong, menginisialisasi dengan array kosong.");
                     jsonData = "[]"; 
                 }
 
@@ -44,7 +44,7 @@ namespace InventorySystem.Services
 
                 if (data == null || !data.Any())
                 {
-                    Console.WriteLine("⚠ Data inventory kosong atau tidak valid!");
+                    Console.WriteLine("Data inventory kosong atau tidak valid!");
                     return;
                 }
 
